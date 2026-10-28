@@ -1,6 +1,6 @@
 # Data sources and legal audit
 
-- **Status:** Researched 2026-10-28. **2 blockers open** (see the bottom of this page).
+- **Status:** Researched 2026-10-28. **1 blocker open** (see the bottom of this page).
 - Re-check each row before launch: terms change. Every row links to where we read it.
 
 ## Summary
@@ -9,11 +9,11 @@
 | ---------------------------------------------- | --------------------------------- | ------------------------------------ | ------------------------------ | --------------------- | ----------- |
 | Elevator & escalator catalogue (ariellopez.cl) | Device IDs, stations, coordinates | **None stated**                      | Unknown; credit them anyway    | n/a (static file)     | ⚠️ Ask      |
 | Live device status (seguimos.cl)               | Working / out of service, now     | **None stated**, no API docs         | Unknown; credit them anyway    | **None stated**       | ⚠️ Ask      |
-| OpenStreetMap                                  | Metro line geometry, base map     | ODbL 1.0                             | "© OpenStreetMap contributors" | n/a (we extract once) | ✅ OK       |
-| OpenFreeMap                                    | Map tiles and style               | Free, no key                         | OpenFreeMap, OpenMapTiles, OSM | Fair use              | ✅ OK       |
+| OpenStreetMap                                  | Metro line geometry overlay       | ODbL 1.0                             | "© OpenStreetMap contributors" | n/a (we extract once) | ✅ OK       |
 | Santiago GTFS (DTPM)                           | Station registry (Phase 4), OTP   | **None stated** on the download page | Unknown                        | n/a (download)        | ⚠️ Ask      |
-| Google Routes API                              | Transit routing                   | Google Maps Platform terms           | Google Maps logo               | Quota + billing       | ❌ Blocker  |
-| Google Places API                              | Place search / autocomplete       | Google Maps Platform terms           | Google Maps logo               | Quota + billing       | ❌ Blocker  |
+| Google Maps JavaScript API                     | The map itself                    | Google Maps Platform terms           | Drawn by Google                | Quota + billing       | ✅ OK       |
+| Google Routes API                              | Transit routing                   | Google Maps Platform terms           | Shown on a Google map          | Quota + billing       | ✅ OK       |
+| Google Places API                              | Place search / autocomplete       | Google Maps Platform terms           | Shown on a Google map          | Quota + billing       | ✅ OK       |
 | Gemini API                                     | Free text → origin/destination    | Gemini API terms                     | n/a                            | Quota                 | ⚠️ Decide   |
 | Web Speech API (browser)                       | Voice input                       | Browser feature, no contract         | n/a                            | n/a                   | ⚠️ Disclose |
 
@@ -40,15 +40,10 @@
 ### OpenStreetMap
 
 - Licence: [Open Database License (ODbL) 1.0](https://www.openstreetmap.org/copyright).
-- Map must show "© OpenStreetMap contributors".
+- The base map is Google's, but our Metro line overlay comes from OSM, so the map must still show
+  "© OpenStreetMap contributors".
 - `metro_lineas.geojson` is a **derived database**: it stays under ODbL (share-alike), not MIT.
   Mark it as such when it's added to the repo (Phase 4).
-
-### OpenFreeMap
-
-- <https://openfreemap.org>: free vector tiles, no API key, no registration.
-- The default style already carries the required attribution (OpenFreeMap, OpenMapTiles, OSM).
-  Keep MapLibre's attribution control visible.
 
 ### Santiago GTFS: DTPM
 
@@ -71,8 +66,10 @@ From Google's own policy pages (both last updated 2026-10-27):
   "Places API results displayed on a map must be shown on a Google Map." Without a Google Map, show
   the Google logo. Autocomplete suggestions fall under the same restrictions. No pre-fetching,
   caching, or storing beyond the exceptions (place IDs).
-- **Effect:** drawing a Google route or Google place on our MapLibre map
-  ([ADR 0003](adr/0003-maplibre-for-map-rendering.md)) breaks these terms. See blocker 1.
+- **Resolved by [ADR 0009](adr/0009-google-maps-for-map-rendering.md):** the map is a Google map
+  (Maps JavaScript API), so Google routes and places are shown where the terms allow. That key is
+  the one key in the browser: restricted to our domains and to the Maps JavaScript API, with a
+  quota cap. Routes and Places are still called only from our API.
 
 ### Gemini API
 
@@ -104,15 +101,10 @@ From Google's own policy pages (both last updated 2026-10-27):
 
 ## Open blockers (Phase 0 isn't done until these are resolved)
 
-1. **Google results on a non-Google map.** Choose one, and record it in a new ADR:
-   - **A.** Use the Google Maps JavaScript API for the map, superseding ADR 0003. Fastest path;
-     map loads are billed beyond the free monthly quota.
-   - **B.** Keep MapLibre; replace Google with OpenTripPlanner (routing, using DTPM GTFS + OSM) and
-     a geocoder whose terms allow any map. More infrastructure; also makes accessibility a routing
-     constraint (roadmap Phase 10 moves before launch).
-   - **C.** Keep MapLibre for the Metro network and elevator status, but show the Google route
-     only as a text itinerary with the Google logo, never on the map. Weakest user experience.
-2. **Permission from the catalogue and live-status authors** (Ariel López and Willy Maikowski).
+1. **Permission from the catalogue and live-status authors** (Ariel López and Willy Maikowski).
    Without it the core data has no legal basis for a public launch.
+
+Resolved: Google results on a non-Google map → Google Maps for the map
+([ADR 0009](adr/0009-google-maps-for-map-rendering.md), 2026-10-28).
 
 Not blocking yet: DTPM licence (needed by Phase 4), Gemini tier (needed by Phase 6).
