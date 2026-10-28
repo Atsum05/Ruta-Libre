@@ -1,0 +1,4757 @@
+{
+  "AG-092fca": {
+    "estacion": "AG",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés hacia Boletería"
+  },
+  "AG-50ce59": {
+    "estacion": "AG",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "AG-d88d57": {
+    "estacion": "AG",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna con El Pinar / Av. Escuela Agrícola hacia Boletería"
+  },
+  "AH-856852": {
+    "estacion": "AH",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda norte) con Toro Mazote hacia Boletería"
+  },
+  "AH-b2b59b": {
+    "estacion": "AH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "AH-d27a5f": {
+    "estacion": "AH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "AL-0d0522": {
+    "estacion": "AL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Alcántara con Av. Apoquindo (vereda sur) hacia Boletería"
+  },
+  "AL-b2b59b": {
+    "estacion": "AL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "AL-d27a5f": {
+    "estacion": "AL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "AN-32230a": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 Norte hacia Andén Línea 2 dirección Vespucio Norte"
+  },
+  "AN-35d00e": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en San Martín con Catedral (Plaza Santa Teresa de Los Andes) hacia Boletería Oriente"
+  },
+  "AN-76bcb3": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Andén Línea 2 dirección Hospital El Pino hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "AN-88b8b6": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Andén Línea 2 dirección Hospital El Pino hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "AN-8ee341": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 Sur hacia Andén Línea 2 dirección Vespucio Norte"
+  },
+  "AN-e4a16a": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 Norte hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "AN-f7de57": {
+    "estacion": "AN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 Sur hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "AV-0a642b": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso Intermodal Vespucio Norte"
+  },
+  "AV-20607e": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Boletería hacia Cambio de andén"
+  },
+  "AV-3c6f8e": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Cambio de andén"
+  },
+  "AV-3f68e8": {
+    "estacion": "AV",
+    "tipo": "ascensor",
+    "texto": "Ascensor 1 de acceso ubicado en Av. Principal Capitán Ignacio Carrera Pinto hacia Intermodal y hacia Boletería"
+  },
+  "AV-426b57": {
+    "estacion": "AV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "AV-4acdae": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso B Av. Principal Capitán Ignacio Carrera Pinto"
+  },
+  "AV-6bf9ec": {
+    "estacion": "AV",
+    "tipo": "ascensor",
+    "texto": "Ascensor 2 de acceso ubicado en Av. Principal Capitán Ignacio Carrera Pinto hacia Intermodal y hacia Boletería"
+  },
+  "AV-7b85e7": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Boletería hacia Cambio de andén"
+  },
+  "AV-9ff167": {
+    "estacion": "AV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "AV-beccf4": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Boletería"
+  },
+  "AV-db93e4": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso B Av. Principal Capitán Ignacio Carrera Pinto hacia Cambio de andén"
+  },
+  "AV-fd09b8": {
+    "estacion": "AV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso Intermodal Vespucio Norte hacia Andén dirección Hospital El Pino"
+  },
+  "BA-36f159": {
+    "estacion": "BA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 5 hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "BA-631d39": {
+    "estacion": "BA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 Línea 5 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "BA-92aa45": {
+    "estacion": "BA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 - Línea 5 hacia Andén Línea 1 dirección Los Dominicos, hacia combinación Línea 5 y hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "BA-c8cf87": {
+    "estacion": "BA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. General Bustamante y Ramón Carnicer (frente a Parque Bustamante) hacia combinación Línea 1 Línea 5"
+  },
+  "BE-2dd283": {
+    "estacion": "BE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "BE-539aaa": {
+    "estacion": "BE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "BE-b03e2a": {
+    "estacion": "BE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Monjitas con Mosqueto hacia Boletería"
+  },
+  "BE-fcc63f": {
+    "estacion": "BE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Monjitas / Mosqueto"
+  },
+  "BIL-0f404f": {
+    "estacion": "BIL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "BIL-3e91eb": {
+    "estacion": "BIL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "BIL-97d88f": {
+    "estacion": "BIL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Tobalaba (vereda poniente) con Av. Francisco Bilbao hacia Boletería"
+  },
+  "BIL-a32f68": {
+    "estacion": "BIL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso B Av. Francisco Bilbao"
+  },
+  "BIL-dd46b3": {
+    "estacion": "BIL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Acceso A Av. Tobalaba Oriente"
+  },
+  "BIL-ebea10": {
+    "estacion": "BIL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Acceso A Av. Tobalaba Oriente"
+  },
+  "BIO-0c58e8": {
+    "estacion": "BIO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Cerrillos"
+  },
+  "BIO-21fe42": {
+    "estacion": "BIO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Santa Rosa"
+  },
+  "BIO-3a82a5": {
+    "estacion": "BIO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Los Leones"
+  },
+  "BIO-7d843e": {
+    "estacion": "BIO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Centenario con Av. Santa Rosa (al costado derecho del acceso) hacia Servicios"
+  },
+  "BIO-c9011b": {
+    "estacion": "BIO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "BL-060bbe": {
+    "estacion": "BL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -2 hacia Nivel Intermedio -1"
+  },
+  "BL-2737f3": {
+    "estacion": "BL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -1 hacia Boletería"
+  },
+  "BL-4968e3": {
+    "estacion": "BL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "BL-50ce59": {
+    "estacion": "BL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "BL-52c92a": {
+    "estacion": "BL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -3 cambio de andén hacia Nivel Intermedio -2"
+  },
+  "BL-6df91d": {
+    "estacion": "BL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -1 hacia Nivel Intermedio -2"
+  },
+  "BL-966992": {
+    "estacion": "BL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "BL-c69091": {
+    "estacion": "BL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -2 hacia Nivel Intermedio -3 cambio de andén"
+  },
+  "BL-d3d728": {
+    "estacion": "BL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Nivel Intermedio -1"
+  },
+  "BQ-18f643": {
+    "estacion": "BQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Nivel -3 cambio de andén Línea 5 hacia Nivel -1 Combinación Línea 1"
+  },
+  "BQ-36f159": {
+    "estacion": "BQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 5 hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "BQ-631d39": {
+    "estacion": "BQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 Línea 5 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "BQ-92aa45": {
+    "estacion": "BQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 - Línea 5 hacia Andén Línea 1 dirección Los Dominicos, hacia combinación Línea 5 y hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "BQ-a78e87": {
+    "estacion": "BQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel -3 cambio de andén Línea 5 hacia Nivel Intermedio -1"
+  },
+  "BQ-ac4cdf": {
+    "estacion": "BQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Nivel -3 cambio de andén Línea 5 hacia Nivel -1 Combinación Línea 1"
+  },
+  "BQ-c8cf87": {
+    "estacion": "BQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. General Bustamante y Ramón Carnicer (frente a Parque Bustamante) hacia combinación Línea 1 Línea 5"
+  },
+  "BQ-e49396": {
+    "estacion": "BQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 1 dirección Los Dominicos hacia Andén dirección Vicente Valdés"
+  },
+  "BR-3c4b59": {
+    "estacion": "BR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel 2 hacia Boletería"
+  },
+  "BR-4968e3": {
+    "estacion": "BR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "BR-50ce59": {
+    "estacion": "BR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "BR-966992": {
+    "estacion": "BR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "BR-a794bb": {
+    "estacion": "BR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Av. General Óscar Bonilla"
+  },
+  "BR-c9011b": {
+    "estacion": "BR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "BR-fbc5de": {
+    "estacion": "BR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. General óscar Bonilla (vereda sur) con Teniente Cruz hacia Boletería"
+  },
+  "CA-043c83": {
+    "estacion": "CA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 hacia Andén Línea 2 dirección Plaza Quilicura / Intermedio"
+  },
+  "CA-16f6e3": {
+    "estacion": "CA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Acceso D Paseo Puente"
+  },
+  "CA-509a8a": {
+    "estacion": "CA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. General Mackenna con Paseo Puente (a un costado del acceso) por Línea 2 hacia Boletería Línea 2"
+  },
+  "CA-919f31": {
+    "estacion": "CA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "CA-f742b4": {
+    "estacion": "CA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 3 hacia Andén Línea 2 dirección Fernando Castillo Velasco / Intermedio"
+  },
+  "CA-f7a39c": {
+    "estacion": "CA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Acceso D Paseo Puente"
+  },
+  "CAR-047349": {
+    "estacion": "CAR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Independencia hacia Servicios"
+  },
+  "CAR-0eb044": {
+    "estacion": "CAR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "CAR-1ecb53": {
+    "estacion": "CAR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Independencia"
+  },
+  "CAR-374766": {
+    "estacion": "CAR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Plaza Quilicura"
+  },
+  "CAR-54da48": {
+    "estacion": "CAR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Independencia con Av. Cardenal José María Caro hacia Servicios"
+  },
+  "CAR-c9011b": {
+    "estacion": "CAR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "CB-3f3e2b": {
+    "estacion": "CB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso B Doctor Raimundo Charlin"
+  },
+  "CB-426b57": {
+    "estacion": "CB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "CB-9ff167": {
+    "estacion": "CB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "CB-a9966f": {
+    "estacion": "CB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso A Santos Dumont"
+  },
+  "CB-e2ad00": {
+    "estacion": "CB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Recoleta entre Dr. Raimundo Charlin y Santos Dumont hacia Boletería"
+  },
+  "CCH-047349": {
+    "estacion": "CCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Independencia hacia Servicios"
+  },
+  "CCH-0eb044": {
+    "estacion": "CCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "CCH-1ecb53": {
+    "estacion": "CCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Independencia"
+  },
+  "CCH-4e0c91": {
+    "estacion": "CCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Independencia con Av. Dorsal hacia Servicios"
+  },
+  "CCH-5aebcf": {
+    "estacion": "CCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Plaza Quilicura"
+  },
+  "CCH-c9011b": {
+    "estacion": "CCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "CE-426b57": {
+    "estacion": "CE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "CE-441fda": {
+    "estacion": "CE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Acceso A Av. Recoleta"
+  },
+  "CE-5e111b": {
+    "estacion": "CE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Acceso A Av. Recoleta"
+  },
+  "CE-884ae3": {
+    "estacion": "CE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Recoleta (vereda poniente) detrás de acceso a estación hacia Boletería"
+  },
+  "CE-9ff167": {
+    "estacion": "CE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "CER-0fd2d0": {
+    "estacion": "CER",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "CER-208dc5": {
+    "estacion": "CER",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Cerrillos"
+  },
+  "CER-83cfbb": {
+    "estacion": "CER",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Los Leones"
+  },
+  "CER-a3650a": {
+    "estacion": "CER",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Departamental hacia Servicios"
+  },
+  "CER-aa9528": {
+    "estacion": "CER",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Departamental"
+  },
+  "CER-c9011b": {
+    "estacion": "CER",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "CER-cd50d0": {
+    "estacion": "CER",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Departamental (vereda norte) con Buzeta (al costado izquierdo del acceso) hacia Servicios"
+  },
+  "CH-044938": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Andén dirección San Pablo hacia Boletería"
+  },
+  "CH-07a05b": {
+    "estacion": "CH",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) con Arturo Prat"
+  },
+  "CH-14a045": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Andén dirección Los Dominicos hacia Boletería"
+  },
+  "CH-3f9ffe": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Paseo Nueva York"
+  },
+  "CH-4c3e0d": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Andén dirección San Pablo hacia Boletería"
+  },
+  "CH-60d634": {
+    "estacion": "CH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "CH-852d2b": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Andén dirección Los Dominicos hacia Boletería"
+  },
+  "CH-88c017": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso C Paseo Estado"
+  },
+  "CH-d36369": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso D Paseo Serrano"
+  },
+  "CH-eba3d6": {
+    "estacion": "CH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "CH-f249a9": {
+    "estacion": "CH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso E Arturo Prat"
+  },
+  "CM-0cad94": {
+    "estacion": "CM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio hacia Acceso A Avenida Lo Martínez"
+  },
+  "CM-2c9f37": {
+    "estacion": "CM",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Lo Martínez hacia Boletería"
+  },
+  "CM-426b57": {
+    "estacion": "CM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "CM-9ff167": {
+    "estacion": "CM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "CM-c01778": {
+    "estacion": "CM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Nivel Intermedio"
+  },
+  "CM-c1bfd4": {
+    "estacion": "CM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Avenida Lo Martínez hacia Nivel Intermedio"
+  },
+  "CM-e96cbc": {
+    "estacion": "CM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio hacia Servicios"
+  },
+  "CN-426b57": {
+    "estacion": "CN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "CN-9ff167": {
+    "estacion": "CN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "CN-f2c070": {
+    "estacion": "CN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda oriente) hacia Boletería"
+  },
+  "COL-01f9b7": {
+    "estacion": "COL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Acceso B Av. Eliodoro Yáñez"
+  },
+  "COL-0f404f": {
+    "estacion": "COL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "COL-3e91eb": {
+    "estacion": "COL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "COL-46b9a4": {
+    "estacion": "COL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Acceso B Av. Eliodoro Yáñez"
+  },
+  "COL-7f44a2": {
+    "estacion": "COL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Eliodoro Yáñez con Av. Tobalaba (vereda poniente) hacia Boletería"
+  },
+  "COL-97655b": {
+    "estacion": "COL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Av. Tobalaba Oriente"
+  },
+  "CV-2dd283": {
+    "estacion": "CV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "CV-539aaa": {
+    "estacion": "CV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "CV-888730": {
+    "estacion": "CV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado entre Av. Vicuña Mackenna Oriente y Poniente (en acceso principal) hacia Boletería"
+  },
+  "DE-426b57": {
+    "estacion": "DE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "DE-8be8ef": {
+    "estacion": "DE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda oriente) con Calle 1 hacia Boletería"
+  },
+  "DE-9ff167": {
+    "estacion": "DE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "DO-14968c": {
+    "estacion": "DO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso A Av. Dorsal"
+  },
+  "DO-41b32a": {
+    "estacion": "DO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Dorsal con Av. Recoleta hacia Boletería"
+  },
+  "DO-426b57": {
+    "estacion": "DO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "DO-9ff167": {
+    "estacion": "DO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "DS-2c9d94": {
+    "estacion": "DS",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Intermodal hacia Boletería"
+  },
+  "DS-381a0f": {
+    "estacion": "DS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Maipú hacia Boletería"
+  },
+  "DS-539aaa": {
+    "estacion": "DS",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "DS-a54d5f": {
+    "estacion": "DS",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Váldes"
+  },
+  "DS-b4384e": {
+    "estacion": "DS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Isabel Riquelme"
+  },
+  "DS-dd12a7": {
+    "estacion": "DS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Vicente Valdés hacia Boletería"
+  },
+  "DS-e37d06": {
+    "estacion": "DS",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Isabel Riquelme con Juan José Rivera (acceso peatonal) hacia Boletería"
+  },
+  "DS-feb0ab": {
+    "estacion": "DS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia combinación Intermodal del Sol"
+  },
+  "EB-426b57": {
+    "estacion": "EB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "EB-728374": {
+    "estacion": "EB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Ernesto Riquelme hacia Boletería"
+  },
+  "EB-84dce9": {
+    "estacion": "EB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Ernesto Riquelme hacia Servicios"
+  },
+  "EB-9ff167": {
+    "estacion": "EB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "EB-c15417": {
+    "estacion": "EB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Ernesto Riquelme"
+  },
+  "EC-562df9": {
+    "estacion": "EC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) frente a Instituto Teletón Santiago hacia Boletería"
+  },
+  "EC-b2b59b": {
+    "estacion": "EC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "EC-d27a5f": {
+    "estacion": "EC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "ECO-0f404f": {
+    "estacion": "ECO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "ECO-3e91eb": {
+    "estacion": "ECO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "ECO-f8cc7a": {
+    "estacion": "ECO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Elisa Correa Sanfuentes con Av. Concha y Toro hacia Boletería"
+  },
+  "EI-40fe97": {
+    "estacion": "EI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Einstein con Av. Recoleta hacia Boletería"
+  },
+  "EI-426b57": {
+    "estacion": "EI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "EI-9d4f04": {
+    "estacion": "EI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso A Av. Einstein"
+  },
+  "EI-9ff167": {
+    "estacion": "EI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "EL-b2b59b": {
+    "estacion": "EL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "EL-d27a5f": {
+    "estacion": "EL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "EL-f47b4a": {
+    "estacion": "EL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Los Dominicos"
+  },
+  "EL-f715a0": {
+    "estacion": "EL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección San Pablo"
+  },
+  "EL-fc76dc": {
+    "estacion": "EL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) en acceso Estación Alameda (EFE)"
+  },
+  "EM-17bab9": {
+    "estacion": "EM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Los Militares / Galería Comercial"
+  },
+  "EM-528faf": {
+    "estacion": "EM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso C Av. Apoquindo Sur / Félix de Amesti"
+  },
+  "EM-b2b59b": {
+    "estacion": "EM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "EM-d27a5f": {
+    "estacion": "EM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "EP-426b57": {
+    "estacion": "EP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "EP-575264": {
+    "estacion": "EP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Servicios Descanso Acceso B Gran Avenida José Miguel Carrera Poniente"
+  },
+  "EP-65cfaa": {
+    "estacion": "EP",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda oriente) con Av. El Parrón hacia Boletería"
+  },
+  "EP-76f84b": {
+    "estacion": "EP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Descanso hacia Acceso A Gran Avenida José Miguel Carrera Poniente"
+  },
+  "EP-7ab96b": {
+    "estacion": "EP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso B Gran Avenida José Miguel Carrera Oriente"
+  },
+  "EP-9ff167": {
+    "estacion": "EP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "ESN-1e2697": {
+    "estacion": "ESN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Grecia hacia Servicios"
+  },
+  "ESN-34928f": {
+    "estacion": "ESN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Cambio de andén hacia Servicios"
+  },
+  "ESN-7e5620": {
+    "estacion": "ESN",
+    "tipo": "ascensor",
+    "texto": "Ascensor 2 Servicios hacia Cambio de andén y hacia Andén dirección Cerrillos"
+  },
+  "ESN-83cfbb": {
+    "estacion": "ESN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Los Leones"
+  },
+  "ESN-a5f1f1": {
+    "estacion": "ESN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Cambio de andén hacia Servicios"
+  },
+  "ESN-d3433d": {
+    "estacion": "ESN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Grecia con Av. Pedro de Valdivia (detrás del acceso principal) hacia Servicios"
+  },
+  "ESN-f56f38": {
+    "estacion": "ESN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Grecia"
+  },
+  "ESN-fd0b5d": {
+    "estacion": "ESN",
+    "tipo": "ascensor",
+    "texto": "Ascensor 1 Servicios hacia Cambio de andén y hacia Andén dirección Cerrillos"
+  },
+  "ESP-0fd2d0": {
+    "estacion": "ESP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "ESP-4d2087": {
+    "estacion": "ESP",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Irarrázaval con Av. José Pedro Alessandri hacia Servicios"
+  },
+  "ESP-4dcd5a": {
+    "estacion": "ESP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "ESP-832279": {
+    "estacion": "ESP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Irarrázaval"
+  },
+  "ESP-c6d4cc": {
+    "estacion": "ESP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia nivel Intermedio locales comerciales"
+  },
+  "ESP-c9011b": {
+    "estacion": "ESP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "ESP-e1d48a": {
+    "estacion": "ESP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza Quilicura"
+  },
+  "FCV-4dcd5a": {
+    "estacion": "FCV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "FCV-85c71c": {
+    "estacion": "FCV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Alcalde Fernando Castillo Velasco"
+  },
+  "FCV-c9011b": {
+    "estacion": "FCV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "FCV-d89228": {
+    "estacion": "FCV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alcalde Fernando Castillo Velasco con Av. Tobalaba hacia Servicios"
+  },
+  "FCV-e1d48a": {
+    "estacion": "FCV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza Quilicura"
+  },
+  "FER-2791eb": {
+    "estacion": "FER",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "FER-4cba08": {
+    "estacion": "FER",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Manuel Antonio Matta hacia Servicios"
+  },
+  "FER-78dc7e": {
+    "estacion": "FER",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servcios hacia acceso A Av. Manuel Antonio Matta"
+  },
+  "FER-81c30a": {
+    "estacion": "FER",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Manuel Antonio Matta hacia Boletería"
+  },
+  "FER-8721e1": {
+    "estacion": "FER",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza Quilicura"
+  },
+  "FR-3a5f03": {
+    "estacion": "FR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Calle Placer hacia Descanso"
+  },
+  "FR-44557d": {
+    "estacion": "FR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Placer con Nataniel Cox por Intermodal y Línea 2 hacia Servicios Línea 2"
+  },
+  "FR-6f2eff": {
+    "estacion": "FR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 2 hacia combinación Línea 2 Línea 6 y hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "FR-8d728d": {
+    "estacion": "FR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Centenario con San Diego (detrás del acceso) por Línea 6 hacia Servicios Línea 6"
+  },
+  "FR-90d7c8": {
+    "estacion": "FR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Descanso hacia Acceso A Calle Placer"
+  },
+  "FR-9f9b55": {
+    "estacion": "FR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 6 hacia combinación Línea 2 - Línea 6, hacia Andén Línea 2 dirección Vespucio Norte y hacia Andén Línea 6 dirección Los Leones"
+  },
+  "FR-cb378b": {
+    "estacion": "FR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 6 hacia combinación Línea 2 - Línea 6, hacia Andén Línea 2 dirección Vespucio Norte y hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "FRA-020136": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12 desde Andén dirección Los Leones hacia Cambio de andén"
+  },
+  "FRA-027adb": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso Intermodal Franklin"
+  },
+  "FRA-064ffd": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde andén Línea 3 dirección Cerrillos hacia combinación Línea 2 dirección Vespucio Norte"
+  },
+  "FRA-0fd2d0": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "FRA-28e30a": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde andén Línea 3 dirección Cerrillos hacia combinación Línea 2 dirección Vespucio Norte y Acceso B Nataniel Cox"
+  },
+  "FRA-44557d": {
+    "estacion": "FRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Placer con Nataniel Cox por Intermodal y Línea 2 hacia Servicios Línea 2"
+  },
+  "FRA-6f2eff": {
+    "estacion": "FRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 2 hacia combinación Línea 2 Línea 6 y hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "FRA-6f36c3": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso B Nataniel Cox hacia Servicios"
+  },
+  "FRA-810ce6": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Andén dirección Los Leones hacia Cambio de andén"
+  },
+  "FRA-8d728d": {
+    "estacion": "FRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Centenario con San Diego (detrás del acceso) por Línea 6 hacia Servicios Línea 6"
+  },
+  "FRA-9f9b55": {
+    "estacion": "FRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 6 hacia combinación Línea 2 - Línea 6, hacia Andén Línea 2 dirección Vespucio Norte y hacia Andén Línea 6 dirección Los Leones"
+  },
+  "FRA-c9011b": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "FRA-cb378b": {
+    "estacion": "FRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 6 hacia combinación Línea 2 - Línea 6, hacia Andén Línea 2 dirección Vespucio Norte y hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "FRA-ef0df7": {
+    "estacion": "FRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso B Nataniel Cox"
+  },
+  "GL-1af78b": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -4 hacia Nivel Intermedio -3"
+  },
+  "GL-2737f3": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -1 hacia Boletería"
+  },
+  "GL-3ed2c4": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -3 hacia Nivel Intermedio -4"
+  },
+  "GL-4968e3": {
+    "estacion": "GL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "GL-50ce59": {
+    "estacion": "GL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "GL-8ef6a3": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -3 hacia Nivel Intermedio -2"
+  },
+  "GL-966992": {
+    "estacion": "GL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "GL-b6b440": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -4 hacia Nivel Intermedio -5 cambio de andén"
+  },
+  "GL-c8c561": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -2 hacia Nivel Intermedio -3"
+  },
+  "GL-d3d728": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Nivel Intermedio -1"
+  },
+  "GL-f773b3": {
+    "estacion": "GL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -5 cambio de andén hacia Nivel Intermedio -4"
+  },
+  "GO-1ae9f1": {
+    "estacion": "GO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Apoquindo (vereda sur) hacia Boletería"
+  },
+  "GO-b2b59b": {
+    "estacion": "GO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "GO-d27a5f": {
+    "estacion": "GO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "HE-0f6a35": {
+    "estacion": "HE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall Línea 1 dirección San Pablo hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "HE-1c46b8": {
+    "estacion": "HE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Hall Combinación Línea 1 dirección Los Dominicos hacia Línea 2 dirección Hospital El Pino"
+  },
+  "HE-9ef071": {
+    "estacion": "HE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Hall Combinación Línea 1 dirección San Pablo hacia Línea 2 dirección Vespucio Norte"
+  },
+  "HE-9f5b58": {
+    "estacion": "HE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde andén Línea 2 dirección Vespucio Norte hacia Combinación Línea 1 dirección Los Dominicos"
+  },
+  "HE-ad0600": {
+    "estacion": "HE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall Línea 1 dirección Los Dominicos hacia Andén Línea 2 dirección Vespucio Norte"
+  },
+  "HE-b73c94": {
+    "estacion": "HE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Hall Combinación Línea 1 dirección San Pablo hacia Línea 2 dirección Hospital El Pino"
+  },
+  "HE-d50594": {
+    "estacion": "HE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall Línea 1 dirección Los Dominicos hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "HE-dacf2b": {
+    "estacion": "HE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall Línea 1 dirección San Pablo hacia Andén Línea 2 dirección Vespucio Norte"
+  },
+  "HM-18ffed": {
+    "estacion": "HM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Cambio de andén"
+  },
+  "HM-b2b59b": {
+    "estacion": "HM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "HM-b4f935": {
+    "estacion": "HM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso A Av. Apoquindo"
+  },
+  "HM-d083c9": {
+    "estacion": "HM",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Apoquindo con Hernando de Magallanes"
+  },
+  "HM-ffacee": {
+    "estacion": "HM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección  Los Dominicos"
+  },
+  "HOS-0eb044": {
+    "estacion": "HOS",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "HOS-0fd2d0": {
+    "estacion": "HOS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "HOS-374766": {
+    "estacion": "HOS",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Plaza Quilicura"
+  },
+  "HOS-80f1b3": {
+    "estacion": "HOS",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Profesor Alberto Zañartu con Av. Independencia hacia Servicios"
+  },
+  "HOS-bfda4d": {
+    "estacion": "HOS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Profesor Alberto Zañartu"
+  },
+  "HOS-c9011b": {
+    "estacion": "HOS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "HOS-fa222d": {
+    "estacion": "HOS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia nivel Intermedio Locales Comerciales"
+  },
+  "HSR-0f404f": {
+    "estacion": "HSR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "HSR-1ad32a": {
+    "estacion": "HSR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Concha y Toro Poniente hacia Boleter��a"
+  },
+  "HSR-3a0123": {
+    "estacion": "HSR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Concha y Toro (vereda poniente detrás del acceso) hacia Boletería"
+  },
+  "HSR-3c6f8e": {
+    "estacion": "HSR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Cambio de andén"
+  },
+  "HSR-3e91eb": {
+    "estacion": "HSR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "HSR-901c78": {
+    "estacion": "HSR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Cambio de andén"
+  },
+  "HSR-c45972": {
+    "estacion": "HSR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso B Av. Concha y Toro Oriente hacia Boletería"
+  },
+  "HSR-ee3566": {
+    "estacion": "HSR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Concha y Toro Poniente hacia Boletería"
+  },
+  "HSR-ef648d": {
+    "estacion": "HSR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Concha y Toro (vereda oriente detrás del de acceso) hacia Boletería"
+  },
+  "IR-19819d": {
+    "estacion": "IR",
+    "tipo": "ascensor",
+    "texto": "Ascensor cambio de Andén hacia Servicios Línea 3 y hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "IR-3b98ca": {
+    "estacion": "IR",
+    "tipo": "ascensor",
+    "texto": "Ascensor cambio de Andén hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "IR-4907e0": {
+    "estacion": "IR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Matta Oriente con Av. San Eugenio por Línea 3 hacia Servicios Línea 3"
+  },
+  "IR-97cdfa": {
+    "estacion": "IR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Parque Bustamante frente a acceso Pedro de Oña hacia andén Vicente Valdés"
+  },
+  "IR-a50300": {
+    "estacion": "IR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Parque Bustamante frente a acceso Pedro de Oña hacia andén Plaza de Maipú"
+  },
+  "IRA-062aea": {
+    "estacion": "IRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso D Av. Matta Oriente"
+  },
+  "IRA-19819d": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor cambio de Andén hacia Servicios Línea 3 y hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "IRA-1ffee5": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Plaza Quilicura"
+  },
+  "IRA-21c4c6": {
+    "estacion": "IRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde nivel Intermedio hacia nivel Servicios y combinación Línea 3 - Línea 5"
+  },
+  "IRA-3b98ca": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor cambio de Andén hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "IRA-509819": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 3 hacia Andén Línea 5 dirección Plaza de Maipú y hacia Cambio de andén Línea 3"
+  },
+  "IRA-779bd1": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Matta Oriente con Av. San Eugenio hacia Servicios"
+  },
+  "IRA-919f31": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "IRA-92dd56": {
+    "estacion": "IRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde nivel Intermedio hacia nivel Servicios y combinación Línea 3 - Línea 5"
+  },
+  "IRA-943151": {
+    "estacion": "IRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia nivel Intermedio"
+  },
+  "IRA-97cdfa": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Parque Bustamante frente a acceso Pedro de Oña hacia andén Vicente Valdés"
+  },
+  "IRA-a50300": {
+    "estacion": "IRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Parque Bustamante frente a acceso Pedro de Oña hacia andén Plaza de Maipú"
+  },
+  "IRA-c9011b": {
+    "estacion": "IRA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "ISU-0c58e8": {
+    "estacion": "ISU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Cerrillos"
+  },
+  "ISU-0fd2d0": {
+    "estacion": "ISU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "ISU-2676f3": {
+    "estacion": "ISU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Francisco Bilbao con Plaza Pedro de Valdivia (detrás del acceso) hacia Servicios"
+  },
+  "ISU-3a82a5": {
+    "estacion": "ISU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Los Leones"
+  },
+  "ISU-539e1d": {
+    "estacion": "ISU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Francisco Bilbao"
+  },
+  "ISU-beccf4": {
+    "estacion": "ISU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Boletería"
+  },
+  "LA-4feebd": {
+    "estacion": "LA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) con Abate Molina hacia Boletería"
+  },
+  "LA-b2b59b": {
+    "estacion": "LA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "LA-d27a5f": {
+    "estacion": "LA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "LC-3149bd": {
+    "estacion": "LC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 hacia Andén Línea 2 dirección Vespucio Norte"
+  },
+  "LC-34cc3f": {
+    "estacion": "LC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 hacia Andén Línea 2 dirección Hospital El Pino"
+  },
+  "LC-3a805d": {
+    "estacion": "LC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso D Gran Avenida José Miguel Carrera Oriente hacia Servicios"
+  },
+  "LC-4e1ee9": {
+    "estacion": "LC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio hacia Boletería Línea 2"
+  },
+  "LC-6f9921": {
+    "estacion": "LC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Corredor Gran Avenida (vereda oriente, detrás del acceso) hacia Boletería"
+  },
+  "LC-75d1a2": {
+    "estacion": "LC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Carlos Biaut con Gran Avenida José Miguel Carrera (vereda poniente) por Línea 4A hacia Boletería Línea 4A"
+  },
+  "LC-980edc": {
+    "estacion": "LC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso E Av. Ossa Poniente"
+  },
+  "LC-9fa0af": {
+    "estacion": "LC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda oriente) con Av. Ossa por Intermodal / Intermedio hacia combinación Línea 2 - Línea 4A y hacia Boletería Línea 2"
+  },
+  "LC-adf56a": {
+    "estacion": "LC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Corredor Gran Avenida (vereda poniente, detrás del acceso) hacia Boletería"
+  },
+  "LC-e07cd0": {
+    "estacion": "LC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso D Gran Avenida José Miguel Carrera Oriente hacia Combinación Intermodal y Línea 4A"
+  },
+  "LC-fdd299": {
+    "estacion": "LC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso Intermodal La Cisterna / Centro Comercial y Acceso D Gran Avenida José Miguel Carrera Oriente"
+  },
+  "LCI-0726c6": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería Línea 4A hacia Combinación Línea 2"
+  },
+  "LCI-0d4c07": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso B Gran Avenida José Miguel Carrera Oriente"
+  },
+  "LCI-130ae5": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación hacia Anden dirección Vicuña Mackenna"
+  },
+  "LCI-637cd2": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Línea 2 dirección Vespucio Norte hacia Combinacion Línea 4A dirección La Cisterna"
+  },
+  "LCI-642d31": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Línea 4A dirección La Cisterna hacia Combinacion Línea 2 dirección Hospital El Pino"
+  },
+  "LCI-6f9921": {
+    "estacion": "LCI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Corredor Gran Avenida (vereda oriente, detrás del acceso) hacia Boletería"
+  },
+  "LCI-75d1a2": {
+    "estacion": "LCI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Carlos Biaut con Gran Avenida José Miguel Carrera (vereda poniente) por Línea 4A hacia Boletería Línea 4A"
+  },
+  "LCI-9894a7": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Línea 2 dirección Hospital El Pino hacia Combinacion Línea 4A dirección La Cisterna"
+  },
+  "LCI-9fa0af": {
+    "estacion": "LCI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda oriente) con Av. Ossa por Intermodal / Intermedio hacia combinación Línea 2 - Línea 4A y hacia Boletería Línea 2"
+  },
+  "LCI-adf56a": {
+    "estacion": "LCI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Corredor Gran Avenida (vereda poniente, detrás del acceso) hacia Boletería"
+  },
+  "LCI-c6ffed": {
+    "estacion": "LCI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 4A hacia Andén Línea 4A dirección Vicuña Mackenna"
+  },
+  "LCI-cac887": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería Línea 2 hacia Combinación Línea 4A"
+  },
+  "LCI-e258aa": {
+    "estacion": "LCI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Gran Avenida José Miguel Carrera Poniente"
+  },
+  "LCR-2791eb": {
+    "estacion": "LCR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "LCR-4cba08": {
+    "estacion": "LCR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Manuel Antonio Matta hacia Servicios"
+  },
+  "LCR-6a39c5": {
+    "estacion": "LCR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Lo Cruzat hacia Boletería"
+  },
+  "LCR-8721e1": {
+    "estacion": "LCR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza Quilicura"
+  },
+  "LCR-eaead3": {
+    "estacion": "LCR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Manuel Antonio Matta"
+  },
+  "LD-18ffed": {
+    "estacion": "LD",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Cambio de andén"
+  },
+  "LD-3ca490": {
+    "estacion": "LD",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Cambio de andén hacia Acceso C Av. Patagonia Poniente / Av. Apoquindo"
+  },
+  "LD-4110a5": {
+    "estacion": "LD",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Camino El Alba con Av. Apoquindo (detrás del acceso) hacia Boletería"
+  },
+  "LD-770227": {
+    "estacion": "LD",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Cambio de andén hacia Acceso C Av. Patagonia Poniente / Av. Apoquindo"
+  },
+  "LD-a5276f": {
+    "estacion": "LD",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Camino El Alba hacia Cambio de andén"
+  },
+  "LD-b2b59b": {
+    "estacion": "LD",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "LD-beccf4": {
+    "estacion": "LD",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Boletería"
+  },
+  "LD-d27a5f": {
+    "estacion": "LD",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "LE-07c8b5": {
+    "estacion": "LE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Sur hacia Andén Línea 1 dirección Los Dominicos e Intermedio y hacia combinación Línea 1 - Línea 6"
+  },
+  "LE-42ce4a": {
+    "estacion": "LE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Nueva Providencia con Av. Suecia hacia Servicios Sur"
+  },
+  "LE-80583b": {
+    "estacion": "LE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 6 hacia combinación Línea 1 - Línea 6 y hacia Andén Línea 6 dirección Los Leones"
+  },
+  "LE-f41831": {
+    "estacion": "LE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Norte e Intermedio Comercial hacia Cambio de andén Línea 6, hacia combinación Línea 1 - Línea 6 y hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "LE-f42b09": {
+    "estacion": "LE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Andén Línea 1 dirección San Pablo e Intermedio"
+  },
+  "LE-f798cc": {
+    "estacion": "LE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Suecia con General Holley (vereda oriente) hacia Intermedio Comercial y hacia Servicios Norte"
+  },
+  "LEN-05eb02": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10-S desde combinación Línea 1 dirección San Pablo hacia puente de combinación Línea 6"
+  },
+  "LEN-07c8b5": {
+    "estacion": "LEN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Sur hacia Andén Línea 1 dirección Los Dominicos e Intermedio y hacia combinación Línea 1 - Línea 6"
+  },
+  "LEN-095811": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 19-N desde Puente de combinación Norte Línea 6 hacia Locales Comerciales"
+  },
+  "LEN-0c1e39": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Locales Comerciales hacia Acceso C Av. Providencia"
+  },
+  "LEN-3725a5": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06-S desde combinación Línea 1 dirección San Pablo hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "LEN-385c18": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso E General Adolfo Holley hacia Locales Comerciales"
+  },
+  "LEN-3f9ba7": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14-N desde Locales Comerciales hacia Servicios"
+  },
+  "LEN-4142b6": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14-S desde Línea 6 hacia combinación Línea 1 dirección San Pablo"
+  },
+  "LEN-42ce4a": {
+    "estacion": "LEN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Nueva Providencia con Av. Suecia hacia Servicios Sur"
+  },
+  "LEN-46ad1f": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Locales Comerciales hacia Acceso E General Adolfo Holley"
+  },
+  "LEN-4b7530": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 18-S desde Acceso C Av. Nueva Providencia hacia Servicios"
+  },
+  "LEN-5affff": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15-S desde Línea 6 hacia combinación Línea 1 dirección San Pablo"
+  },
+  "LEN-6a13ff": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 17-S desde Acceso C Av. Nueva Providencia hacia Servicios"
+  },
+  "LEN-6e7192": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 23-N desde Locales Comerciales hacia Puente de combinación Norte Línea 6"
+  },
+  "LEN-719dc5": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 18-N desde Servicios hacia Locales Comerciales"
+  },
+  "LEN-73092a": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 23-N desde Puente de combinación Norte Línea 6 hacia Locales Comerciales"
+  },
+  "LEN-758c41": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Locales Comerciales"
+  },
+  "LEN-80583b": {
+    "estacion": "LEN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 6 hacia combinación Línea 1 - Línea 6 y hacia Andén Línea 6 dirección Los Leones"
+  },
+  "LEN-84c734": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09-S desde combinación Línea 1 dirección San Pablo hacia puente de combinación Línea 6"
+  },
+  "LEN-856a0d": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13-S desde Línea 6 hacia combinación Línea 1 dirección San Pablo"
+  },
+  "LEN-86745c": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11-S desde Cambio de andén hacia Servicioss"
+  },
+  "LEN-8c4d86": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios Sur hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "LEN-92efc4": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 16-S desde Línea 6 hacia combinación Línea 1 dirección San Pablo"
+  },
+  "LEN-b0a5ba": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05-S desde combinación Línea 1 direcci��n San Pablo hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "LEN-b91476": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Locales Comerciales hacia Servicios"
+  },
+  "LEN-bc4732": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12-N desde Servicios hacia Locales Comerciales"
+  },
+  "LEN-bdb7c0": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 20-N desde Locales Comerciales hacia Puente de combinación Norte Línea 6"
+  },
+  "LEN-c2f78d": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 17-N desde Locales Comerciales hacia Servicios"
+  },
+  "LEN-cc9941": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05-S desde combinación Línea 1 dirección San Pablo hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "LEN-cca543": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde combinación Línea 1 dirección San Pablo hacia combinación Línea 6"
+  },
+  "LEN-cdcc99": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde combinación Línea 1 dirección Los Dominicos hacia Servicios Sur"
+  },
+  "LEN-e1a6dc": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13-N desde Servicios hacia Locales Comerciales"
+  },
+  "LEN-e5e5ef": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde combinación Línea 1 dirección Los Dominicos hacia combinación Línea 6"
+  },
+  "LEN-f41831": {
+    "estacion": "LEN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Norte e Intermedio Comercial hacia Cambio de andén Línea 6, hacia combinación Línea 1 - Línea 6 y hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "LEN-f42b09": {
+    "estacion": "LEN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Andén Línea 1 dirección San Pablo e Intermedio"
+  },
+  "LEN-f798cc": {
+    "estacion": "LEN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Suecia con General Holley (vereda oriente) hacia Intermedio Comercial y hacia Servicios Norte"
+  },
+  "LEN-f9e248": {
+    "estacion": "LEN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12-S desde Cambio de andén hacia Servicioss"
+  },
+  "LF-49b4dd": {
+    "estacion": "LF",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna Poniente con Serafín Zamora hacia andén dirección Vicente Valdés"
+  },
+  "LF-bf3e3e": {
+    "estacion": "LF",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna Oriente con Serafín Zamora hacia Andén dirección Plaza de Maipú"
+  },
+  "LF-cf5d60": {
+    "estacion": "LF",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso D Serafin Zamora poniente"
+  },
+  "LGR-1a2ac2": {
+    "estacion": "LGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda norte) con Coronel hacia Boletería"
+  },
+  "LGR-6de219": {
+    "estacion": "LGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección La Cisterna"
+  },
+  "LGR-7c2f19": {
+    "estacion": "LGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda sur) con Coronel hacia Boletería"
+  },
+  "LGR-de34c2": {
+    "estacion": "LGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicuña Mackenna"
+  },
+  "LH-093ca8": {
+    "estacion": "LH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Los Dominicos hacia Boletería"
+  },
+  "LH-2936d8": {
+    "estacion": "LH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección San Pablo hacia Boletería"
+  },
+  "LH-349493": {
+    "estacion": "LH",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) con Av. Ejército Libertador hacia Boletería"
+  },
+  "LH-60d634": {
+    "estacion": "LH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "LH-eba3d6": {
+    "estacion": "LH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "LIB-203027": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Fernando Castillo Velasco hacia Cambio de andén"
+  },
+  "LIB-345989": {
+    "estacion": "LIB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Andén dirección Plaza Quilicura"
+  },
+  "LIB-3a4837": {
+    "estacion": "LIB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en General San Martín con Av. Américo Vespucio hacia Servicios"
+  },
+  "LIB-4dc622": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza Quilicura hacia Cambio de andén"
+  },
+  "LIB-5a3858": {
+    "estacion": "LIB",
+    "tipo": "ascensor",
+    "texto": "Ascensor ubicado en Intermodal Los Libertadores hacia Servicios"
+  },
+  "LIB-672ab2": {
+    "estacion": "LIB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "LIB-7180ac": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Servicios hacia Acceso A General San Martín"
+  },
+  "LIB-7b6663": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde Cambio de andén hacia Servicios"
+  },
+  "LIB-83355e": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12 desde Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "LIB-84b927": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Servicios hacia Cambio de andén"
+  },
+  "LIB-86a115": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A General San Martín"
+  },
+  "LIB-93b70b": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Servicios hacia Acceso A General San Martín"
+  },
+  "LIB-9679f7": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Cambio de andén hacia Servicios"
+  },
+  "LIB-c43f93": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A General San Martín hacia Servicios"
+  },
+  "LIB-e08e06": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde Servicios hacia Cambio de andén"
+  },
+  "LIB-e6ae45": {
+    "estacion": "LIB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "LL-426b57": {
+    "estacion": "LL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "LL-9ff167": {
+    "estacion": "LL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "LL-f2c070": {
+    "estacion": "LL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda oriente) hacia Boletería"
+  },
+  "LM-1dbe2b": {
+    "estacion": "LM",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) con Nataniel Cox (detrás del acceso) hacia Boletería"
+  },
+  "LM-b2b59b": {
+    "estacion": "LM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "LM-d27a5f": {
+    "estacion": "LM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "LME-0f404f": {
+    "estacion": "LME",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "LME-3e91eb": {
+    "estacion": "LME",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "LME-981867": {
+    "estacion": "LME",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Concha y Toro (vereda oriente) hacia Boletería"
+  },
+  "LME-abbffa": {
+    "estacion": "LME",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso y Acceso A Av. Concha y Toro Poniente"
+  },
+  "LME-f16b4d": {
+    "estacion": "LME",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Descanso hacia Acceso B Av. Concha y Toro Oriente"
+  },
+  "LME-f533cd": {
+    "estacion": "LME",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso"
+  },
+  "LO-3a39cb": {
+    "estacion": "LO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Gran Avenida José Miguel Carrera (vereda poniente) hacia Boletería"
+  },
+  "LO-426b57": {
+    "estacion": "LO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "LO-9ff167": {
+    "estacion": "LO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "LOR-0f404f": {
+    "estacion": "LOR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "LOR-14629c": {
+    "estacion": "LOR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Intermedio y Acceso A Av. Alcalde Eduardo Castillo Velasco"
+  },
+  "LOR-3e91eb": {
+    "estacion": "LOR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "LOR-5961f9": {
+    "estacion": "LOR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Intermedio y Acceso B Av. Américo Vespucio Oriente"
+  },
+  "LOR-7fd594": {
+    "estacion": "LOR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda oriente) con Av. Oriental hacia Boletería"
+  },
+  "LOR-c1c44a": {
+    "estacion": "LOR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Intermedio y Acceso B Av. Américo Vespucio Oriente"
+  },
+  "LP-0861b8": {
+    "estacion": "LP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Vicente Valdés hacia Andén dirección Plaza de Maipú"
+  },
+  "LP-0c66e4": {
+    "estacion": "LP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Puente de conexión Andén dirección Plaza de Maipú hacia Nivel Intermedio"
+  },
+  "LP-163839": {
+    "estacion": "LP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Boletería"
+  },
+  "LP-18ff21": {
+    "estacion": "LP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú hacia Boletería"
+  },
+  "LP-7ae092": {
+    "estacion": "LP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Andén dirección Plaza de Maipú"
+  },
+  "LP-819532": {
+    "estacion": "LP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Nivel Intermedio"
+  },
+  "LP-966992": {
+    "estacion": "LP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "LP-e67a34": {
+    "estacion": "LP",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Maipú hacia Andén dirección Vicente Valdés"
+  },
+  "LPR-0f404f": {
+    "estacion": "LPR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "LPR-3e91eb": {
+    "estacion": "LPR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "LPR-787e9e": {
+    "estacion": "LPR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Los Presidentes con Av. Américo Vespucio hacia Boletería"
+  },
+  "LPR-b789cb": {
+    "estacion": "LPR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Hermano Martín Panero con Av. Américo Vespucio hacia Boletería"
+  },
+  "LQU-0f404f": {
+    "estacion": "LQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "LQU-3e91eb": {
+    "estacion": "LQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "LQU-99648a": {
+    "estacion": "LQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en María Elena con Av. Vicuña Mackenna hacia Boletería"
+  },
+  "LR-0501e9": {
+    "estacion": "LR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda norte) con Av. María Rozas Velásquez hacia Boletería"
+  },
+  "LR-818d94": {
+    "estacion": "LR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur entre ambos accesos) hacia Boletería"
+  },
+  "LR-b2b59b": {
+    "estacion": "LR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "LR-c2c4c0": {
+    "estacion": "LR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur entre ambos accesos) hacia Boleter��a"
+  },
+  "LR-d27a5f": {
+    "estacion": "LR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "LS-18ff21": {
+    "estacion": "LS",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú hacia Boletería"
+  },
+  "LS-768e0e": {
+    "estacion": "LS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Intermedio hacia Nivel 2 dirección Plaza de Maipú"
+  },
+  "LS-8b507c": {
+    "estacion": "LS",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel 2 hacia Andén dirección Vicente Valdés"
+  },
+  "LS-966992": {
+    "estacion": "LS",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "LTO-0cb9ac": {
+    "estacion": "LTO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda poniente) con Av. Dr. Amador Neghme Rodríguez hacia Boletería"
+  },
+  "LTO-0f404f": {
+    "estacion": "LTO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "LTO-3e91eb": {
+    "estacion": "LTO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "LTO-ca63c9": {
+    "estacion": "LTO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda oriente) con Av. Las Torres hacia Boletería"
+  },
+  "LV-426b57": {
+    "estacion": "LV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "LV-6978d9": {
+    "estacion": "LV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. José Miguel Carrera (vereda poniente) hacia Boletería"
+  },
+  "LV-9ff167": {
+    "estacion": "LV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "LVA-0fd2d0": {
+    "estacion": "LVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "LVA-389f0c": {
+    "estacion": "LVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Carlos Valdovinos - EFE"
+  },
+  "LVA-41e520": {
+    "estacion": "LVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Carlos Valdovinos - EFE hacia Servicios"
+  },
+  "LVA-83a33b": {
+    "estacion": "LVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor cambio de andén hacia andén dirección Los Leones"
+  },
+  "LVA-9fb06d": {
+    "estacion": "LVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Carlos Valdovinos con Av. Maipú (frente a Tren Central EFE) hacia Servicios"
+  },
+  "LVA-c9011b": {
+    "estacion": "LVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "LVA-d0e0ae": {
+    "estacion": "LVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Cerrillos"
+  },
+  "MA-23024a": {
+    "estacion": "MA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés y hacia Boletería"
+  },
+  "MA-50ce59": {
+    "estacion": "MA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "MA-a71c4a": {
+    "estacion": "MA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna Oriente con Mirador Azul hacia Boletería"
+  },
+  "MAC-2e1631": {
+    "estacion": "MAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Sur hacia Andén dirección Tobalaba"
+  },
+  "MAC-65289d": {
+    "estacion": "MAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "MAC-654c73": {
+    "estacion": "MAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Norte hacia Andén dirección Tobalaba"
+  },
+  "MAC-66c5c9": {
+    "estacion": "MAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Sur hacia Andén dirección Plaza de Puente Alto"
+  },
+  "MAC-7b5156": {
+    "estacion": "MAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Boletería hacia Andén dirección Tobalaba"
+  },
+  "MAC-9b0ee0": {
+    "estacion": "MAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "MAC-a14e1c": {
+    "estacion": "MAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Andén dirección Tobalaba"
+  },
+  "MAC-e25f10": {
+    "estacion": "MAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Norte hacia Andén dirección Plaza de Puente Alto"
+  },
+  "MAT-0eb044": {
+    "estacion": "MAT",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "MAT-0fd2d0": {
+    "estacion": "MAT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "MAT-173a49": {
+    "estacion": "MAT",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Manuel Antonio Matta con Av. Santa Rosa hacia Servicios"
+  },
+  "MAT-374766": {
+    "estacion": "MAT",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Plaza Quilicura"
+  },
+  "MAT-4cba08": {
+    "estacion": "MAT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Manuel Antonio Matta hacia Servicios"
+  },
+  "MAT-c9011b": {
+    "estacion": "MAT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "MAT-eaead3": {
+    "estacion": "MAT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Manuel Antonio Matta"
+  },
+  "MEY-78e48b": {
+    "estacion": "MEY",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "MEY-832279": {
+    "estacion": "MEY",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Irarrázaval"
+  },
+  "MEY-943151": {
+    "estacion": "MEY",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia nivel Intermedio"
+  },
+  "MEY-c9011b": {
+    "estacion": "MEY",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "MEY-e1d48a": {
+    "estacion": "MEY",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza Quilicura"
+  },
+  "MEY-f89937": {
+    "estacion": "MEY",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Irarrázaval con Monseñor Eyzaguirre hacia Servicios"
+  },
+  "MM-b2b59b": {
+    "estacion": "MM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "MM-d27a5f": {
+    "estacion": "MM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "MM-db9809": {
+    "estacion": "MM",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Providencia (vereda sur detrás del acceso) hacia Boletería"
+  },
+  "MQ-18ffed": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Cambio de andén"
+  },
+  "MQ-20607e": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Boletería hacia Cambio de andén"
+  },
+  "MQ-2afef6": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde Boletería hacia Cambio de andén"
+  },
+  "MQ-35ff76": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso F Rosario Sur"
+  },
+  "MQ-428e47": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso E Av. Apoquindo Sur"
+  },
+  "MQ-4d1a27": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde Boletería hacia Cambio de andén"
+  },
+  "MQ-7b85e7": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Boletería hacia Cambio de andén"
+  },
+  "MQ-8fb4fb": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso A Rosario Norte"
+  },
+  "MQ-98d365": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12 desde Cambio de andén hacia Acceso B Av. Apoquindo Norte / O'Conell"
+  },
+  "MQ-b2b59b": {
+    "estacion": "MQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "MQ-b2dbbb": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Cambio de andén hacia Boletería"
+  },
+  "MQ-beaa69": {
+    "estacion": "MQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Apoquindo (vereda sur) con Mar de los Sargazos hacia Boletería APUMANQUE"
+  },
+  "MQ-ca3ddc": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13 desde Cambio de andén hacia Acceso B Av. Apoquindo Norte / O'Conell"
+  },
+  "MQ-d27a5f": {
+    "estacion": "MQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "MQ-d43efd": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso B Av. Apoquindo Norte / O'Conell hacia Cambio de andén"
+  },
+  "MQ-f45806": {
+    "estacion": "MQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Cambio de andén hacia Acceso D Av. Manquehue Sur"
+  },
+  "MQ-f8cb1c": {
+    "estacion": "MQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Apoquindo (vereda norte) con O'Connell (detrás del acceso) hacia Boletería"
+  },
+  "MT-0861b8": {
+    "estacion": "MT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Vicente Valdés hacia Andén dirección Plaza de Maipú"
+  },
+  "MT-3cb8ae": {
+    "estacion": "MT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia nivel Intermedio"
+  },
+  "MT-50082c": {
+    "estacion": "MT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Maipú hacia Servicios"
+  },
+  "MT-7ae092": {
+    "estacion": "MT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Andén dirección Plaza de Maipú"
+  },
+  "MT-966992": {
+    "estacion": "MT",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "MT-ba7c50": {
+    "estacion": "MT",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú y hacia Boletería"
+  },
+  "MT-e67a34": {
+    "estacion": "MT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Maipú hacia Andén dirección Vicente Valdés"
+  },
+  "MT-f4cba3": {
+    "estacion": "MT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio hacia Boletería"
+  },
+  "NA-083ec3": {
+    "estacion": "NA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso B Catedral / SENADIS"
+  },
+  "NA-0aa310": {
+    "estacion": "NA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 5 dirección Vicente Valdés hacia Combinación Línea 2 dirección Vespucio Norte"
+  },
+  "NA-158521": {
+    "estacion": "NA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 2 dirección Hospital El Pino hacia Combinación Línea 5 dirección Plaza de Maipú"
+  },
+  "NA-203f0b": {
+    "estacion": "NA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 2 dirección Hospital El Pino hacia Combinación Línea 5 dirección Vicente Valdés"
+  },
+  "NA-33ab48": {
+    "estacion": "NA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 5 dirección Plaza de Maipú hacia Combinación Línea 2 dirección Vespucio Norte"
+  },
+  "NA-35d00e": {
+    "estacion": "NA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en San Martín con Catedral (Plaza Santa Teresa de Los Andes) hacia Boletería Oriente"
+  },
+  "NA-381a0f": {
+    "estacion": "NA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Maipú hacia Boletería"
+  },
+  "NA-d31ef4": {
+    "estacion": "NA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Oriente hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "NA-d9cf44": {
+    "estacion": "NA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Oriente hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "NP-b2b59b": {
+    "estacion": "NP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "NP-d27a5f": {
+    "estacion": "NP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "NU-16a24c": {
+    "estacion": "NU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 6 hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "NU-3a5ba6": {
+    "estacion": "NU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 5 Línea 6 hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "NU-560f61": {
+    "estacion": "NU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia combinación Línea 5 Línea 6 hacia Cambio de andén Línea 6 y hacia Andén Línea 6 dirección Los Leones"
+  },
+  "NU-5a46c7": {
+    "estacion": "NU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 5 Línea 6 hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "NUB-16a24c": {
+    "estacion": "NUB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 6 hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "NUB-2bcec1": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Intermedio -1 Línea 6 hacia Intermedio -2 Línea 6 dirección Cerrillos"
+  },
+  "NUB-3a5ba6": {
+    "estacion": "NUB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 5 Línea 6 hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "NUB-456341": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde andén Línea 5 dirección Vicente Valdés hacia Servicios"
+  },
+  "NUB-560f61": {
+    "estacion": "NUB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia combinación Línea 5 Línea 6 hacia Cambio de andén Línea 6 y hacia Andén Línea 6 dirección Los Leones"
+  },
+  "NUB-573ac2": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Servicios Línea 6 hacia Intermedio Línea 6"
+  },
+  "NUB-5a46c7": {
+    "estacion": "NUB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 5 Línea 6 hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "NUB-690207": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde nivel Intermedio Línea 6 hacia andén Línea 6 dirección Los Leones"
+  },
+  "NUB-86d36c": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14 desde Servicios hacia Cambio de andén"
+  },
+  "NUB-9ab831": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15 desde Servicios hacia Cambio de andén"
+  },
+  "NUB-acee99": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Intermedio Línea 6"
+  },
+  "NUB-c9011b": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "NUB-c94087": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Servicios Línea 6 hacia Intermedio Línea 6"
+  },
+  "NUB-f389aa": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde nivel Puente Línea 6 hacia salida y combinación Línea 5 dirección Plaza de Maipú"
+  },
+  "NUB-f76af6": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde nivel Puente Línea 6 hacia salida y combinación Línea 5 dirección Vicente Valdés"
+  },
+  "NUB-fe1dc2": {
+    "estacion": "NUB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde andén Línea 5 dirección Plaza de Maipú hacia Servicios"
+  },
+  "NUN-05243d": {
+    "estacion": "NUN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Pedro de Valdivia con Av. Irarrázaval (costado izquierdo del acceso) hacia Servicios Línea 6"
+  },
+  "NUN-18ffed": {
+    "estacion": "NUN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Cambio de andén"
+  },
+  "NUN-1ffee5": {
+    "estacion": "NUN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Plaza Quilicura"
+  },
+  "NUN-577f8a": {
+    "estacion": "NUN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 6 hacia Cambio de andén Línea 6 hacia Cambio de andén Línea 3 y hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "NUN-c9011b": {
+    "estacion": "NUN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "NUO-05243d": {
+    "estacion": "NUO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Pedro de Valdivia con Av. Irarrázaval (costado izquierdo del acceso) hacia Servicios Línea 6"
+  },
+  "NUO-0fd2d0": {
+    "estacion": "NUO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "NUO-16a24c": {
+    "estacion": "NUO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 6 hacia Andén Línea 6 dirección Cerrillos"
+  },
+  "NUO-577f8a": {
+    "estacion": "NUO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 6 hacia Cambio de andén Línea 6 hacia Cambio de andén Línea 3 y hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "NUO-c7b6cb": {
+    "estacion": "NUO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 6 hacia Andén Línea 6 dirección Los Leones"
+  },
+  "NUO-c9011b": {
+    "estacion": "NUO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "NUO-cc90ef": {
+    "estacion": "NUO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Pedro de Valdivia"
+  },
+  "NUO-e09847": {
+    "estacion": "NUO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Pedro de Valdivia hacia Servicios"
+  },
+  "OB-426b57": {
+    "estacion": "OB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "OB-528057": {
+    "estacion": "OB",
+    "tipo": "escalera",
+    "texto": "Escalera mécanica desde Servicios hacia segundo Descanso"
+  },
+  "OB-54a916": {
+    "estacion": "OB",
+    "tipo": "escalera",
+    "texto": "Escalera mécanica desde segundo Descanso hacia primer Descanso"
+  },
+  "OB-5f3d48": {
+    "estacion": "OB",
+    "tipo": "escalera",
+    "texto": "Escalera mécanica desde primer Descanso hacia segundo Descanso"
+  },
+  "OB-8ea168": {
+    "estacion": "OB",
+    "tipo": "escalera",
+    "texto": "Escalera mécanica desde segundo Descanso hacia Servicios"
+  },
+  "OB-9ff167": {
+    "estacion": "OB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "OB-a9a7ca": {
+    "estacion": "OB",
+    "tipo": "escalera",
+    "texto": "Escalera mécanica desde primer Descanso hacia Acceso A Avenida Observatorio"
+  },
+  "OB-e2c5c3": {
+    "estacion": "OB",
+    "tipo": "escalera",
+    "texto": "Escalera mécanica desde Acceso A Avenida Observatorio hacia primer Descanso"
+  },
+  "OB-f269fa": {
+    "estacion": "OB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Observatorio hacia Boletería"
+  },
+  "PAC-18d548": {
+    "estacion": "PAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Carlos Valdovinos con Club Hípico (al costado derecho del acceso) hacia Servicios"
+  },
+  "PAC-83cfbb": {
+    "estacion": "PAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Los Leones"
+  },
+  "PAC-943151": {
+    "estacion": "PAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia nivel Intermedio"
+  },
+  "PAC-aa9528": {
+    "estacion": "PAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Departamental"
+  },
+  "PAC-c9011b": {
+    "estacion": "PAC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "PAC-d0e0ae": {
+    "estacion": "PAC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Cerrillos"
+  },
+  "PAL-0eb044": {
+    "estacion": "PAL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "PAL-5aebcf": {
+    "estacion": "PAL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Plaza Quilicura"
+  },
+  "PAL-876c8c": {
+    "estacion": "PAL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en San Diego con Mencía de los Nidos hacia Servicios"
+  },
+  "PAL-beccf4": {
+    "estacion": "PAL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Boletería"
+  },
+  "PAL-f4663a": {
+    "estacion": "PAL",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A San Diego"
+  },
+  "PB-2dd283": {
+    "estacion": "PB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "PB-539aaa": {
+    "estacion": "PB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "PB-a92ca5": {
+    "estacion": "PB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Francisco Bilbao (vereda sur) con Ramón Carnicer hacia Boletería"
+  },
+  "PCA-043c83": {
+    "estacion": "PCA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 2 hacia Andén Línea 2 dirección Plaza Quilicura / Intermedio"
+  },
+  "PCA-509a8a": {
+    "estacion": "PCA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. General Mackenna con Paseo Puente (a un costado del acceso) por Línea 2 hacia Boletería Línea 2"
+  },
+  "PCA-548850": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15 desde Combinación Línea 3 hacia Combinación Línea 2"
+  },
+  "PCA-62569d": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde Combinación Línea 3 hacia andén Línea 2 dirección Vespucio Norte"
+  },
+  "PCA-6568f9": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12 desde Combinación Línea 2 hacia Combinación Línea 3"
+  },
+  "PCA-8a65ab": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 16 desde Combinación Línea 3 hacia Combinación Línea 2"
+  },
+  "PCA-919f31": {
+    "estacion": "PCA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "PCA-a13f06": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde Combinación Línea 2 hacia Combinación Línea 3"
+  },
+  "PCA-a4e195": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 2 - Línea 3 hacia Servicios"
+  },
+  "PCA-bf0a37": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "PCA-e3fa8d": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Combinación Línea 3 hacia andén Línea 2 dirección Vespucio Norte"
+  },
+  "PCA-f697e2": {
+    "estacion": "PCA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Combinación Línea 2 - Línea 3"
+  },
+  "PCA-f742b4": {
+    "estacion": "PCA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 3 hacia Andén Línea 2 dirección Fernando Castillo Velasco / Intermedio"
+  },
+  "PDG-0f404f": {
+    "estacion": "PDG",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "PDG-3e91eb": {
+    "estacion": "PDG",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "PDG-4e3730": {
+    "estacion": "PDG",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Descanso hacia Acceso B Av. Ossa Oriente / Av. Tobalaba"
+  },
+  "PDG-5ed5b0": {
+    "estacion": "PDG",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Descanso"
+  },
+  "PDG-810478": {
+    "estacion": "PDG",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Tobalaba y Av. Ossa (vereda oriente) hacia Boletería"
+  },
+  "PDG-97dcb0": {
+    "estacion": "PDG",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Boletería hacia Descanso"
+  },
+  "PE-2dd283": {
+    "estacion": "PE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "PE-539aaa": {
+    "estacion": "PE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "PE-edeef2": {
+    "estacion": "PE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Antonio Acevedo Hernández (a un costado del acceso) hacia Boletería"
+  },
+  "PEG-0c222b": {
+    "estacion": "PEG",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en el centro de la Plaza Egaña hacia Servicios"
+  },
+  "PEG-26d719": {
+    "estacion": "PEG",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 4 hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "PEG-609660": {
+    "estacion": "PEG",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso Mall"
+  },
+  "PEG-97ca8b": {
+    "estacion": "PEG",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 4 hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "PEG-e0d152": {
+    "estacion": "PEG",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Boletería hacia Acceso B Av. Larraín"
+  },
+  "PEG-e3ee01": {
+    "estacion": "PEG",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Boletería hacia Acceso B Av. Américo Vespucio"
+  },
+  "PI-0b46bc": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Acceso A Av. Lo Blanco hacia Servicios"
+  },
+  "PI-13433f": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Servicios hacia Acceso A Av. Lo Blanco"
+  },
+  "PI-22f999": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Servicios hacia nivel -2 Locales Comerciales"
+  },
+  "PI-373528": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde Servicios hacia nivel -2 Locales Comerciales"
+  },
+  "PI-4968e3": {
+    "estacion": "PI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "PI-5b7a1e": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Acceso A Av. Lo Blanco hacia Servicios"
+  },
+  "PI-8d8fe0": {
+    "estacion": "PI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Hospital El Pino"
+  },
+  "PI-920ace": {
+    "estacion": "PI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Padre Hurtado hacia Boletería"
+  },
+  "PI-bb4faf": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Nivel -2 Locales Comerciales hacia Servicios"
+  },
+  "PI-c57559": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde Servicios hacia Acceso A Av. Lo Blanco"
+  },
+  "PI-c8c77c": {
+    "estacion": "PI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vespucio Norte"
+  },
+  "PI-d2fd8e": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Nivel -2 Locales Comerciales hacia Servicios"
+  },
+  "PI-e47205": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde Servicios hacia Acceso A Av. Lo Blanco"
+  },
+  "PI-edae62": {
+    "estacion": "PI",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Servicios hacia Acceso A Av. Lo Blanco"
+  },
+  "PIN-0f404f": {
+    "estacion": "PIN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "PIN-3e91eb": {
+    "estacion": "PIN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "PIN-9d3f96": {
+    "estacion": "PIN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Concha y Toro con ángel Pimentel hacia Boletería"
+  },
+  "PJ-b2b59b": {
+    "estacion": "PJ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "PJ-d27a5f": {
+    "estacion": "PJ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "PM-053089": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Av. Pajaritos"
+  },
+  "PM-417d56": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde nivel Intermedio hacia Boletería Sur"
+  },
+  "PM-42fd13": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Pajaritos hacia Boletería"
+  },
+  "PM-4968e3": {
+    "estacion": "PM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "PM-50ce59": {
+    "estacion": "PM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "PM-7b81c8": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería Norte hacia nivel Intermedio"
+  },
+  "PM-80f43a": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde hacia Nivel -3 hacia Cambio de andén"
+  },
+  "PM-966992": {
+    "estacion": "PM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "PM-9ea94e": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso B Av. 5 de Abril"
+  },
+  "PM-ab096d": {
+    "estacion": "PM",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Pajaritos (vereda oriente) con Av. 5 de abril (entre ambos accesos) hacia Boletería"
+  },
+  "PM-c9011b": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "PM-d816dc": {
+    "estacion": "PM",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso B Av. 5 de Abril hacia Boletería"
+  },
+  "PPA-05d558": {
+    "estacion": "PPA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso D José Luis Coo hacia Servicios"
+  },
+  "PPA-06fb06": {
+    "estacion": "PPA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso C Manuel Rodríguez"
+  },
+  "PPA-0f404f": {
+    "estacion": "PPA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "PPA-31ea8e": {
+    "estacion": "PPA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso D José Luis Coo"
+  },
+  "PPA-3e91eb": {
+    "estacion": "PPA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "PPA-7fcf58": {
+    "estacion": "PPA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Galería Comercial"
+  },
+  "PPA-844133": {
+    "estacion": "PPA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Galería Comercial hacia Boletería"
+  },
+  "PPA-9b33c0": {
+    "estacion": "PPA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Manuel Rodríguez con Av. Concha y Toro (en la Plaza) hacia Galería Comercial y Boletería"
+  },
+  "PQ-294c93": {
+    "estacion": "PQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Viel con Av. El Parque / Av. Manuel Antonio Matta hacia Boletería"
+  },
+  "PQ-426b57": {
+    "estacion": "PQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "PQ-9ff167": {
+    "estacion": "PQ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "PQ-a696e9": {
+    "estacion": "PQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "PQ-e5d3fa": {
+    "estacion": "PQ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "PQU-15104f": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde andén dirección Plaza Quilicura hacia Servicios"
+  },
+  "PQU-42806a": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde andén dirección Plaza Quilicura hacia Servicios"
+  },
+  "PQU-549462": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde Acceso B Av. Manuel Antonio Matta Sur hacia nivel Servicios"
+  },
+  "PQU-85842e": {
+    "estacion": "PQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Manuel Antonio Matta Sur hacia Boletería"
+  },
+  "PQU-86f381": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia acceso A Av. Manuel Antonio Matta Norte"
+  },
+  "PQU-8721e1": {
+    "estacion": "PQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza Quilicura"
+  },
+  "PQU-8e52c9": {
+    "estacion": "PQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Manuel Antonio Matta Norte hacia Boletería"
+  },
+  "PQU-ae9c67": {
+    "estacion": "PQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Fernando Castillo Velazco"
+  },
+  "PQU-d47abb": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde Acceso B Av. Manuel Antonio Matta Sur hacia nivel Servicios"
+  },
+  "PQU-e11f91": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Servicios hacia andén dirección Fernando Castillo Velasco"
+  },
+  "PQU-e1cb2d": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Manuel Antonio Matta Norte hacia nivel Servicios"
+  },
+  "PQU-f0acac": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Servicios hacia andén dirección Fernando Castillo Velasco"
+  },
+  "PQU-ffbc66": {
+    "estacion": "PQU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia acceso B Av. Manuel Antonio Matta Sur"
+  },
+  "PR-18ffed": {
+    "estacion": "PR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Cambio de andén"
+  },
+  "PR-1a96f4": {
+    "estacion": "PR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. San Pablo (vereda norte) hacia Boletería"
+  },
+  "PR-4968e3": {
+    "estacion": "PR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "PR-50ce59": {
+    "estacion": "PR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "PR-966992": {
+    "estacion": "PR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "PR-ab2cf4": {
+    "estacion": "PR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Av. San Pablo"
+  },
+  "PR-beccf4": {
+    "estacion": "PR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Boletería"
+  },
+  "PT-0768ae": {
+    "estacion": "PT",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en General de la Lastra frente a Mall hacia Boletería"
+  },
+  "PT-426b57": {
+    "estacion": "PT",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "PT-43ff2d": {
+    "estacion": "PT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso A General De La Lastra"
+  },
+  "PT-9ff167": {
+    "estacion": "PT",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "PT-ba5d30": {
+    "estacion": "PT",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso B Santa Filomena"
+  },
+  "PU-0320b3": {
+    "estacion": "PU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Cambio de andén Vicente Valdés y Plaza de Maipú"
+  },
+  "PU-060bbe": {
+    "estacion": "PU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -2 hacia Nivel Intermedio -1"
+  },
+  "PU-2737f3": {
+    "estacion": "PU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -1 hacia Boletería"
+  },
+  "PU-4968e3": {
+    "estacion": "PU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "PU-50ce59": {
+    "estacion": "PU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "PU-52c92a": {
+    "estacion": "PU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -3 cambio de andén hacia Nivel Intermedio -2"
+  },
+  "PU-6df91d": {
+    "estacion": "PU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -1 hacia Nivel Intermedio -2"
+  },
+  "PU-966992": {
+    "estacion": "PU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "PU-c69091": {
+    "estacion": "PU",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel Intermedio -2 hacia Nivel Intermedio -3 cambio de andén"
+  },
+  "PV-560661": {
+    "estacion": "PV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Providencia (vereda sur) con Marchant Pereira hacia Boletería"
+  },
+  "PV-b2b59b": {
+    "estacion": "PV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "PV-d27a5f": {
+    "estacion": "PV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "PZ-07a96f": {
+    "estacion": "PZ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 5 hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "PZ-166f01": {
+    "estacion": "PZ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 5 hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "PZ-2afb26": {
+    "estacion": "PZ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Paseo Puente"
+  },
+  "PZ-81f4a2": {
+    "estacion": "PZ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 3 hacia Cambio de andén Línea 3, hacia combinación Línea 3 - Línea 5 y hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "PZ-84244c": {
+    "estacion": "PZ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso D Paseo Ahumada"
+  },
+  "PZ-88c017": {
+    "estacion": "PZ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso C Paseo Estado"
+  },
+  "PZ-d4b8ac": {
+    "estacion": "PZ",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Paseo 21 de Mayo con Monjitas hacia Boletería"
+  },
+  "PZ-f6f931": {
+    "estacion": "PZ",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso B Paseo 21 de mayo"
+  },
+  "PZA-165667": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso E Bandera / Catedral hacia Servicios"
+  },
+  "PZA-19d7b3": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Servicios hacia Acceso E Bandera / Catedral"
+  },
+  "PZA-467d6f": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13 desde combinación Línea 3 - Línea 5 hacia Servicios"
+  },
+  "PZA-6f2495": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 16 desde Servicios hacia Cambio de andén"
+  },
+  "PZA-8132f3": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde nivel -2 hacia nivel -1 y hacia acceso E Bandera / Catedral"
+  },
+  "PZA-81f4a2": {
+    "estacion": "PZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 3 hacia Cambio de andén Línea 3, hacia combinación Línea 3 - Línea 5 y hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "PZA-851b98": {
+    "estacion": "PZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia de combinación Línea 3 - Línea 5 hacia Andén Línea 3 dirección Plaza Quilicura"
+  },
+  "PZA-907941": {
+    "estacion": "PZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 3 - Línea 5 hacia Andén Línea 5 dirección Vicente Valdés."
+  },
+  "PZA-9648ee": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Cambio de andén hacia Servicios"
+  },
+  "PZA-99b2ad": {
+    "estacion": "PZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 3 - Línea 5 hacia Andén Línea 5 dirección Plaza de Maipú."
+  },
+  "PZA-c4a797": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Servicios hacia Acceso E Bandera / Catedral"
+  },
+  "PZA-c7e75b": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 18 desde Cambio de andén hacia Servicios"
+  },
+  "PZA-ce0083": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15 desde combinación Línea 3 - Línea 5 hacia Servicios"
+  },
+  "PZA-d4b8ac": {
+    "estacion": "PZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Paseo 21 de Mayo con Monjitas hacia Boletería"
+  },
+  "PZA-e47d10": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde Servicios hacia Cambio de andén"
+  },
+  "PZA-ea1b1c": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde nivel -1 hacia nivel -2"
+  },
+  "PZA-fa95d2": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde Cambio de andén hacia Servicios"
+  },
+  "PZA-fd4693": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14 desde combinación Línea 3 - Línea 5 hacia Servicios"
+  },
+  "PZA-fd893e": {
+    "estacion": "PZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 17 desde Servicios hacia Cambio de andén"
+  },
+  "PZC-0eb044": {
+    "estacion": "PZC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "PZC-3686c2": {
+    "estacion": "PZC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Santa Laura"
+  },
+  "PZC-374766": {
+    "estacion": "PZC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Plaza Quilicura"
+  },
+  "PZC-722020": {
+    "estacion": "PZC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Independencia con Santa Laura hacia Servicios"
+  },
+  "PZC-c01778": {
+    "estacion": "PZC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Nivel Intermedio"
+  },
+  "PZC-c9011b": {
+    "estacion": "PZC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "PZE-0bfefb": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde combinación Línea 4 dirección Tobalaba hacia combinación Línea 4 dirección Puente Alto"
+  },
+  "PZE-0c222b": {
+    "estacion": "PZE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en el centro de la Plaza Egaña hacia Servicios"
+  },
+  "PZE-2ac00b": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12 desde Servicios hacia Cambio de andén"
+  },
+  "PZE-5cc3ef": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde combinación Línea 4 dirección Puente Alto hacia combinación Línea 4 dirección Tobalaba"
+  },
+  "PZE-5ef834": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15 desde Cambio de andén hacia Servicios"
+  },
+  "PZE-919f31": {
+    "estacion": "PZE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "PZE-a131f1": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde combinación Línea 4 dirección Tobalaba hacia acceso A Plaza Egaña"
+  },
+  "PZE-a80a05": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde combinación Línea 4 dirección Tobalaba hacia combinación Línea 4 dirección Puente Alto"
+  },
+  "PZE-b72dd1": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde combinación Línea 4 dirección Puente Alto hacia combinación Línea 4 dirección Tobalaba"
+  },
+  "PZE-bdbd6d": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14 desde Cambio de andén hacia Servicios"
+  },
+  "PZE-c511df": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13 desde Cambio de andén hacia Servicios"
+  },
+  "PZE-cc8d7c": {
+    "estacion": "PZE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios Línea 3 hacia Boletería Línea 4 hacia Andén Línea 4 dirección Plaza de Puente Alto hacia Cambio de andén Línea 3 y hacia Andén Línea 3 dirección Plaza Quilicura"
+  },
+  "PZE-e47d10": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde Servicios hacia Cambio de andén"
+  },
+  "PZE-f4dc5d": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Plaza Egaña hacia Servicios"
+  },
+  "PZE-fc788b": {
+    "estacion": "PZE",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A en Plaza Egaña"
+  },
+  "QN-2864ac": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "QN-2dd283": {
+    "estacion": "QN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "QN-30a2fa": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Acceso B Matucana Sur hacia Boletería"
+  },
+  "QN-381a0f": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Maipú hacia Boletería"
+  },
+  "QN-500889": {
+    "estacion": "QN",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Matucana (vereda poniente) hacia Boletería"
+  },
+  "QN-539aaa": {
+    "estacion": "QN",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "QN-aa0b05": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Acceso B Matucana Sur hacia Boletería"
+  },
+  "QN-c731e4": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Boletería hacia Acceso A Matucana Norte"
+  },
+  "QN-dd12a7": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Vicente Valdés hacia Boletería"
+  },
+  "QN-e038d4": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Boletería hacia Acceso A Matucana Norte"
+  },
+  "QN-e6a7ca": {
+    "estacion": "QN",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "RA-23024a": {
+    "estacion": "RA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés y hacia Boletería"
+  },
+  "RA-50ce59": {
+    "estacion": "RA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "RA-99a725": {
+    "estacion": "RA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna con Santa Elena / Juan Mitjans hacia Boletería"
+  },
+  "RC-02b222": {
+    "estacion": "RC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Catedral con Ricardo Cumming (vereda poniente) hacia Boletería"
+  },
+  "RC-18ffed": {
+    "estacion": "RC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Cambio de andén"
+  },
+  "RC-2dd283": {
+    "estacion": "RC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "RC-539aaa": {
+    "estacion": "RC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "RC-8e7a59": {
+    "estacion": "RC",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso A Catedral"
+  },
+  "RGR-0dcbd5": {
+    "estacion": "RGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor nivel Rotonda hacia Boletería"
+  },
+  "RGR-0e746e": {
+    "estacion": "RGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Grecia Oriente (vereda sur detrás del acceso) hacia Rotonda"
+  },
+  "RGR-0f404f": {
+    "estacion": "RGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "RGR-1ad971": {
+    "estacion": "RGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Egaña con Av. Grecia Oriente (detrás del acceso) hacia Rotonda"
+  },
+  "RGR-3e91eb": {
+    "estacion": "RGR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "RGR-b76593": {
+    "estacion": "RGR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso C Grecia Oriente hacia Boletería"
+  },
+  "RMA-0f404f": {
+    "estacion": "RMA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "RMA-3e91eb": {
+    "estacion": "RMA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "RMA-8da8eb": {
+    "estacion": "RMA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Rojas Magallanes con Av. Vicuña Mackenna hacia Boletería"
+  },
+  "RO-426b57": {
+    "estacion": "RO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "RO-9ff167": {
+    "estacion": "RO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "RP-130e03": {
+    "estacion": "RP",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda norte detrás del acceso) hacia Boletería"
+  },
+  "RP-b2b59b": {
+    "estacion": "RP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "RP-d27a5f": {
+    "estacion": "RP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "RQU-24c895": {
+    "estacion": "RQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería / Rotonda hacia Andén dirección Tobalaba"
+  },
+  "RQU-2e1143": {
+    "estacion": "RQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería / Rotonda hacia Andén dirección Plaza de Puente Alto"
+  },
+  "RQU-d508b5": {
+    "estacion": "RQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Rotonda hacia Pasillo Poniente"
+  },
+  "RQU-ee8ba5": {
+    "estacion": "RQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Quilín con Av. Américo Vespucio (vereda oriente) hacia Rotonda"
+  },
+  "RQU-effb6d": {
+    "estacion": "RQU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Quilín con Av. Américo Vespucio (vereda poniente) hacia pasillo Poniente"
+  },
+  "SA-30f860": {
+    "estacion": "SA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso E Av. Providencia Sur / Av. Salvador"
+  },
+  "SA-3458f3": {
+    "estacion": "SA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Providencia (vereda sur) con General Salvo hacia Boletería"
+  },
+  "SA-4d9a7e": {
+    "estacion": "SA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Parque Balmaceda (acceso principal) hacia Boletería"
+  },
+  "SA-b2b59b": {
+    "estacion": "SA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "SA-d27a5f": {
+    "estacion": "SA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "SB-04785a": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde Boletería hacia Nivel -1"
+  },
+  "SB-052c0f": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel -1 hacia Nivel -2"
+  },
+  "SB-0ad40c": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel -3 hacia Nivel -2"
+  },
+  "SB-4968e3": {
+    "estacion": "SB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Cambio de andén"
+  },
+  "SB-50ce59": {
+    "estacion": "SB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "SB-585629": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel -2 hacia Nivel -1"
+  },
+  "SB-5f6f21": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde Boletería hacia Nivel -1"
+  },
+  "SB-84f5ad": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Nivel -3"
+  },
+  "SB-966992": {
+    "estacion": "SB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés"
+  },
+  "SB-d44b98": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel -3 hacia Cambio de andén"
+  },
+  "SB-edeea5": {
+    "estacion": "SB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Nivel -2 hacia Nivel -3"
+  },
+  "SBO-0f404f": {
+    "estacion": "SBO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "SBO-3b0311": {
+    "estacion": "SBO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Ossa (vereda oriente) con Av. Echeñique hacia Boletería"
+  },
+  "SBO-3e91eb": {
+    "estacion": "SBO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "SBO-494a03": {
+    "estacion": "SBO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Descanso hacia Acceso B Av. Ossa Poniente"
+  },
+  "SBO-5ed5b0": {
+    "estacion": "SBO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Boletería hacia Descanso"
+  },
+  "SBO-97dcb0": {
+    "estacion": "SBO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Boletería hacia Descanso"
+  },
+  "SI-2dd283": {
+    "estacion": "SI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicente Valdés"
+  },
+  "SI-539aaa": {
+    "estacion": "SI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Maipú"
+  },
+  "SI-5b7d29": {
+    "estacion": "SI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. General Bustamante (vereda poniente) con Santa Isabel hacia Boletería"
+  },
+  "SJ-23024a": {
+    "estacion": "SJ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Vicente Valdés y hacia Boletería"
+  },
+  "SJ-50ce59": {
+    "estacion": "SJ",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza de Maipú"
+  },
+  "SJE-0f404f": {
+    "estacion": "SJE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "SJE-3e91eb": {
+    "estacion": "SJE",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "SJE-b0618b": {
+    "estacion": "SJE",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en  Av. San José de la Estrella con Av. Vicuña Mackenna hacia Boletería"
+  },
+  "SJU-6de219": {
+    "estacion": "SJU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección La Cisterna"
+  },
+  "SJU-839fa5": {
+    "estacion": "SJU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda poniente) con Santa Julia hacia Boletería"
+  },
+  "SJU-c795f0": {
+    "estacion": "SJU",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda oriente) con Santa Julia hacia Boletería"
+  },
+  "SJU-de34c2": {
+    "estacion": "SJU",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicuña Mackenna"
+  },
+  "SL-648612": {
+    "estacion": "SL",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda norte) con Miraflores hacia Boletería"
+  },
+  "SL-b2b59b": {
+    "estacion": "SL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "SL-d27a5f": {
+    "estacion": "SL",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "SM-426b57": {
+    "estacion": "SM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "SM-4f0d19": {
+    "estacion": "SM",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Llano Subercaseaux con Arcángel (frente a los accesos) hacia Boletería"
+  },
+  "SM-9ff167": {
+    "estacion": "SM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "SO-0fd2d0": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Cambio de andén"
+  },
+  "SO-12d929": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde Combinación Línea 1 - Línea 5 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "SO-22545f": {
+    "estacion": "SO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 5 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "SO-580123": {
+    "estacion": "SO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 5 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "SO-5a9a86": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Andén Línea 5 dirección Plaza de Maipú hacia Combinación Línea 1 - Línea 5"
+  },
+  "SO-6084c1": {
+    "estacion": "SO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 5 hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "SO-b19517": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Andén Línea 5 dirección Plaza de Maipú hacia Combinación Línea 1 - Línea 5"
+  },
+  "SO-beccf4": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Boletería"
+  },
+  "SO-c37a9d": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde Combinación Línea 1 - Línea 5 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "SO-c795bc": {
+    "estacion": "SO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 5 hacia Cambio de andén Línea 5 y hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "SO-c9011b": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "SO-ec0a3b": {
+    "estacion": "SO",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Servicios"
+  },
+  "SP-60d634": {
+    "estacion": "SP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "SP-eba3d6": {
+    "estacion": "SP",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "SRA-6de219": {
+    "estacion": "SRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección La Cisterna"
+  },
+  "SRA-de34c2": {
+    "estacion": "SRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicuña Mackenna"
+  },
+  "SRA-e97d84": {
+    "estacion": "SRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda sur) con Parque La Bandera hacia Boletería"
+  },
+  "SRA-f71344": {
+    "estacion": "SRA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio (vereda norte) con Carlos Dávila hacia Boletería"
+  },
+  "SRO-0e34ce": {
+    "estacion": "SRO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Corredor Santa Rosa (vereda oriente) hacia Boletería"
+  },
+  "SRO-6de219": {
+    "estacion": "SRO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección La Cisterna"
+  },
+  "SRO-974fc6": {
+    "estacion": "SRO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Av. Santa Rosa (vereda oriente) hacia Boletería"
+  },
+  "SRO-aff3f6": {
+    "estacion": "SRO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Av. Santa Rosa (vereda poniente) hacia Boletería"
+  },
+  "SRO-de34c2": {
+    "estacion": "SRO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vicuña Mackenna"
+  },
+  "SRO-e66367": {
+    "estacion": "SRO",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Américo Vespucio con Corredor Santa Rosa (vereda poniente) hacia Boletería"
+  },
+  "TB-01198b": {
+    "estacion": "TB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 dirección San Pablo"
+  },
+  "TB-020c20": {
+    "estacion": "TB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 dirección Los Dominicos"
+  },
+  "TB-9b4328": {
+    "estacion": "TB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección Los Dominicos hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "TB-c240bc": {
+    "estacion": "TB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección San Pablo hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "TB-e61333": {
+    "estacion": "TB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección San Pablo hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "TB-e7a986": {
+    "estacion": "TB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección Los Dominicos hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "TB-fd060c": {
+    "estacion": "TB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Acceso A Av. Luis Thayer Ojeda Norte"
+  },
+  "TO-426b57": {
+    "estacion": "TO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "TO-9ff167": {
+    "estacion": "TO",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "TOB-01198b": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 dirección San Pablo"
+  },
+  "TOB-020c20": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 dirección Los Dominicos"
+  },
+  "TOB-0f2ecf": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 22 desde Explanada hacia segundo descanso Acceso E Encomenderos"
+  },
+  "TOB-14f276": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14 desde Explanada hacia descanso Acceso F Av. Apoquindo"
+  },
+  "TOB-183d47": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 19 desde Explanada hacia primer descanso Acceso E Encomenderos"
+  },
+  "TOB-1b5328": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 21 desde Explanada hacia segundo descanso Acceso E Encomenderos"
+  },
+  "TOB-1e22d0": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde Andén dirección Tobalaba hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "TOB-1f6005": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 12 desde andén dirección Tobalaba hacia Acceso E Encomenderos"
+  },
+  "TOB-1fa6b6": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Andén dirección Tobalaba hacia combinación Línea 1 dirección San Pablo"
+  },
+  "TOB-22c12d": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde combinación Los Dominicos hacia Boletería Línea 4"
+  },
+  "TOB-3e1349": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso hacia Acceso B Av. Nueva Providencia"
+  },
+  "TOB-4447ff": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 23 desde Explanada hacia segundo descanso Acceso E Encomenderos"
+  },
+  "TOB-524d25": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde combinación San Pablo hacia Boletería Línea 4"
+  },
+  "TOB-5af59e": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13 desde andén dirección Tobalaba hacia Acceso E Encomenderos"
+  },
+  "TOB-626819": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 16 desde Descanso hacia salida F Av. Apoquindo"
+  },
+  "TOB-62bb60": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15 desde Explanada hacia descanso Acceso F Av. Apoquindo"
+  },
+  "TOB-75dab6": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor de combinación Línea 1 y Línea 4 hacia Mercado Urbano y salida a Av. Encomenderos y Av. Apoquindo"
+  },
+  "TOB-77a926": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 20 desde Explanada hacia segundo descanso Acceso E Encomenderos"
+  },
+  "TOB-7d1e50": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 17 desde Descanso hacia salida F Av. Apoquindo"
+  },
+  "TOB-942f03": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso hacia Acceso C Av. Tobalaba"
+  },
+  "TOB-94b1d0": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde Andén dirección Tobalaba hacia combinación Línea 1 dirección San Pablo"
+  },
+  "TOB-9b4328": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección Los Dominicos hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "TOB-c240bc": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección San Pablo hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "TOB-de33f4": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 18 desde Explanada hacia primer descanso Acceso E Encomenderos"
+  },
+  "TOB-e61333": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección San Pablo hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "TOB-e7a986": {
+    "estacion": "TOB",
+    "tipo": "ascensor",
+    "texto": "Ascensor Hall de combinación Línea 1 dirección Los Dominicos hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "TOB-f0c727": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde Andén dirección Tobalaba hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "TOB-f4076d": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde Andén dirección Tobalaba hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "TOB-f94aea": {
+    "estacion": "TOB",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde Andén dirección Tobalaba hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "TRI-0f404f": {
+    "estacion": "TRI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Tobalaba"
+  },
+  "TRI-3e91eb": {
+    "estacion": "TRI",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "TRI-ea8e93": {
+    "estacion": "TRI",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Trinidad con Av. Vicuña Mackenna hacia Boletería"
+  },
+  "UC-aacc9b": {
+    "estacion": "UC",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) hacia Boletería"
+  },
+  "UC-b2b59b": {
+    "estacion": "UC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "UC-d27a5f": {
+    "estacion": "UC",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "UCH-015c05": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 11 desde combinación Línea 1 dirección San Pablo hacia Servicios Línea 1"
+  },
+  "UCH-07faa0": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 02 desde Servicios hacia Acceso B Paseo Ahumada"
+  },
+  "UCH-15c707": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde andén Linea 1 dirección Los Dominicos hacia Servicios Línea 1"
+  },
+  "UCH-1d15e5": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 14 desde Puente de combinación Línea 3 hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "UCH-1ffee5": {
+    "estacion": "UCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Plaza Quilicura"
+  },
+  "UCH-25c81a": {
+    "estacion": "UCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 1 dirección San Pablo"
+  },
+  "UCH-2cb6a8": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Combinación Línea 1 - Línea 3 hacia Cambio de andén"
+  },
+  "UCH-4f85d9": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 15 desde combinación Línea 1 dirección Los Dominicos hacia Puente de combinación L3"
+  },
+  "UCH-5379fe": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 01 desde Servicios hacia Acceso B Paseo Ahumada"
+  },
+  "UCH-5bc7e3": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Puente de combinación Línea 3 hacia combinación Línea 1 dirección San Pablo"
+  },
+  "UCH-5c994d": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 03 desde Acceso B Paseo Ahumada hacia Servicios"
+  },
+  "UCH-88cbed": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 09 desde combinación Línea 1 dirección San Pablo hacia Servicios Línea 1"
+  },
+  "UCH-919f31": {
+    "estacion": "UCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 3 dirección Fernando Castillo Velasco"
+  },
+  "UCH-9d7443": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Acceso B Paseo Ahumada hacia Servicios"
+  },
+  "UCH-9dcf40": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 08 desde andén Línea 1 dirección San Pablo hacia Puente de combinación Línea 3"
+  },
+  "UCH-9f0d1c": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 13 desde Puente de combinación Línea 3 hacia combinación Línea 1 dirección Los Dominicos"
+  },
+  "UCH-cb5157": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 07 desde andén Línea 1 dirección San Pablo hacia Puente de combinación Línea 3"
+  },
+  "UCH-efd8ce": {
+    "estacion": "UCH",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén Línea 3 hacia Andén Línea 1 dirección Los Dominicos"
+  },
+  "UCH-f53609": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 05 desde Puente de combinación Línea 3 hacia combinación Línea 1 dirección San Pablo"
+  },
+  "UCH-f776b1": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 16 desde combinación Linea 1 dirección Los Dominicos hacia Puente de combinación L3"
+  },
+  "UCH-f8fff7": {
+    "estacion": "UCH",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 10 desde combinación Línea 1 dirección San Pablo hacia Servicios Línea 1"
+  },
+  "US-b2b59b": {
+    "estacion": "US",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección San Pablo"
+  },
+  "US-d27a5f": {
+    "estacion": "US",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Los Dominicos"
+  },
+  "US-fc9689": {
+    "estacion": "US",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur frente a terminal de buses) hacia Boletería"
+  },
+  "VFR-4dcd5a": {
+    "estacion": "VFR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "VFR-832279": {
+    "estacion": "VFR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Irarrázaval"
+  },
+  "VFR-c9011b": {
+    "estacion": "VFR",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "VFR-e1d48a": {
+    "estacion": "VFR",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Plaza Quilicura"
+  },
+  "VFR-ea7ffb": {
+    "estacion": "VFR",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Irarrázaval con Ramón Cruz hacia Servicios"
+  },
+  "VIM-5ebfa3": {
+    "estacion": "VIM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4A dirección La Cisterna y hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "VIM-658b39": {
+    "estacion": "VIM",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4A dirección Vicuña Mackenna hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "VIV-047349": {
+    "estacion": "VIV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Acceso A Av. Independencia hacia Servicios"
+  },
+  "VIV-0eb044": {
+    "estacion": "VIV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Cambio de andén hacia Andén dirección Fernando Castillo Velasco"
+  },
+  "VIV-1ecb53": {
+    "estacion": "VIV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Servicios hacia Acceso A Av. Independencia"
+  },
+  "VIV-374766": {
+    "estacion": "VIV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Plaza Quilicura"
+  },
+  "VIV-c9011b": {
+    "estacion": "VIV",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Servicios"
+  },
+  "VIV-f52e07": {
+    "estacion": "VIV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Independencia con Vecinal hacia Servicios"
+  },
+  "VMA-29ae2e": {
+    "estacion": "VMA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén Línea 4A dirección Vicuña Mackenna hacia Boletería"
+  },
+  "VMA-5ebfa3": {
+    "estacion": "VMA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4A dirección La Cisterna y hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "VMA-658b39": {
+    "estacion": "VMA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4A dirección Vicuña Mackenna hacia Andén Línea 4 dirección Tobalaba"
+  },
+  "VMA-88ea30": {
+    "estacion": "VMA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén Línea 4 dirección Plaza de Puente Alto hacia Combinación Línea 4A dirección La Cisterna"
+  },
+  "VMA-c9bb67": {
+    "estacion": "VMA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén Línea 4 dirección Tobalaba hacia Combinación Línea 4A dirección La Cisterna"
+  },
+  "VMA-e25932": {
+    "estacion": "VMA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén Línea 4A dirección La Cisterna hacia Boletería"
+  },
+  "VV-508d33": {
+    "estacion": "VV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna (vereda poniente) con Don Pepe por Línea 4 hacia Boletería"
+  },
+  "VV-d6fbb3": {
+    "estacion": "VV",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna (vereda oriente) con Vicente Valdés hacia Boletería"
+  },
+  "VV-f89d0f": {
+    "estacion": "VV",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4 dirección Tobalaba y hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "VVA-34388a": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Puente de combinación Línea 5 - Línea 4 dirección Tobalaba"
+  },
+  "VVA-3a5dcb": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Plaza de Puente Alto hacia Cambio de andén"
+  },
+  "VVA-453679": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 06 desde Andén Línea 5 dirección Plaza de Maipú hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "VVA-508d33": {
+    "estacion": "VVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna (vereda poniente) con Don Pepe por Línea 4 hacia Boletería"
+  },
+  "VVA-59e0df": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Andén dirección Tobalaba"
+  },
+  "VVA-64a429": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén Línea 4 dirección Tobalaba hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "VVA-6e9f35": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Tobalaba hacia Cambio de andén"
+  },
+  "VVA-7e2c9c": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Plaza de Puente Alto"
+  },
+  "VVA-8aa377": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Andén dirección Tobalaba hacia Combinación Línea 5 dirección Plaza de Maipú"
+  },
+  "VVA-a6d908": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica 04 desde Andén Línea 5 dirección Plaza de Maipú hacia Andén Línea 4 dirección Plaza de Puente Alto"
+  },
+  "VVA-b3cf5e": {
+    "estacion": "VVA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Andén dirección Tobalaba"
+  },
+  "VVA-d6fbb3": {
+    "estacion": "VVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Vicuña Mackenna (vereda oriente) con Vicente Valdés hacia Boletería"
+  },
+  "VVA-e7869d": {
+    "estacion": "VVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4 dirección Plaza de Puente Alto y hacia Andén Línea 5 dirección Vicente Valdés"
+  },
+  "VVA-f89d0f": {
+    "estacion": "VVA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén Línea 4 dirección Tobalaba y hacia Andén Línea 5 dirección Plaza de Maipú"
+  },
+  "ZA-161612": {
+    "estacion": "ZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor de acceso ubicado en Av. Recoleta con Av. Los Zapadores hacia Boletería"
+  },
+  "ZA-36a453": {
+    "estacion": "ZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Boletería hacia Descanso Acceso A Av. Los Zapadores"
+  },
+  "ZA-426b57": {
+    "estacion": "ZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Vespucio Norte"
+  },
+  "ZA-9ff167": {
+    "estacion": "ZA",
+    "tipo": "ascensor",
+    "texto": "Ascensor Boletería hacia Andén dirección Hospital El Pino"
+  },
+  "ZA-d6f9cd": {
+    "estacion": "ZA",
+    "tipo": "escalera",
+    "texto": "Escalera mecánica desde Descanso Acceso A Av. Los Zapadores hacia Boletería"
+  }
+}

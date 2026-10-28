@@ -154,15 +154,22 @@ rolled back once on purpose.
 
 **Goal:** stations identified by ID, not by fuzzy strings.
 
-- [ ] Script that reads the elevator catalogue, GTFS stops, and OSM line geometry, and outputs
+- [x] Script that reads the elevator catalogue and the live feed's device texts, and outputs
   `stations.json`: ID, coordinates, lines, platforms by terminal, device IDs, name aliases.
-- [ ] Zod schema for the output; the build fails on schema violations.
-- [ ] **Validation report:** devices without a station, stations without coordinates, terminals
-  that don't exist, duplicate aliases. Zero unexplained exceptions.
-- [ ] Output is **committed** so every data change is a reviewable diff in a PR.
-- [ ] Document how and when to regenerate (e.g. when Line 7 opens).
+  One station per line, grouped into complexes ([ADR 0011](adr/0011-registry-stations-per-line.md)).
+- [ ] Add DTPM GTFS stop coordinates (fixes Baquedano, see the report) once DTPM confirms the
+  licence. OSM line geometry is a map overlay, so it moves to Phase 7.
+- [x] Zod schema for the output; the build fails on schema violations.
+- [x] **Validation report** (`packages/registry/REPORT.md`): devices without a station, unknown
+  device kinds, unrecognised directions, terminals that don't exist, duplicate names, spread-out
+  complexes. The build fails on any exception not explained in its config.
+- [x] Output is **committed** so every data change is a reviewable diff in a PR; a test fails if
+  it's stale or hand-edited.
+- [x] Document how and when to regenerate: `packages/registry/sources/README.md`.
 
 **Done when:** the report is clean (or every exception is listed with a reason) and core tests use it.
+✅ 2026-10-28: 143 stations, 1,111 device entries, 4 explained issues; core's rules are tested on
+the real registry (`packages/registry/src/stations.test.ts`).
 
 ---
 
