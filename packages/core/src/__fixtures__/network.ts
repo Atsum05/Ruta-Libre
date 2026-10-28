@@ -18,7 +18,7 @@ export const S = {
   parqueBustamante: StationId('parque-bustamante'),
 }
 
-const platform = (towards: StationId): DeviceScope => ({ kind: 'platform', towards })
+const platform = (...towards: StationId[]): DeviceScope => ({ kind: 'platform', towards })
 const STATION_WIDE: DeviceScope = { kind: 'station' }
 const UNKNOWN: DeviceScope = { kind: 'unknown' }
 

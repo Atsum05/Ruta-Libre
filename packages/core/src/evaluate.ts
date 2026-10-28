@@ -66,10 +66,10 @@ function evaluateMetroLeg(
 ): Finding[] {
   const findings: Finding[] = []
   // Alighting happens on the same platform side as boarding: the one signed towards the terminal.
-  const towards = resolveTerminal(leg.headsign, registry)
+  const towards = resolveTerminal(leg.headsign, registry, leg.line)
 
   for (const stop of [leg.from, leg.to]) {
-    const station = matchStop(stop, registry)
+    const station = matchStop(stop, registry, { line: leg.line })
     if (station === null) {
       findings.push({
         effect: 'unknown',
@@ -106,7 +106,7 @@ function relationTo(device: Device, towards: StationId | null): PlatformRelation
       return 'uncertain'
     case 'platform':
       if (towards === null) return 'uncertain'
-      return device.scope.towards === towards ? 'yours' : 'other'
+      return device.scope.towards.includes(towards) ? 'yours' : 'other'
   }
 }
 

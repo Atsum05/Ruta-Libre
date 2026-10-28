@@ -7,8 +7,8 @@ export type DeviceKind = 'elevator' | 'escalator'
 export type DeviceScope =
   /** Street access or ticket hall: every trip through the station needs it. */
   | { readonly kind: 'station' }
-  /** One platform: trips heading towards this terminal station. */
-  | { readonly kind: 'platform'; readonly towards: StationId }
+  /** Platforms: trips heading towards any of these terminal stations (one device can serve several). */
+  | { readonly kind: 'platform'; readonly towards: readonly StationId[] }
   /** We couldn't tell which platform it serves. Treated as possibly yours. */
   | { readonly kind: 'unknown' }
 
