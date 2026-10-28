@@ -80,8 +80,8 @@ safer than building everything first and deploying at the end.
 **Goal:** a repo where doing the right thing is the default.
 
 - [x] **Move the repo out of OneDrive**: now at `C:\dev\rutalibre`.
-- [ ] Create the GitHub repo; protect `main`: PR required, CI must pass, squash-merge only,
-  no force-push. Working solo, you merge your own PRs, but the PR still earns its keep: it's
+- [x] Create the GitHub repo ([Atsum05/Ruta-Libre](https://github.com/Atsum05/Ruta-Libre));
+  protect `main` with a ruleset: PR required, `check` must pass, squash-merge only, no force-push. Working solo, you merge your own PRs, but the PR still earns its keep: it's
   where CI runs and where the preview deploy appears.
 - [x] **pnpm workspace** with `packages/*` and `apps/*`. Node pinned via `.nvmrc`, `engines`, and
   the `packageManager` field; tool versions shared through the pnpm `catalog`. Lockfile committed.
@@ -92,16 +92,16 @@ safer than building everything first and deploying at the end.
   restricted imports, and a no-dependencies test. Verified by injecting violations.
 - [x] **Vitest** wired at the root; one passing test per package.
 - [x] Root scripts: `pnpm check` = lint + typecheck + test (the same command CI runs).
-- [x] **CI (GitHub Actions):** `.github/workflows/ci.yml` written; first real run happens on the
-  first push.
+- [x] **CI (GitHub Actions):** `.github/workflows/ci.yml` runs `pnpm check` on every PR and push to `main`.
 - [x] **Conventions:** Conventional Commits (in `CONTRIBUTING.md`) and a PR template containing the
   Definition of Done (add `CODEOWNERS` once there's a second contributor).
-- [ ] **Renovate:** `renovate.json` written; install the Renovate GitHub app on the repo to activate it.
+- [x] **Renovate:** `renovate.json` committed and the Renovate GitHub app installed on the repo.
 - [x] `AGENTS.md` (+ a one-line `CLAUDE.md` pointing to it).
 - [x] `CONTRIBUTING.md`.
 - [x] `LICENSE`: MIT.
 
 **Done when:** a trivial PR goes red when it breaks a test or the import boundary, and green when fixed.
+✅ Verified 2026-10-28: a PR importing `node:fs` in core went red and couldn't merge, then green once fixed.
 
 ---
 
