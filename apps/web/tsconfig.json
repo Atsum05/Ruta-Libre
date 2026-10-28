@@ -1,0 +1,10 @@
+{
+  // Browser code: DOM lib, no Node types (so `process` in app code fails the typecheck).
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "types": ["vite/client"]
+  },
+  "include": ["src"]
+}

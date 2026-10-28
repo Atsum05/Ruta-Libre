@@ -99,12 +99,13 @@ safer than building everything first and deploying at the end.
 
 **Goal:** the full path (browser → API → response) is live and deploys itself.
 
-- [ ] `apps/web`: Vite + React + TS rendering a **Google Maps** map of Santiago
-  ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)), with a browser key restricted to our
-  domains and the Maps JavaScript API.
-- [ ] `apps/api`: **Hono** with `GET /v1/health` returning version + commit SHA.
-- [ ] Web calls `/v1/health` and shows the version in a debug footer.
-- [ ] **Config:** every env var is declared in a zod schema per app; the app refuses to start
+- [x] `apps/web`: Vite + React + TS rendering a **Google Maps** map of Santiago
+  ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)) behind `<MapCanvas>`.
+- [ ] Browser Maps key restricted to our domains and the Maps JavaScript API, with a quota cap.
+- [x] `apps/api`: **Hono** with `GET /v1/health` returning version + commit SHA.
+- [x] Web calls `/v1/health` (through the same-origin `/api` proxy) and shows the version in a
+  debug footer.
+- [x] **Config:** every env var is declared in a zod schema per app; the app refuses to start
   with missing or malformed config (this would have caught the prototype's BOM-in-the-key bug
   at boot instead of as a fake CORS error).
 - [ ] **Environments:** `local`, `preview` (every PR), `production` (main). Secrets live only in
