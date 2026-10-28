@@ -1,6 +1,7 @@
 import type { Registry } from '@rutalibre/core'
 import { type Context, Hono } from 'hono'
 import { cors } from 'hono/cors'
+import { secureHeaders } from 'hono/secure-headers'
 import pkg from '../package.json' with { type: 'json' }
 import type { Config } from './config.ts'
 import { jsonLogger, type Logger } from './log.ts'
@@ -35,6 +36,13 @@ export function createApp(deps: AppDeps) {
   const app = new Hono<AppEnv>()
 
   app.use('*', requestLogging(log))
+  // An API serves JSON only: forbid framing, sniffing and any embedded content (roadmap phase 8).
+  app.use(
+    '*',
+    secureHeaders({
+      contentSecurityPolicy: { defaultSrc: ["'none'"], frameAncestors: ["'none'"] },
+    }),
+  )
   app.onError(errorHandler(log))
   app.notFound((c) => c.json(errorBody(c, 'not-found', 'No such endpoint.'), 404))
 

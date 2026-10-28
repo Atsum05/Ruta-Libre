@@ -28,6 +28,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # The same command you run locally: lint, typecheck, test
       - run: pnpm check
+      # Known-vulnerable production dependencies fail the build (roadmap phase 8).
+      - run: pnpm audit --prod --audit-level high
 
   # Browser flows against a mocked API, with axe accessibility checks (roadmap phase 7).
   e2e:

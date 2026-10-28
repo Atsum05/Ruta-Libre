@@ -269,9 +269,10 @@ the real registry (`packages/registry/src/stations.test.ts`).
 - [ ] **Alerts** (and fire each one once on purpose to test it): status stale > 5 min, upstream
   error spike, match-rate drop, spend over budget.
 - [ ] **Synthetic check:** a scheduled real `/plan` request in production every 5–10 min.
-- [ ] **Security:** CSP and security headers; `pnpm audit` / secret scanning in CI; Google key
-  restricted to only the APIs used; billing quotas capped; **no raw locations in logs** (round
-  coordinates, no user identifiers).
+- [x] **Security (code side):** API security headers with a deny-all CSP; `pnpm audit` in CI;
+  **no raw locations in logs** (paths only: no query strings, bodies or coordinates; tested).
+- [ ] **Security (deploy side):** web CSP in the Netlify headers; GitHub secret scanning; Google
+  keys restricted to only the APIs used; billing quotas capped.
 - [ ] **Load test** `/plan` and `/status` (k6) at ~10× expected launch traffic.
 
 **Done when:** every alert has fired once in a test, and the load test passes within the latency targets.

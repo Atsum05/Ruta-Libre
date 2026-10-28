@@ -332,3 +332,15 @@ describe('GET /v1/openapi.json', () => {
     ])
   })
 })
+
+describe('security headers', () => {
+  it('forbids framing, sniffing and embedded content', async () => {
+    const res = await (await app()).request('/v1/health')
+    expect(res.headers.get('content-security-policy')).toBe(
+      "default-src 'none'; frame-ancestors 'none'",
+    )
+    expect(res.headers.get('x-content-type-options')).toBe('nosniff')
+    expect(res.headers.get('x-frame-options')).toBe('SAMEORIGIN')
+    expect(res.headers.get('strict-transport-security')).toMatch(/max-age=/)
+  })
+})
