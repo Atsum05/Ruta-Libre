@@ -1,14 +1,14 @@
 # Data sources and legal audit
 
-- **Status:** Researched 2026-10-28. **1 blocker open** (see the bottom of this page).
+- **Status:** Researched 2026-10-28. **No blockers open**; follow-ups listed at the bottom.
 - Re-check each row before launch: terms change. Every row links to where we read it.
 
 ## Summary
 
 | Source                                         | Used for                          | Licence / terms                      | Attribution                    | Rate limit            | Status      |
 | ---------------------------------------------- | --------------------------------- | ------------------------------------ | ------------------------------ | --------------------- | ----------- |
-| Elevator & escalator catalogue (ariellopez.cl) | Device IDs, stations, coordinates | **None stated**                      | Unknown; credit them anyway    | n/a (static file)     | ⚠️ Ask      |
-| Live device status (seguimos.cl)               | Working / out of service, now     | **None stated**, no API docs         | Unknown; credit them anyway    | **None stated**       | ⚠️ Ask      |
+| Elevator & escalator catalogue (ariellopez.cl) | Device IDs, stations, coordinates | Permission from Ariel López          | Credit the authors             | n/a (static file)     | ✅ Approved |
+| Live device status (seguimos.cl)               | Working / out of service, now     | Permission from Ariel López          | Credit the authors             | 1 req / 1–2 min       | ✅ Approved |
 | OpenStreetMap                                  | Metro line geometry overlay       | ODbL 1.0                             | "© OpenStreetMap contributors" | n/a (we extract once) | ✅ OK       |
 | Santiago GTFS (DTPM)                           | Station registry (Phase 4), OTP   | **None stated** on the download page | Unknown                        | n/a (download)        | ⚠️ Ask      |
 | Google Maps JavaScript API                     | The map itself                    | Google Maps Platform terms           | Drawn by Google                | Quota + billing       | ✅ OK       |
@@ -25,8 +25,10 @@
 - The page states no licence, no data source, and offers no download. Our copy
   (`metro_dispositivos.geojson`, ~949 devices) came from the prototype.
 - Contact: only through the authors' X (Twitter) profiles linked on the page. No email.
-- **To do:** ask permission to use and redistribute the catalogue, how they want to be credited,
-  and where the data originally comes from (Metro de Santiago?). An official source would be better.
+- **Approved:** Ariel López gave RutaLibre permission to use the data (recorded 2026-10-28). Keep a
+  copy of that message outside the repo as evidence.
+- **Follow-up (not blocking):** confirm the credit wording, whether redistributing the catalogue
+  file in a public repo is fine, and where the data originally comes from (Metro de Santiago?).
 
 ### Live device status: seguimos.cl
 
@@ -34,8 +36,9 @@
   catalogue, so one conversation covers both.
 - No terms, no API documentation, no rate limit published. The page says its (bus) data updates
   every 30 s; elevator status cadence is unknown.
-- **To do:** agree on a polling rate (we propose 1 request per 1–2 min from one server, per
-  ADR 0004), our `User-Agent` string, and credit. Ask where elevator status comes from.
+- **Approved:** covered by Ariel López's permission (see the catalogue above).
+- We poll from one server at most once per 1–2 min (ADR 0004), with a `User-Agent` naming RutaLibre
+  and a contact. **Follow-up:** tell Ariel that rate and agent string before Phase 5 goes live.
 
 ### OpenStreetMap
 
@@ -99,12 +102,12 @@ From Google's own policy pages (both last updated 2026-10-27):
   - Privacy policy naming the processors (Google, hosting provider) and what each receives.
 - Get a lawyer's read before launch. This section is research, not legal advice.
 
-## Open blockers (Phase 0 isn't done until these are resolved)
+## Blockers
 
-1. **Permission from the catalogue and live-status authors** (Ariel López and Willy Maikowski).
-   Without it the core data has no legal basis for a public launch.
+None open. Resolved:
 
-Resolved: Google results on a non-Google map → Google Maps for the map
-([ADR 0009](adr/0009-google-maps-for-map-rendering.md), 2026-10-28).
+- Google results on a non-Google map → Google Maps for the map
+  ([ADR 0009](adr/0009-google-maps-for-map-rendering.md), 2026-10-28).
+- Permission for the catalogue and live status → approved by Ariel López (2026-10-28).
 
 Not blocking yet: DTPM licence (needed by Phase 4), Gemini tier (needed by Phase 6).

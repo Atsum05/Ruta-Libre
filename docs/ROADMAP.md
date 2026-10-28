@@ -54,8 +54,8 @@ safer than building everything first and deploying at the end.
   limits, and contacts for every source, plus Ley 21.719.
   - [x] **Google Maps Platform terms** verified: Google routes/places must be shown on a Google map.
     Resolved by switching the map to Google Maps ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)).
-  - [ ] **Ask permission** from the catalogue and live-status authors (ariellopez.cl / seguimos.cl):
-    use, credit, polling rate, `User-Agent`. This is the one open blocker.
+  - [x] **Permission** from the catalogue and live-status authors (ariellopez.cl / seguimos.cl):
+    approved by Ariel López. Credit wording and polling rate to confirm before Phase 5.
   - [ ] Ask DTPM for the GTFS licence (needed by Phase 4).
 - [ ] Review and accept the ADRs in `docs/adr/`.
 
