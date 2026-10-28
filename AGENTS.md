@@ -31,6 +31,7 @@ sure. A broken elevator blocks a route; a broken escalator only warns.
 
 ```bash
 pnpm install
+pnpm dev          # API on :8787 + web on :5173 (needs apps/web/.env.local, see .env.example)
 pnpm check        # lint + typecheck + test (exactly what CI runs). Must pass before "done"
 pnpm format       # auto-fix formatting and safe lint issues
 pnpm test:watch
