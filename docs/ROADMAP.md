@@ -122,26 +122,29 @@ rolled back once on purpose.
 
 **Goal:** the accessibility verdict as a pure, fully tested library.
 
-- [ ] **Types:** `StationId`, `DeviceId` (branded), `Station`, `Platform` (by terminal station),
-  `Device`, `DeviceStatus`, `StatusSnapshot` (with `fetchedAt`), `Route`, `Leg`, `Verdict`.
-- [ ] **Functions (no I/O):**
+- [x] **Types:** `StationId`, `DeviceId` (branded), `Station`, `Device` with a platform scope (by
+  terminal station), `StatusSnapshot` (with `fetchedAt`), `Route`, `Leg`, `Verdict` with findings.
+- [x] **Functions (no I/O):**
   - `matchStop(stop, registry)`: location first (nearest station within ~150 m), name as tie-breaker
     ([ADR 0006](adr/0006-match-stops-by-location.md))
   - `evaluateRoute(route, snapshot, registry, now)` → `ok | warning | blocked | unknown` with reasons
   - `chooseRoute(evaluated[])` → ranked plans (the fallback order, expressed as data)
   - `adjustWalkingTime(seconds)` (factor documented and configurable)
-- [ ] **Write the rules as tests first**, including every prototype bug as a regression test:
+- [x] **Write the rules as tests first**, including every prototype bug as a regression test.
+  The full rule table is [ADR 0010](adr/0010-verdict-rules.md):
   - transfer station: each leg is checked against **its own** direction
   - broken elevator on your platform → `blocked`
   - broken elevator on the opposite platform → `warning`, not silently ignored
   - broken escalator only → `warning`
   - snapshot older than the threshold → `unknown`
   - unmatched stop → `unknown`
-  - device with no status → `unknown`
+  - elevator with no status → `unknown` (an escalator with no status is ignored: ADR 0010)
 - [ ] **Golden tests:** record ~15 real Google responses (transfers, express "Ruta Roja/Verde",
-  bus-only, no-alternative) as fixtures; assert the full plan output.
-- [ ] Coverage gate on core (e.g. ≥ 95% branches). Optional: mutation testing (Stryker) to check the
-  tests actually catch broken logic.
+  bus-only, no-alternative) as fixtures; assert the full plan output. Needs a Google key and the
+  Routes adapter, so it's done with Phase 6.
+- [x] Coverage gate on core: ≥ 95% branches, lines, functions and statements, enforced by `pnpm test`.
+  Mutation check done by hand (2026-10-28): reintroducing prototype bugs #1 and #2, ignoring the
+  direction, or letting escalators block each makes the suite fail.
 
 **Done when:** every rule above has a test, and core has zero runtime dependencies.
 
