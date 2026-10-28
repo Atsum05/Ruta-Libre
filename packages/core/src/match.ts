@@ -39,7 +39,8 @@ export function matchStop(
   for (const station of registry.stations) {
     if (line !== undefined && !station.lines.includes(line)) continue
     const distance = distanceMeters(stop.location, station.location)
-    if (distance > radiusM) continue
+    // `!(d <= r)` also skips NaN: a stop without real coordinates must never match.
+    if (!(distance <= radiusM)) continue
     const nameMatches = namesOf(station).includes(name)
     const better =
       best === null ||

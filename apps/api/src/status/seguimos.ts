@@ -1,5 +1,6 @@
 import { DeviceId, type DeviceState, type StatusSnapshot } from '@rutalibre/core'
 import { z } from 'zod'
+import { UpstreamError } from '../http/request.ts'
 import type { StatusProvider } from '../providers.ts'
 import { parseSantiagoTime } from './santiago-time.ts'
 
@@ -12,10 +13,6 @@ const PayloadSchema = z.record(
     estado: z.number(),
   }),
 )
-
-export class UpstreamError extends Error {
-  override name = 'UpstreamError'
-}
 
 export interface SeguimosOptions {
   readonly url: string
@@ -43,7 +40,7 @@ export class SeguimosStatusProvider implements StatusProvider {
       headers: { 'User-Agent': userAgent, Accept: 'application/json' },
       signal: AbortSignal.timeout(timeoutMs),
     })
-    if (!res.ok) throw new UpstreamError(`HTTP ${res.status}`)
+    if (!res.ok) throw new UpstreamError(`HTTP ${res.status}`, res.status)
     let json: unknown
     try {
       json = await res.json()

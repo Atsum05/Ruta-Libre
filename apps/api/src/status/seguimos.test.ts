@@ -3,8 +3,9 @@
 
 import { DeviceId } from '@rutalibre/core'
 import { describe, expect, it } from 'vitest'
+import { UpstreamError } from '../http/request.ts'
 import good from './__fixtures__/seguimos-good.json' with { type: 'json' }
-import { SeguimosStatusProvider, UpstreamError } from './seguimos.ts'
+import { SeguimosStatusProvider } from './seguimos.ts'
 
 const DAY = 24 * 60 * 60_000
 

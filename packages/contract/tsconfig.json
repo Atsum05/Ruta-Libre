@@ -1,0 +1,8 @@
+{
+  // Runs in the browser and in Node: only `fetch`, typed via the DOM lib.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2024", "DOM"]
+  },
+  "include": ["src"]
+}

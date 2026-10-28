@@ -1,0 +1,21 @@
+{
+  "name": "@rutalibre/contract",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The HTTP contract between web and API: zod schemas, inferred types, and a typed client (ADR 0013).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@rutalibre/core": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

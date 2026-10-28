@@ -203,19 +203,23 @@ the real registry (`packages/registry/src/stations.test.ts`).
 
 **Goal:** one request returns ranked, evaluated plans; no keys ever reach the browser.
 
-- [ ] `POST /v1/plan {origin, destination, departAt?}`, with the request validated by zod.
-- [ ] `RoutingProvider` Google adapter: field mask includes **stop locations** and **line text
-      colour**; bus-only fallback request; results mapped to core `Route`.
-- [ ] `/plan` runs `core.evaluateRoute` on all candidates → `core.chooseRoute` → response.
-- [ ] `GET /v1/places?q=` autocomplete proxy, biased to Santiago, using session tokens (Google bills
-  per session).
-- [ ] `POST /v1/interpret`: `LanguageProvider` (Gemini), structured output **validated by zod**,
-  hard timeout; any failure falls back to "use the search fields".
-- [ ] **Cross-cutting:** upstream timeouts + retry with backoff, per-IP rate limiting, request IDs,
-  structured JSON logs, CORS locked to your own origins, versioned routes (`/v1`).
-- [ ] **Typed contract:** generate OpenAPI from the zod schemas (`@hono/zod-openapi`) and a typed
-  client for the web app. No hand-written response types.
-- [ ] Integration tests with fake providers (no network in CI).
+- [x] `POST /v1/plan {origin, destination, departAt?}`, with the request validated by zod.
+- [x] `RoutingProvider` Google adapter: field mask includes **stop locations** and **line text
+      colour**; bus-only fallback request; results mapped to core `Route` (Metro lines to registry
+  IDs, ADR 0011).
+- [x] `/plan` runs `core.evaluateRoute` on all candidates → `core.chooseRoute` → response. Bus-only
+  is requested only when no route is ok or warning.
+- [x] `GET /v1/places?q=&session=` autocomplete proxy, biased to Santiago, using session tokens.
+- [x] `POST /v1/interpret`: `LanguageProvider` (Gemini), structured output **validated by zod**,
+  hard timeout; any failure is a 502/503 and the web falls back to the search fields.
+- [x] **Cross-cutting:** upstream timeouts + retry with backoff, per-IP rate limiting, request IDs,
+  structured JSON logs (paths only: no query strings, bodies or coordinates), CORS locked to
+  configured origins, versioned routes (`/v1`), contract-shaped errors.
+- [x] **Typed contract:** `packages/contract` zod schemas → inferred types, a typed client, and
+  OpenAPI 3.1 at `/v1/openapi.json` ([ADR 0013](adr/0013-shared-contract-package.md)).
+- [x] Integration tests with fake providers (no network in CI): the real Google adapter fed a
+  saved response, evaluated against the real registry.
+- [ ] Measure `/plan` p95 latency in preview (needs deployment and a Google key).
 
 **Done when:** integration tests pass, and the p95 latency of `/plan` is measured in preview.
 

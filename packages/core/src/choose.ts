@@ -4,15 +4,15 @@ import type { Verdict, VerdictKind } from './verdict.ts'
 /** Where a candidate came from, in fallback order: main route, alternatives, bus only. */
 export type CandidateSource = 'primary' | 'alternative' | 'bus-only'
 
-export interface Candidate {
-  readonly route: Route
+export interface Candidate<R extends Route = Route> {
+  readonly route: R
   readonly source: CandidateSource
   readonly verdict: Verdict
 }
 
-export interface Plan {
-  readonly ranked: readonly Candidate[]
-  readonly best: Candidate | null
+export interface Plan<C extends Candidate = Candidate> {
+  readonly ranked: readonly C[]
+  readonly best: C | null
   /**
    * - accessible: the best route is ok or only has warnings.
    * - uncertain: the best we have is `unknown`: show it, but say we can't be sure.
@@ -29,7 +29,7 @@ const TIER: Record<VerdictKind, number> = { ok: 0, warning: 0, unknown: 1, block
 const SOURCE_ORDER: Record<CandidateSource, number> = { primary: 0, alternative: 1, 'bus-only': 2 }
 
 /** Ranks evaluated routes into the plan we show: the fallback order, expressed as data. */
-export function chooseRoute(candidates: readonly Candidate[]): Plan {
+export function chooseRoute<C extends Candidate>(candidates: readonly C[]): Plan<C> {
   // Array.prototype.sort is stable, so the provider's own order survives within a tier.
   const ranked = [...candidates].sort(
     (a, b) =>

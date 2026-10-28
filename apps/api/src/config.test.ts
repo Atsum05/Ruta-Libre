@@ -7,7 +7,12 @@ describe('parseConfig', () => {
   })
 
   it('reads the port, environment, and commit', () => {
-    const config = parseConfig({ PORT: '10000', APP_ENV: 'production', COMMIT_SHA: 'abc1234' })
+    const config = parseConfig({
+      PORT: '10000',
+      APP_ENV: 'production',
+      COMMIT_SHA: 'abc1234',
+      GOOGLE_MAPS_API_KEY: 'k',
+    })
     expect(config).toMatchObject({ port: 10_000, env: 'production', commit: 'abc1234' })
   })
 
@@ -53,5 +58,40 @@ describe('status settings', () => {
 
   it('rejects a malformed source URL', () => {
     expect(() => parseConfig({ STATUS_SOURCE_URL: 'not a url' })).toThrow(ConfigError)
+  })
+})
+
+describe('planning settings', () => {
+  it('runs locally without Google or Gemini keys (status only)', () => {
+    expect(parseConfig({})).toMatchObject({ googleMapsKey: null, gemini: null })
+  })
+
+  it.each(['preview', 'production'])('requires the Google key when APP_ENV is %s', (env) => {
+    expect(() => parseConfig({ APP_ENV: env })).toThrow(/GOOGLE_MAPS_API_KEY/)
+  })
+
+  // The prototype's BOM-in-the-key bug, for the key that matters most.
+  it('rejects a Google key with a BOM', () => {
+    expect(() => parseConfig({ GOOGLE_MAPS_API_KEY: '﻿AIza' })).toThrow(ConfigError)
+  })
+
+  it('enables Gemini only with a key, defaulting the model', () => {
+    expect(parseConfig({ GEMINI_API_KEY: 'g' }).gemini).toEqual({
+      apiKey: 'g',
+      model: 'gemini-3.1-flash-lite',
+    })
+  })
+
+  it('parses the proxy flag and the CORS allowlist', () => {
+    const config = parseConfig({
+      TRUST_PROXY: 'true',
+      CORS_ORIGINS: 'https://rutalibre.cl, https://preview.rutalibre.cl',
+    })
+    expect(config.trustProxy).toBe(true)
+    expect(config.corsOrigins).toEqual(['https://rutalibre.cl', 'https://preview.rutalibre.cl'])
+  })
+
+  it('rejects a CORS origin that is not a URL', () => {
+    expect(() => parseConfig({ CORS_ORIGINS: 'rutalibre.cl' })).toThrow(/CORS_ORIGINS/)
   })
 })

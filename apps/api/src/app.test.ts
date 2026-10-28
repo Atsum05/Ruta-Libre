@@ -5,7 +5,7 @@ import { parseConfig } from './config.ts'
 import { InMemorySnapshotStore } from './status/store.ts'
 
 const app = createApp({
-  config: parseConfig({ APP_ENV: 'preview', COMMIT_SHA: 'abc1234' }),
+  config: parseConfig({ APP_ENV: 'preview', COMMIT_SHA: 'abc1234', GOOGLE_MAPS_API_KEY: 'k' }),
   statusStore: new InMemorySnapshotStore(),
 })
 

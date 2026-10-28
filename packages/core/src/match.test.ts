@@ -93,3 +93,10 @@ describe('resolveTerminal', () => {
     expect(resolveTerminal(null, registry)).toBeNull()
   })
 })
+
+describe('matchStop with bad coordinates', () => {
+  it('never matches a stop whose position is not a number', () => {
+    const broken = { name: 'Universidad de Chile', location: { lat: Number.NaN, lng: Number.NaN } }
+    expect(matchStop(broken, registry)).toBeNull()
+  })
+})
