@@ -1,0 +1,10 @@
+packages:
+  - packages/*
+  - apps/*
+
+# Shared tool versions. Packages depend on `catalog:` instead of a version,
+# so one edit here upgrades the whole workspace in lockstep.
+catalog:
+  "@types/node": ^26.6.5
+  typescript: ^7.0.2
+  vitest: ^5.0.5

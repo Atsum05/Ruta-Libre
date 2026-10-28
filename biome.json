@@ -1,0 +1,53 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.3/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!**/pnpm-lock.yaml"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  },
+  "linter": {
+    "rules": {
+      "preset": "recommended"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["packages/core/src/**", "!**/*.test.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "patterns": [
+                  {
+                    "group": ["node:*"],
+                    "message": "core is pure (ADR 0002): no Node built-ins. Pass data in instead."
+                  },
+                  {
+                    "group": ["@rutalibre/*", "**/apps/**"],
+                    "message": "Dependencies point inward (ADR 0002): core must not import from apps or other packages."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
