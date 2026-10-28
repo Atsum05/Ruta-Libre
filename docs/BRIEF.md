@@ -1,6 +1,6 @@
 # RutaLibre: product brief
 
-- **Status:** Draft, awaiting sign-off on the success metrics
+- **Status:** Accepted, including the success metrics
 - **Date:** 2026-10-28
 
 ## Who it's for

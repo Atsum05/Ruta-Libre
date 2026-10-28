@@ -25,7 +25,8 @@ sure. A broken elevator blocks a route; a broken escalator only warns.
 - Stops are matched to stations by location via a generated station registry, not by name.
 - External services (Google Routes/Places, seguimos.cl, Gemini) sit behind provider interfaces.
   Google is the routing provider for now.
-- Hosting is **not decided yet** (candidates in ADR 0008). Keep code platform-neutral.
+- Hosting: Netlify (web) + Render (API, Postgres, Key Value), ADR 0008. Keep code platform-neutral
+  anyway: no vendor SDKs outside adapters.
 
 ## Commands
 

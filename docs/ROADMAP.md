@@ -48,7 +48,7 @@ safer than building everything first and deploying at the end.
 
 - [x] Write a one-page **product brief** ([`BRIEF.md`](BRIEF.md)): who the users are, the one
   promise, and **non-goals** for launch.
-- [ ] Agree the **success metrics** proposed in the brief (stop-match ≥ 99%, confident verdicts
+- [x] Agree the **success metrics** proposed in the brief (stop-match ≥ 99%, confident verdicts
   ≥ 95%, status freshness p95 < 3 min, `/plan` p95 < 2.5 s, crash-free ≥ 99.5%).
 - [x] **Data & legal audit** in [`DATA_SOURCES.md`](DATA_SOURCES.md): licence, attribution, rate
   limits, and contacts for every source, plus Ley 21.719.
@@ -57,9 +57,11 @@ safer than building everything first and deploying at the end.
   - [x] **Permission** from the catalogue and live-status authors (ariellopez.cl / seguimos.cl):
     approved by Ariel López. Credit wording and polling rate to confirm before Phase 5.
   - [ ] Ask DTPM for the GTFS licence (needed by Phase 4).
-- [ ] Review and accept the ADRs in `docs/adr/`.
+- [x] Review and accept the ADRs in `docs/adr/`, including hosting
+  ([ADR 0008](adr/0008-hosting-platform.md): Netlify + Render).
 
 **Done when:** brief merged, metrics agreed, data table filled with no unresolved blocker.
+✅ Signed off 2026-10-28; complete once the Phase 0 PR is merged.
 
 ---
 
@@ -278,16 +280,16 @@ rolled back once on purpose.
 
 ## Tech stack summary
 
-| Concern     | Choice                                                               | Why                                                   |
-| ----------- | -------------------------------------------------------------------- | ----------------------------------------------------- |
-| Language    | TypeScript (strict)                                                  | Domain types are the safety net                       |
-| Workspace   | pnpm workspaces                                                      | Simple, fast; add Turborepo only if builds get slow   |
-| Lint/format | Biome                                                                | One tool, fast                                        |
-| Tests       | Vitest, Playwright, axe                                              | Unit → integration → e2e + a11y                       |
-| Validation  | zod                                                                  | One schema for runtime checks, types, and OpenAPI     |
-| API         | Hono                                                                 | Tiny, typed, runs on any platform                     |
-| Web         | Vite + React + TanStack Query                                        | No SSR needed for a map app                           |
-| Map         | Google Maps JavaScript API                                           | [ADR 0009](adr/0009-google-maps-for-map-rendering.md) |
-| Hosting     | Undecided; leaning Netlify (web) + Render (API, Postgres, Key Value) | [ADR 0008](adr/0008-hosting-platform.md)              |
-| Errors      | Sentry                                                               | Releases + source maps                                |
-| Deps        | Renovate                                                             | Grouped, scheduled updates                            |
+| Concern     | Choice                                            | Why                                                   |
+| ----------- | ------------------------------------------------- | ----------------------------------------------------- |
+| Language    | TypeScript (strict)                               | Domain types are the safety net                       |
+| Workspace   | pnpm workspaces                                   | Simple, fast; add Turborepo only if builds get slow   |
+| Lint/format | Biome                                             | One tool, fast                                        |
+| Tests       | Vitest, Playwright, axe                           | Unit → integration → e2e + a11y                       |
+| Validation  | zod                                               | One schema for runtime checks, types, and OpenAPI     |
+| API         | Hono                                              | Tiny, typed, runs on any platform                     |
+| Web         | Vite + React + TanStack Query                     | No SSR needed for a map app                           |
+| Map         | Google Maps JavaScript API                        | [ADR 0009](adr/0009-google-maps-for-map-rendering.md) |
+| Hosting     | Netlify (web) + Render (API, Postgres, Key Value) | [ADR 0008](adr/0008-hosting-platform.md)              |
+| Errors      | Sentry                                            | Releases + source maps                                |
+| Deps        | Renovate                                          | Grouped, scheduled updates                            |
