@@ -35,8 +35,8 @@ export function evaluateRoute(
   if (usesMetro) {
     if (snapshot === null) {
       findings.push({ effect: 'unknown', legIndex: null, reason: { code: 'status-unavailable' } })
-    } else if (now - snapshot.fetchedAt > maxAge) {
-      const ageMs = now - snapshot.fetchedAt
+    } else if (now - snapshot.observedAt > maxAge) {
+      const ageMs = now - snapshot.observedAt
       findings.push({ effect: 'unknown', legIndex: null, reason: { code: 'status-stale', ageMs } })
     } else {
       status = snapshot

@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import pkg from '../package.json' with { type: 'json' }
 import { createApp } from './app.ts'
+import { parseConfig } from './config.ts'
+import { InMemorySnapshotStore } from './status/store.ts'
 
-const app = createApp({ port: 8787, env: 'preview', commit: 'abc1234' })
+const app = createApp({
+  config: parseConfig({ APP_ENV: 'preview', COMMIT_SHA: 'abc1234' }),
+  statusStore: new InMemorySnapshotStore(),
+})
 
 describe('GET /v1/health', () => {
   it('reports the version, commit, and environment', async () => {

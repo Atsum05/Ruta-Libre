@@ -1,6 +1,10 @@
 import { serve } from '@hono/node-server'
-import { createApp } from './app.ts'
+import { createApp, USER_AGENT } from './app.ts'
 import { ConfigError, parseConfig } from './config.ts'
+import { jsonLogger as log } from './log.ts'
+import { StatusPoller } from './status/poller.ts'
+import { SeguimosStatusProvider } from './status/seguimos.ts'
+import { InMemorySnapshotStore, InMemoryStatusHistory } from './status/store.ts'
 
 function loadConfig() {
   try {
@@ -16,11 +20,28 @@ function loadConfig() {
 
 const config = loadConfig()
 
-const server = serve({ fetch: createApp(config).fetch, port: config.port }, (info) => {
-  console.log(`api listening on :${info.port} (${config.env}, commit ${config.commit})`)
+// One always-on instance polls (ADR 0008); move to a cron job before running several.
+const statusStore = new InMemorySnapshotStore()
+const poller = new StatusPoller({
+  provider: new SeguimosStatusProvider({
+    url: config.status.sourceUrl,
+    userAgent: USER_AGENT,
+    timeoutMs: config.status.timeoutMs,
+    maxDeviceLagMs: 24 * 60 * 60_000,
+  }),
+  store: statusStore,
+  history: new InMemoryStatusHistory(),
+  log,
+})
+poller.start(config.status.pollMs)
+
+const app = createApp({ config, statusStore })
+const server = serve({ fetch: app.fetch, port: config.port }, (info) => {
+  log.info('api listening', { port: info.port, env: config.env, commit: config.commit })
 })
 
 // Hosts stop instances with SIGTERM; finish in-flight requests before exiting.
 process.on('SIGTERM', () => {
+  poller.stop()
   server.close(() => process.exit(0))
 })

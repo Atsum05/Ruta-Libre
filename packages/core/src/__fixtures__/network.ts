@@ -173,7 +173,7 @@ export const NOW = Date.UTC(2026, 9, 28, 12, 0, 0)
 /** Every fixture device working, fetched a minute ago, except the overrides. */
 export function snapshot(
   overrides: Record<string, DeviceState | 'missing'> = {},
-  fetchedAt = NOW - 60_000,
+  observedAt = NOW - 60_000,
 ): StatusSnapshot {
   const devices = new Map<DeviceId, DeviceState>()
   for (const s of registry.stations) {
@@ -182,5 +182,5 @@ export function snapshot(
       if (state !== 'missing') devices.set(d.id, state)
     }
   }
-  return { fetchedAt, devices }
+  return { observedAt, devices }
 }

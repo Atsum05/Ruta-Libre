@@ -1,0 +1,209 @@
+{
+  "AV-0a642b": {
+    "time": "2026-10-16 20:20:16",
+    "estado": 0,
+    "tipo": "escalera",
+    "estacion": "AV",
+    "texto": "Escalera mecánica desde Cambio de andén hacia Acceso Intermodal Vespucio Norte",
+    "historico": {
+      "2026-10-16 12:20:15": 0,
+      "2026-10-16 20:20:16": 0
+    }
+  },
+  "AV-fd09b8": {
+    "time": "2026-10-16 20:20:16",
+    "estado": 0,
+    "tipo": "escalera",
+    "estacion": "AV",
+    "texto": "Escalera mecánica desde Acceso Intermodal Vespucio Norte hacia Andén dirección Hospital El Pino",
+    "historico": {
+      "2026-10-16 12:20:15": 0,
+      "2026-10-16 20:20:16": 0
+    }
+  },
+  "BE-b03e2a": {
+    "time": "2026-10-16 20:21:03",
+    "estado": 0,
+    "tipo": "ascensor",
+    "estacion": "BE",
+    "texto": "Ascensor de acceso ubicado en Monjitas con Mosqueto hacia Boletería",
+    "historico": {
+      "2026-10-16 12:21:02": 0,
+      "2026-10-16 20:21:03": 0
+    }
+  },
+  "CAR-374766": {
+    "time": "2026-10-16 20:20:31",
+    "estado": 0,
+    "tipo": "ascensor",
+    "estacion": "CAR",
+    "texto": "Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Plaza Quilicura",
+    "historico": {
+      "2026-10-16 12:20:31": 0,
+      "2026-10-16 20:20:31": 0
+    }
+  },
+  "HE-0f6a35": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 0,
+    "tipo": "ascensor",
+    "estacion": "HE",
+    "texto": "Ascensor Hall Línea 1 dirección San Pablo hacia Andén Línea 2 dirección Hospital El Pino",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 0
+    }
+  },
+  "HE-1c46b8": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "HE",
+    "texto": "Escalera mecánica desde Hall Combinación Línea 1 dirección Los Dominicos hacia Línea 2 dirección Hospital El Pino",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 1
+    }
+  },
+  "HE-9ef071": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 0,
+    "tipo": "escalera",
+    "estacion": "HE",
+    "texto": "Escalera mecánica desde Hall Combinación Línea 1 dirección San Pablo hacia Línea 2 dirección Vespucio Norte",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 0
+    }
+  },
+  "HE-9f5b58": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "HE",
+    "texto": "Escalera mecánica desde andén Línea 2 dirección Vespucio Norte hacia Combinación Línea 1 dirección Los Dominicos",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 1
+    }
+  },
+  "HE-ad0600": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 1,
+    "tipo": "ascensor",
+    "estacion": "HE",
+    "texto": "Ascensor Hall Línea 1 dirección Los Dominicos hacia Andén Línea 2 dirección Vespucio Norte",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 1
+    }
+  },
+  "HE-b73c94": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "HE",
+    "texto": "Escalera mecánica desde Hall Combinación Línea 1 dirección San Pablo hacia Línea 2 dirección Hospital El Pino",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 1
+    }
+  },
+  "HE-d50594": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 1,
+    "tipo": "ascensor",
+    "estacion": "HE",
+    "texto": "Ascensor Hall Línea 1 dirección Los Dominicos hacia Andén Línea 2 dirección Hospital El Pino",
+    "historico": {
+      "2026-10-16 12:20:20": 1,
+      "2026-10-16 20:20:21": 1
+    }
+  },
+  "HE-dacf2b": {
+    "time": "2026-10-16 20:20:21",
+    "estado": 0,
+    "tipo": "ascensor",
+    "estacion": "HE",
+    "texto": "Ascensor Hall Línea 1 dirección San Pablo hacia Andén Línea 2 dirección Vespucio Norte",
+    "historico": {
+      "2026-10-16 12:20:20": 0,
+      "2026-10-16 20:20:21": 0
+    }
+  },
+  "HSR-1ad32a": {
+    "time": "2026-10-08 20:20:51",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "HSR",
+    "texto": "Escalera mecánica desde Acceso A Av. Concha y Toro Poniente hacia Boleter��a",
+    "historico": {
+      "2026-10-08 20:20:51": 1
+    }
+  },
+  "LEN-b0a5ba": {
+    "time": "2026-10-06 20:21:15",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "LEN",
+    "texto": "Escalera mecánica 05-S desde combinación Línea 1 direcci��n San Pablo hacia combinación Línea 1 dirección Los Dominicos",
+    "historico": {
+      "2026-10-06 20:21:15": 1
+    }
+  },
+  "LH-093ca8": {
+    "time": "2026-10-16 20:20:07",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "LH",
+    "texto": "Escalera mecánica desde Andén dirección Los Dominicos hacia Boletería",
+    "historico": {
+      "2026-10-16 12:20:07": 1,
+      "2026-10-16 20:20:07": 1
+    }
+  },
+  "LH-2936d8": {
+    "time": "2026-10-16 20:20:07",
+    "estado": 1,
+    "tipo": "escalera",
+    "estacion": "LH",
+    "texto": "Escalera mecánica desde Andén dirección San Pablo hacia Boletería",
+    "historico": {
+      "2026-10-16 12:20:07": 1,
+      "2026-10-16 20:20:07": 1
+    }
+  },
+  "LH-349493": {
+    "time": "2026-10-16 20:20:07",
+    "estado": 1,
+    "tipo": "ascensor",
+    "estacion": "LH",
+    "texto": "Ascensor de acceso ubicado en Av. Alameda Libertador Bernardo O´Higgins (vereda sur) con Av. Ejército Libertador hacia Boletería",
+    "historico": {
+      "2026-10-16 12:20:07": 1,
+      "2026-10-16 20:20:07": 1
+    }
+  },
+  "LH-60d634": {
+    "time": "2026-10-16 20:20:07",
+    "estado": 1,
+    "tipo": "ascensor",
+    "estacion": "LH",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección San Pablo",
+    "historico": {
+      "2026-10-16 12:20:07": 1,
+      "2026-10-16 20:20:07": 1
+    }
+  },
+  "LH-eba3d6": {
+    "time": "2026-10-16 20:20:07",
+    "estado": 1,
+    "tipo": "ascensor",
+    "estacion": "LH",
+    "texto": "Ascensor Boletería Línea 1 hacia Andén Línea 1 dirección Los Dominicos",
+    "historico": {
+      "2026-10-16 12:20:07": 1,
+      "2026-10-16 20:20:07": 1
+    }
+  }
+}

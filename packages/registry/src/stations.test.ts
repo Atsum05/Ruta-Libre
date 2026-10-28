@@ -86,7 +86,7 @@ describe('core rules on the real registry', () => {
       registry.stations.flatMap((s) => s.devices.map((d) => [d.id, 'working'] as const)),
     )
   const snapshotWith = (devices: Map<DeviceId, DeviceState>): StatusSnapshot => ({
-    fetchedAt: NOW,
+    observedAt: NOW,
     devices,
   })
 

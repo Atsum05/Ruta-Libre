@@ -123,7 +123,7 @@ rolled back once on purpose.
 **Goal:** the accessibility verdict as a pure, fully tested library.
 
 - [x] **Types:** `StationId`, `DeviceId` (branded), `Station`, `Device` with a platform scope (by
-  terminal station), `StatusSnapshot` (with `fetchedAt`), `Route`, `Leg`, `Verdict` with findings.
+  terminal station), `StatusSnapshot` (with `observedAt`), `Route`, `Leg`, `Verdict` with findings.
 - [x] **Functions (no I/O):**
   - `matchStop(stop, registry)`: location first (nearest station within ~150 m), name as tie-breaker
     ([ADR 0006](adr/0006-match-stops-by-location.md))
@@ -177,15 +177,22 @@ the real registry (`packages/registry/src/stations.test.ts`).
 
 **Goal:** fresh, shared, validated live status, so no user's request ever hits the upstream directly.
 
-- [ ] `StatusProvider` adapter for seguimos.cl: parse with zod and map to `DeviceId`s.
-- [ ] **Scheduled poller** (cron every 1–2 min, as agreed with the maintainer) writes the latest
-  snapshot to a key-value store with `fetchedAt`.
-- [ ] On a failed fetch or a schema mismatch: **keep the last good snapshot, mark the source degraded,
-      alert**. Never overwrite good data with garbage.
-- [ ] Record **status changes** (device, old → new, timestamp) in a database. This is cheap, and it's
-  the basis for reliability scores later.
-- [ ] `GET /v1/status` → snapshot + age + health, with cache headers.
-- [ ] Contract tests against saved upstream payloads (good, empty, malformed).
+- [x] `StatusProvider` adapter for seguimos.cl: parse with zod and map to `DeviceId`s. Snapshots
+  are dated by the source's own observation time, not our fetch time
+  ([ADR 0012](adr/0012-status-freshness-follows-the-source.md), proposed).
+- [x] **Scheduled poller** (every 2 min by default, minimum 1 min) writes the latest snapshot to a
+  store behind a `SnapshotStore` interface. In memory now; Render Key Value at deploy time.
+- [x] On a failed fetch or a schema mismatch: **keep the last good snapshot, mark the source
+  degraded, log an error** (alerts come with Phase 8). Never overwrite good data with garbage,
+  nor with an older snapshot.
+- [x] Record **status changes** (device, old → new, timestamp) behind a `StatusHistory` interface.
+  In memory now; Render Postgres at deploy time.
+- [x] `GET /v1/status` → snapshot + age + health (`ok | stale | degraded | unavailable`), with
+  cache headers.
+- [x] Contract tests against saved upstream payloads (a real sample, empty, malformed, HTML, HTTP
+  error, timeout).
+- [ ] Persistent store and history (Key Value, Postgres) when deploying.
+- [ ] Decide ADR 0012: the freshness threshold (13 h proposed) and the freshness metric.
 
 **Done when:** blocking the upstream in preview makes the UI show "degraded", and verdicts turn
 `unknown` once the snapshot passes the freshness threshold.

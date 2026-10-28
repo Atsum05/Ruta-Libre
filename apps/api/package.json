@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.1.5",
+    "@rutalibre/core": "workspace:*",
+    "@rutalibre/registry": "workspace:*",
     "hono": "^4.13.14",
     "zod": "catalog:"
   },
