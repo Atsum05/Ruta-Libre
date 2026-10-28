@@ -46,10 +46,7 @@ export interface ApiClient {
 }
 
 /** A typed client for the API: every response is validated against the contract. */
-export function createApiClient({
-  baseUrl = '/api',
-  fetchFn = fetch,
-}: ApiClientOptions = {}): ApiClient {
+export function createApiClient({ baseUrl = '/api', fetchFn }: ApiClientOptions = {}): ApiClient {
   async function call<S extends z.ZodType>(
     schema: S,
     path: string,
@@ -57,7 +54,8 @@ export function createApiClient({
   ): Promise<z.infer<S>> {
     let res: Response
     try {
-      res = await fetchFn(`${baseUrl}${path}`, init)
+      // Looked up per call, so a fetch installed later (tests, polyfills) is used.
+      res = await (fetchFn ?? globalThis.fetch)(`${baseUrl}${path}`, init)
     } catch (err) {
       if (init.signal?.aborted) throw err
       throw new ApiError('network', err instanceof Error ? err.message : String(err), null)

@@ -229,24 +229,31 @@ the real registry (`packages/registry/src/stations.test.ts`).
 
 **Goal:** a mobile-first, accessible app built on the typed API.
 
-- [ ] **Structure by feature:** `features/search`, `features/itinerary`, `features/alerts`,
+- [x] **Structure by feature:** `features/search`, `features/itinerary`, `features/status`,
   `features/map`, plus `shared/`. No component over ~200 lines.
-- [ ] **Server state with TanStack Query:** status refetch every 60 s, "updated 40 s ago"
-  indicator, degraded banner.
-- [ ] **`<MapCanvas>`** owns the Google Maps lifecycle: declarative overlays (Metro lines, device
-  status, route), re-applied after a theme change. That trap lives in one place. OSM attribution
-  shown for the Metro line overlay.
-- [ ] **Verdict UI:** `ok / warning / blocked / unknown` each with colour **+ icon + text** (never
-  colour alone). `unknown` is prominent, not a footnote.
-- [ ] **Inputs:** autocomplete fields as the main path; voice → `/interpret` as an extra.
-- [ ] **Location:** explicit permission request; if denied, ask for an origin. No silent default.
-- [ ] **i18n from day one** (es-CL default, en): all strings in a catalogue.
-- [ ] **Accessibility (WCAG 2.2 AA):** axe checks in CI, full keyboard use, screen-reader labels on
-  the itinerary, 44 px touch targets, `prefers-reduced-motion`, contrast from line text colour.
-- [ ] **Performance budget:** set JS size and LCP targets (e.g. LCP < 2.5 s on a mid-range Android
-  over 4G); enforce with Lighthouse CI. Lazy-load the map library.
-- [ ] Playwright e2e for main flows against a mocked API: plan a clean trip, a rerouted trip, a
-  no-alternative trip, the degraded-status state.
+- [x] **Server state with TanStack Query:** status refetch every 60 s, "updated 10 min ago"
+  indicator, stale/degraded/unavailable banner.
+- [x] **`<MapCanvas>`** owns the Google Maps lifecycle: declarative overlays (Metro lines, station
+  status, route). OSM attribution shown for the Metro line overlay. Falls back to a message when
+  Maps can't load; search keeps working. A dark map style needs a Map ID (later).
+- [x] **Verdict UI:** `ok / warning / blocked / unknown` each with colour **+ icon + text** (never
+  colour alone). `unknown` is an alert, not a footnote.
+- [x] **Inputs:** autocomplete fields (ARIA combobox) as the main path; free text and voice →
+  `/interpret` as an extra.
+- [x] **Location:** explicit button; if denied or failed, say so and ask for an origin.
+- [x] **i18n from day one** (es-CL default, en): all strings in a catalogue; a test checks both
+  languages have the same keys and placeholders.
+- [x] **Accessibility (WCAG 2.2 AA):** axe in unit tests (jsdom) and in e2e (real browser, with
+  colour contrast), full keyboard use, labelled itinerary, 44 px touch targets,
+  `prefers-reduced-motion`, readable text colour computed for line badges.
+- [x] Lazy-load the map library (separate chunk). Current size: initial JS 115 KB gzipped, map
+  chunk 28 KB.
+- [ ] **Performance budget** enforced with Lighthouse CI (LCP < 2.5 s on a mid-range Android over
+  4G): needs a deployed preview.
+- [x] Playwright e2e for main flows against a mocked API (phone and desktop): a clean trip, a
+  rerouted trip, a no-alternative trip, the stale-status state, map fallback, English, keyboard
+  only, no sideways scrolling. Runs in CI.
+- [ ] Check on a real phone with a real Google key.
 
 **Done when:** e2e and axe checks pass in CI and the budget holds on a real phone.
 
