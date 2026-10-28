@@ -1,6 +1,7 @@
 # 3. MapLibre GL JS for map rendering
 
-- **Status:** Accepted
+- **Status:** Superseded by [ADR 0009](0009-google-maps-for-map-rendering.md) (Google's terms require
+  Google results to be shown on a Google map)
 - **Date:** 2026-10-27
 
 ## Context

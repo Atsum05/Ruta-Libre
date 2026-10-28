@@ -22,7 +22,7 @@ rutalibre/
 ├─ packages/core/       # pure domain logic: types, matching, verdicts (no I/O)
 ├─ packages/registry/   # build pipeline for the station registry (stations.json)
 ├─ apps/api/            # Hono API: /status, /plan, /places, /interpret
-└─ apps/web/            # Vite + React + TypeScript + MapLibre, mobile-first
+└─ apps/web/            # Vite + React + TypeScript + Google Maps, mobile-first
 ```
 
 Dependencies point **inward only**: `apps/*` → `packages/core`. Core never imports from apps.

@@ -46,29 +46,17 @@ safer than building everything first and deploying at the end.
 
 **Goal:** agree on what "live" means and remove legal/data blockers early.
 
-- [ ] Write a one-page **product brief** (`docs/BRIEF.md`): who the users are, the one promise,
-  and **non-goals** for launch (e.g. no user accounts, no cities other than Santiago, no
-  driving directions).
-- [ ] Define **success metrics** you will actually measure:
-  - stop-match rate ≥ 99% (Google stops → registry stations)
-  - share of plans with a confident verdict (not `unknown`)
-  - status freshness p95 < 3 min
-  - `/plan` latency p95 < 2.5 s
-  - crash-free sessions ≥ 99.5%
-- [ ] **Data & legal audit.** Fill a table in `docs/DATA_SOURCES.md` with licence, attribution
-  requirement, rate limits, and who you contacted, for each source:
-  - Elevator/escalator catalogue (ariellopez.cl): check the licence and ask permission.
-  - Live status (seguimos.cl): contact the maintainer, agree on polling rate, identify yourself
-    with a `User-Agent`.
-  - OpenStreetMap: ODbL, attribution required on the map.
-  - Santiago GTFS (DTPM): licence and update cadence.
-  - **Google Maps Platform terms:** Google has historically restricted displaying its route/place
-    results on a non-Google map. **Verify the current terms for Routes + Places with MapLibre
-    before launch.** If restricted, the OpenTripPlanner adapter (Phase 10) and a non-Google
-    geocoder move up to _before_ launch. The provider interfaces in
-    [ADR 0007](adr/0007-routing-behind-provider-interface.md) exist so this is a swap, not a rewrite.
-  - **Chile's personal data law (Ley 21.719)**, which comes into force in late 2026. Location and voice
-    queries are personal data; confirm what you must disclose and how long you may keep it.
+- [x] Write a one-page **product brief** ([`BRIEF.md`](BRIEF.md)): who the users are, the one
+  promise, and **non-goals** for launch.
+- [ ] Agree the **success metrics** proposed in the brief (stop-match ≥ 99%, confident verdicts
+  ≥ 95%, status freshness p95 < 3 min, `/plan` p95 < 2.5 s, crash-free ≥ 99.5%).
+- [x] **Data & legal audit** in [`DATA_SOURCES.md`](DATA_SOURCES.md): licence, attribution, rate
+  limits, and contacts for every source, plus Ley 21.719.
+  - [x] **Google Maps Platform terms** verified: Google routes/places must be shown on a Google map.
+    Resolved by switching the map to Google Maps ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)).
+  - [x] **Permission** from the catalogue and live-status authors (ariellopez.cl / seguimos.cl):
+    approved by Ariel López. Credit wording and polling rate to confirm before Phase 5.
+  - [ ] Ask DTPM for the GTFS licence (needed by Phase 4).
 - [ ] Review and accept the ADRs in `docs/adr/`.
 
 **Done when:** brief merged, metrics agreed, data table filled with no unresolved blocker.
@@ -109,8 +97,9 @@ safer than building everything first and deploying at the end.
 
 **Goal:** the full path (browser → API → response) is live and deploys itself.
 
-- [ ] `apps/web`: Vite + React + TS rendering a **MapLibre** map of Santiago (OpenFreeMap style
-  to start) with correct OSM attribution.
+- [ ] `apps/web`: Vite + React + TS rendering a **Google Maps** map of Santiago
+  ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)), with a browser key restricted to our
+  domains and the Maps JavaScript API.
 - [ ] `apps/api`: **Hono** with `GET /v1/health` returning version + commit SHA.
 - [ ] Web calls `/v1/health` and shows the version in a debug footer.
 - [ ] **Config:** every env var is declared in a zod schema per app; the app refuses to start
@@ -220,8 +209,9 @@ rolled back once on purpose.
   `features/map`, plus `shared/`. No component over ~200 lines.
 - [ ] **Server state with TanStack Query:** status refetch every 60 s, "updated 40 s ago"
   indicator, degraded banner.
-- [ ] **`<MapCanvas>`** owns the MapLibre lifecycle: declarative sources and layers, re-applied
-  after a style (theme) change. That trap lives in one place.
+- [ ] **`<MapCanvas>`** owns the Google Maps lifecycle: declarative overlays (Metro lines, device
+  status, route), re-applied after a theme change. That trap lives in one place. OSM attribution
+  shown for the Metro line overlay.
 - [ ] **Verdict UI:** `ok / warning / blocked / unknown` each with colour **+ icon + text** (never
   colour alone). `unknown` is prominent, not a footnote.
 - [ ] **Inputs:** autocomplete fields as the main path; voice → `/interpret` as an extra.
@@ -281,24 +271,23 @@ rolled back once on purpose.
   used in ranking and shown to users.
 - **OpenTripPlanner adapter** with Santiago GTFS: accessibility becomes a _routing constraint_
   (ban stations with broken elevators) instead of a filter over three Google routes.
-  Required earlier if Google's terms block MapLibre display (Phase 0).
-- Self-hosted Protomaps tiles for Santiago if map traffic grows.
+  Moving off Google routing would also allow a non-Google map again (new ADR).
 - PWA install, offline shell, other cities.
 
 ---
 
 ## Tech stack summary
 
-| Concern     | Choice                                                               | Why                                                 |
-| ----------- | -------------------------------------------------------------------- | --------------------------------------------------- |
-| Language    | TypeScript (strict)                                                  | Domain types are the safety net                     |
-| Workspace   | pnpm workspaces                                                      | Simple, fast; add Turborepo only if builds get slow |
-| Lint/format | Biome                                                                | One tool, fast                                      |
-| Tests       | Vitest, Playwright, axe                                              | Unit → integration → e2e + a11y                     |
-| Validation  | zod                                                                  | One schema for runtime checks, types, and OpenAPI   |
-| API         | Hono                                                                 | Tiny, typed, runs on any platform                   |
-| Web         | Vite + React + TanStack Query                                        | No SSR needed for a map app                         |
-| Map         | MapLibre GL JS + OpenFreeMap (→ Protomaps)                           | [ADR 0003](adr/0003-maplibre-for-map-rendering.md)  |
-| Hosting     | Undecided; leaning Netlify (web) + Render (API, Postgres, Key Value) | [ADR 0008](adr/0008-hosting-platform.md)            |
-| Errors      | Sentry                                                               | Releases + source maps                              |
-| Deps        | Renovate                                                             | Grouped, scheduled updates                          |
+| Concern     | Choice                                                               | Why                                                   |
+| ----------- | -------------------------------------------------------------------- | ----------------------------------------------------- |
+| Language    | TypeScript (strict)                                                  | Domain types are the safety net                       |
+| Workspace   | pnpm workspaces                                                      | Simple, fast; add Turborepo only if builds get slow   |
+| Lint/format | Biome                                                                | One tool, fast                                        |
+| Tests       | Vitest, Playwright, axe                                              | Unit → integration → e2e + a11y                       |
+| Validation  | zod                                                                  | One schema for runtime checks, types, and OpenAPI     |
+| API         | Hono                                                                 | Tiny, typed, runs on any platform                     |
+| Web         | Vite + React + TanStack Query                                        | No SSR needed for a map app                           |
+| Map         | Google Maps JavaScript API                                           | [ADR 0009](adr/0009-google-maps-for-map-rendering.md) |
+| Hosting     | Undecided; leaning Netlify (web) + Render (API, Postgres, Key Value) | [ADR 0008](adr/0008-hosting-platform.md)              |
+| Errors      | Sentry                                                               | Releases + source maps                                |
+| Deps        | Renovate                                                             | Grouped, scheduled updates                            |

@@ -17,8 +17,10 @@ sure. A broken elevator blocks a route; a broken escalator only warns.
 ## Decisions already made (see `docs/adr/`)
 
 - pnpm monorepo; `packages/core` is pure TypeScript with no I/O; dependencies point inward only.
-- MapLibre GL JS (not Mapbox) behind a `<MapCanvas>` component.
-- Thin Hono API holds every key; the browser never calls third-party APIs directly.
+- Google Maps JavaScript API behind a `<MapCanvas>` component (ADR 0009 supersedes MapLibre:
+  Google's terms require Google routes/places to be shown on a Google map).
+- Thin Hono API holds every key; the browser never calls third-party APIs directly. One exception:
+  the Maps JavaScript key, restricted to our domains and to that API only.
 - Verdicts are `ok | warning | blocked | unknown`. Never treat missing data as "fine".
 - Stops are matched to stations by location via a generated station registry, not by name.
 - External services (Google Routes/Places, seguimos.cl, Gemini) sit behind provider interfaces.
