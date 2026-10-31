@@ -192,12 +192,12 @@ describe('RoutePath', () => {
   it('rings each station where you board or get off, and marks start and end', () => {
     render(<RoutePath route={ROUTE_WITH_PATHS} />)
     const rings = drawn.markers.map((m) => m.opts['icon'] as Options)
-    // Board + alight in the line colour, then start (open) and end (yellow), like the search card.
+    // Board + alight in the line colour, then start (open) and end (coral), like the search card.
     expect(rings.map((r) => [r['fillColor'], r['strokeColor']])).toEqual([
       ['#ffffff', '#e1261c'],
       ['#ffffff', '#e1261c'],
-      ['#ffffff', '#121a2e'],
-      ['#ffc83d', '#121a2e'],
+      ['#ffffff', '#1d1736'],
+      ['#ff6b4a', '#1d1736'],
     ])
     expect(drawn.markers.at(-1)?.opts['position']).toEqual({ lat: -33.4458, lng: -70.6605 })
   })

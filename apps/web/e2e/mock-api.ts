@@ -170,6 +170,15 @@ const AXE_PATH = require.resolve('axe-core/axe.min.js')
 
 /** WCAG 2.2 AA violations in the real browser, including colour contrast. */
 export async function axeViolations(page: Page): Promise<string[]> {
+  // Cards fade in as they appear: check the settled page, not a half-transparent frame. Endless
+  // animations (the "live" pulse, the stars) never finish and don't change contrast.
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every(
+        (a) => a.effect?.getComputedTiming().iterations === Infinity || a.playState === 'finished',
+      ),
+  )
   await page.addScriptTag({ path: AXE_PATH })
   return page.evaluate(async () => {
     const axe = (

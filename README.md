@@ -156,6 +156,11 @@ by age. Snapshots older than 13 hours make verdicts "we can't be sure", unless d
 ## Web app
 
 - Phone-first layout: a bottom sheet over the map on phones, a floating panel on desktop.
+- **"Cordillera" design:** the top of the panel shows the Andes under a sky that follows the
+  time of day in Santiago (dawn sun behind the peaks, pink snow at dusk, stars at night). Warm
+  snow-white paper, deep ink, a coral glow for the main action; Fraunces for headings, Atkinson
+  Hyperlegible for reading; a matching recoloured map and a dark mode. Add `?sky=dawn`, `day`,
+  `dusk` or `night` to the address to see each sky.
 - The map library loads as a separate chunk, so the first screen is fast (about 115 KB of
   JavaScript, gzipped).
 - **Accessibility:** WCAG 2.2 AA, checked with axe in the browser tests, including colour
