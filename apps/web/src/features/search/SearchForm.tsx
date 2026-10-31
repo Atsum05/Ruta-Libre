@@ -9,6 +9,8 @@ import { useLocation } from './useLocation.ts'
 interface SearchFormProps {
   onSearch: (origin: Selection, destination: Selection) => void
   busy: boolean
+  /** "Buenas tardes": shown above the title. */
+  greeting?: string
   geolocation?: Geolocation
 }
 
@@ -16,7 +18,7 @@ interface SearchFormProps {
  * Origin and destination as a trip card: two fields joined by a route rail, a swap button
  * beside them, and the device location as an explicit choice. Free text and voice come after.
  */
-export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
+export function SearchForm({ onSearch, busy, greeting, geolocation }: SearchFormProps) {
   const { t } = useI18n()
   const [origin, setOrigin] = useState<Selection | null>(null)
   const [destination, setDestination] = useState<Selection | null>(null)
@@ -49,6 +51,7 @@ export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
 
   return (
     <section className="search" aria-labelledby="search-title">
+      {greeting && <p className="search__greeting">{greeting}</p>}
       <h2 id="search-title" className="section-title">
         {t('search.title')}
       </h2>

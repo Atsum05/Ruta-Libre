@@ -8,6 +8,8 @@ import { I18nProvider } from './shared/i18n/index.tsx'
 // no font request leaves the site.
 import '@fontsource/atkinson-hyperlegible/400.css'
 import '@fontsource/atkinson-hyperlegible/700.css'
+// Display face for headings, the wordmark and big times (the "soft" cut: rounder, friendlier).
+import '@fontsource-variable/fraunces/soft.css'
 import './styles.css'
 
 const root = document.getElementById('root')

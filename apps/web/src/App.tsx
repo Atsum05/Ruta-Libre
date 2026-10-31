@@ -13,6 +13,8 @@ import { api } from './shared/api.ts'
 import { useI18n } from './shared/i18n/index.tsx'
 import { AlertIcon } from './shared/icons.tsx'
 import { SheetHandle } from './shared/SheetHandle.tsx'
+import { SkyHeader } from './shared/SkyHeader.tsx'
+import { useSky } from './shared/sky.ts'
 import { Wordmark } from './shared/Wordmark.tsx'
 
 const MapCanvas = lazy(() => import('./features/map/MapCanvas.tsx'))
@@ -44,6 +46,7 @@ export function App({ config }: { config: WebConfig }) {
   const [selected, setSelected] = useState(0)
   // Phone only: the panel lowered so the map fills the screen.
   const [mapOpen, setMapOpen] = useState(false)
+  const { sky, greeting } = useSky()
   const plan = useMutation({
     mutationFn: (request: PlanRequest) => api.plan(request),
     onSuccess: () => {
@@ -74,20 +77,22 @@ export function App({ config }: { config: WebConfig }) {
             showMapOnPhone()
           }}
         />
-        <header className="sheet__header">
-          <h1 className="sheet__title">
-            <Wordmark />
-          </h1>
-          <button
-            type="button"
-            className="lang-toggle"
-            lang={locale === 'es' ? 'en' : 'es'}
-            onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
-          >
-            {t('lang.switch')}
-          </button>
-        </header>
-        <p className="sheet__tagline">{t('app.tagline')}</p>
+        <SkyHeader sky={sky}>
+          <div className="sheet__header">
+            <h1 className="sheet__title">
+              <Wordmark />
+            </h1>
+            <button
+              type="button"
+              className="lang-toggle"
+              lang={locale === 'es' ? 'en' : 'es'}
+              onClick={() => setLocale(locale === 'es' ? 'en' : 'es')}
+            >
+              {t('lang.switch')}
+            </button>
+          </div>
+          <p className="sheet__tagline">{t('app.tagline')}</p>
+        </SkyHeader>
 
         <StatusBanner status={status.data} failed={status.isError} />
         {trip && !editing && (
@@ -108,6 +113,7 @@ export function App({ config }: { config: WebConfig }) {
           <SearchForm
             key={formKey}
             busy={plan.isPending}
+            greeting={t(`greeting.${greeting}`)}
             onSearch={(origin, destination) => {
               setTrip({ from: origin.label, to: destination.label })
               plan.mutate({ origin: origin.waypoint, destination: destination.waypoint })

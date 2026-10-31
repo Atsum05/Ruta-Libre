@@ -1,6 +1,7 @@
 /**
- * The RutaLibre mark: a route from an open circle (where you are) to a filled one (where you're
- * going), bending around an obstacle. The name is read out once, from the visible text.
+ * The RutaLibre mark: a route climbing over the Andes, from an open circle (where you are) to a
+ * filled one (where you're going), on a dusk-coloured tile. The name is read out once, from the
+ * visible text.
  */
 export function Wordmark() {
   return (
@@ -8,34 +9,36 @@ export function Wordmark() {
       <svg
         className="wordmark__glyph"
         viewBox="0 0 32 32"
-        width="30"
-        height="30"
+        width="34"
+        height="34"
         aria-hidden="true"
         focusable="false"
       >
+        <defs>
+          <linearGradient id="rl-tile" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#ff7a59" />
+            <stop offset="1" stopColor="#6a3fd6" />
+          </linearGradient>
+          <clipPath id="rl-clip">
+            <rect x="1" y="1" width="30" height="30" rx="9" />
+          </clipPath>
+        </defs>
+        <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#rl-tile)" />
         <path
-          d="M8 25V15a7 7 0 0 1 7-7h2a7 7 0 0 1 0 14h-3"
+          d="M0 27 L9 17 L13 21 L19.5 13 L32 25 V32 H0 Z"
+          fill="#ffffff"
+          opacity="0.22"
+          clipPath="url(#rl-clip)"
+        />
+        <path
+          d="M8 23.5c2.5-6 6.5-1.5 9-6.5s4-7 7.5-7.5"
           fill="none"
-          stroke="currentColor"
-          strokeWidth="3.2"
+          stroke="#ffffff"
+          strokeWidth="2.6"
           strokeLinecap="round"
         />
-        <circle
-          cx="8"
-          cy="25"
-          r="3.6"
-          fill="var(--paper)"
-          stroke="currentColor"
-          strokeWidth="2.6"
-        />
-        <circle
-          cx="25"
-          cy="25"
-          r="3.6"
-          fill="var(--signal)"
-          stroke="currentColor"
-          strokeWidth="2.6"
-        />
+        <circle cx="8" cy="23.5" r="2.7" fill="#d9566b" stroke="#ffffff" strokeWidth="2" />
+        <circle cx="24.5" cy="9.5" r="3.1" fill="#ffffff" />
       </svg>
       <span className="wordmark__text">
         Ruta<b>Libre</b>

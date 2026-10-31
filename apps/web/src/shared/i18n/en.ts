@@ -4,6 +4,9 @@ export const en: Record<MessageKey, string> = {
   'app.title': 'RutaLibre',
   'app.tagline': 'Metro and bus routes based on the live status of elevators and escalators.',
 
+  'greeting.morning': 'Good morning',
+  'greeting.afternoon': 'Good afternoon',
+  'greeting.evening': 'Good evening',
   'search.title': 'Where to?',
   'search.summary': 'Your trip',
   'search.edit': 'Change',
