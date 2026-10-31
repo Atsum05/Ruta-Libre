@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 import { MARKER_COLOR } from './colors.ts'
 import { MARKER_ORDER, type StationMarker } from './stationStatus.ts'
 
-const INK = '#121a2e'
-const SIGNAL = '#ffc83d'
+// Cordillera palette: Andean-night ink for the start, the arrebol coral for where you're going.
+const INK = '#1d1736'
+const SIGNAL = '#ff6b4a'
 
 /**
  * The Metro network from OpenStreetMap (ODbL: credited under the map). With a route on screen

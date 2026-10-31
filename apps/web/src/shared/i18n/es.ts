@@ -5,6 +5,9 @@ export const es = {
   'app.title': 'RutaLibre',
   'app.tagline': 'Rutas en Metro y micro según el estado real de ascensores y escaleras.',
 
+  'greeting.morning': 'Buenos días',
+  'greeting.afternoon': 'Buenas tardes',
+  'greeting.evening': 'Buenas noches',
   'search.title': '¿A dónde vas?',
   'search.summary': 'Tu viaje',
   'search.edit': 'Cambiar',

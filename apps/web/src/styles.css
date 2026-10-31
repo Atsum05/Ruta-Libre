@@ -1,20 +1,29 @@
-/* RutaLibre: wayfinding-sign look. Warm paper, ink-navy text, signal-yellow for the one main
-   action, and the Metro lines' own colours for the routes. Change colours through the tokens
-   below; every text/background pair meets WCAG AA (4.5:1). */
+/* RutaLibre · "Cordillera": Santiago's Andes at golden hour. Warm snow-white paper, deep
+   Andean-night ink, a coral-to-apricot glow for the one main action (the arrebol that turns the
+   snow pink at dusk), violet for focus and links, and the Metro lines' own colours for routes.
+   Headings, the wordmark and big times use Fraunces; reading text stays in Atkinson
+   Hyperlegible, designed for low vision. Every text/background pair meets WCAG AA (4.5:1). */
 
 :root {
-  --paper: #f6f4ef;
+  --paper: #fcf7f2;
   --surface: #ffffff;
-  --surface-2: #efece4;
-  --ink: #121a2e;
-  --ink-2: #3d4560;
-  --muted: #5b6275;
-  --rule: #dcd7cc;
-  --signal: #ffc83d;
-  --signal-ink: #121a2e;
-  --link: #1f4fd8;
-  --focus: #1f4fd8;
-  --recording: #c42b22;
+  --surface-2: #f6eee7;
+  --surface-sunk: #f4ece4;
+  --ink: #1d1736;
+  --ink-2: #463f62;
+  --muted: #5f5878;
+  --rule: #ebe0d6;
+  --rule-strong: #d6c6b8;
+  --accent: #ff6b4a;
+  --accent-2: #ffad6b;
+  --accent-ink: #b5381b;
+  --on-accent: #1d1736;
+  --violet: #5a3fd1;
+  --link: #5a3fd1;
+  --focus: #5a3fd1;
+  --recording: #d6336c;
+  --glow: 255 107 74;
+  --ring: 90 63 209;
 
   --ok-fg: #0d6b41;
   --ok-bg: #e2f4ea;
@@ -25,31 +34,44 @@
   --unknown-fg: #4532a8;
   --unknown-bg: #ece9fb;
 
-  --radius: 14px;
+  --radius: 16px;
+  --radius-card: 22px;
   --touch: 44px;
-  --shadow-float: 0 12px 40px rgb(16 23 42 / 0.22);
+  --shadow-card: 0 1px 2px rgb(29 23 54 / 0.05), 0 8px 28px rgb(29 23 54 / 0.08);
+  --shadow-float: 0 22px 60px rgb(29 23 54 / 0.24);
+  --gradient-accent: linear-gradient(120deg, var(--accent), var(--accent-2));
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
 
   color-scheme: light dark;
-  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.45;
   -webkit-text-size-adjust: 100%;
 }
 
+/* Noche andina. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #0d1222;
-    --surface: #161c30;
-    --surface-2: #1f2740;
-    --ink: #eef1f8;
-    --ink-2: #c3c9da;
-    --muted: #a2aac0;
-    --rule: #2c3552;
-    --signal: #ffd25e;
-    --signal-ink: #121a2e;
-    --link: #8fb3ff;
-    --focus: #ffd25e;
-    --recording: #ff6b5e;
+    --paper: #110d24;
+    --surface: #1b1636;
+    --surface-2: #251e45;
+    --surface-sunk: #15112b;
+    --ink: #f7f0ee;
+    --ink-2: #d2c9e4;
+    --muted: #aaa1c6;
+    --rule: #2e2752;
+    --rule-strong: #4a4080;
+    --accent: #ff7a59;
+    --accent-2: #ffb27a;
+    --accent-ink: #ffa184;
+    --on-accent: #1d1736;
+    --violet: #b9a8ff;
+    --link: #c3b5ff;
+    --focus: #ffb27a;
+    --recording: #ff5c8a;
+    --glow: 255 122 89;
+    --ring: 185 168 255;
 
     --ok-fg: #8be3b5;
     --ok-bg: #10372a;
@@ -59,7 +81,8 @@
     --blocked-bg: #45191a;
     --unknown-fg: #c9c0ff;
     --unknown-bg: #27224a;
-    --shadow-float: 0 12px 40px rgb(0 0 0 / 0.5);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px rgb(0 0 0 / 0.35);
+    --shadow-float: 0 22px 60px rgb(0 0 0 / 0.55);
   }
 }
 
@@ -108,8 +131,8 @@ button:disabled {
 }
 
 /* ─── Layout ──────────────────────────────────────────────────────────────────────────────
-   Mobile: the map sticks to the top and the sheet scrolls up over it (no gesture code).
-   Desktop: full-screen map, the sheet floats on the left. */
+   Phone: the map sticks to the top and the panel scrolls up over it; its handle lowers it to
+   show the whole map. Desktop: a full-screen map, the panel floats on the left. */
 
 .app {
   min-height: 100dvh;
@@ -133,8 +156,8 @@ button:disabled {
   place-items: center;
   padding: 24px 24px 48px;
   background:
-    repeating-linear-gradient(135deg, transparent 0 22px, rgb(18 26 46 / 0.04) 22px 23px),
-    var(--surface-2);
+    radial-gradient(circle at 30% 20%, rgb(255 173 107 / 0.18), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgb(90 63 209 / 0.12), transparent 55%), var(--surface-2);
   color: var(--ink-2);
   text-align: center;
 }
@@ -146,24 +169,32 @@ button:disabled {
   flex-direction: column;
   gap: 18px;
   min-height: 60vh;
-  margin-top: -22px;
+  margin-top: -26px;
   padding: 8px 16px 32px;
   background: var(--paper);
-  border-radius: 22px 22px 0 0;
-  box-shadow: 0 -8px 24px rgb(16 23 42 / 0.12);
+  border-radius: 26px 26px 0 0;
+  box-shadow: 0 -10px 30px rgb(29 23 54 / 0.16);
 }
 
-/* The handle is a real button with a large touch area around the small visible grip. */
+/* In the fixed-height desktop panel, a clipped child (the sky) would otherwise shrink away. */
+.sheet > * {
+  flex-shrink: 0;
+}
+
+/* The handle floats over the sky: a real button around a small grip. */
 .sheet__handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 3;
   display: grid;
-  align-self: center;
   place-items: center;
   width: 160px;
-  height: 44px;
-  margin: -8px 0 -22px;
+  height: 30px;
   padding: 0;
   border: 0;
   background: transparent;
+  transform: translateX(-50%);
   touch-action: none;
 }
 
@@ -171,55 +202,213 @@ button:disabled {
   width: 44px;
   height: 5px;
   border-radius: 3px;
-  background: var(--rule);
+  background: rgb(29 23 54 / 0.3);
+  transition: width 0.2s ease;
 }
 
 .sheet__handle:hover .sheet__grip {
-  background: var(--ink-2);
+  width: 56px;
 }
 
-/* Phone: the handle lowers the panel to its top edge, so the map fills the screen. */
+.sheet:has(.sky[data-sky="dusk"], .sky[data-sky="night"]) .sheet__grip {
+  background: rgb(255 255 255 / 0.6);
+}
+
 @media (max-width: 959px) {
   .map-area {
-    transition: height 0.25s ease;
+    transition: height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .app--map-open .map-area {
-    height: calc(100dvh - 96px);
+    height: calc(100dvh - 104px);
   }
 }
 
-@media (max-width: 959px) and (prefers-reduced-motion: reduce) {
-  .map-area {
-    transition: none;
-  }
+/* ─── Sky over the Andes ─────────────────────────────────────────────────────────────────
+   The sky colours are fixed per time of day (not per theme), so each sets its own text
+   colours. Text sits in the upper part of the gradient, where the contrast is checked. */
+
+.sky {
+  --sky-top: #fde3d4;
+  --sky-mid: #f8cdd8;
+  --sky-low: #e9d6f5;
+  --sky-ink: #1d1736;
+  --sky-ink-2: #463f62;
+  --sky-accent: #b5381b;
+  --sky-chip: rgb(255 255 255 / 0.6);
+  --sky-chip-line: rgb(29 23 54 / 0.16);
+  --ridge-far: #b7a2d8;
+  --ridge-mid: #8c74b9;
+  --snow: #ffffff;
+  --city: #7a64a8;
+
+  position: relative;
+  isolation: isolate;
+  margin: -8px -16px 0;
+  padding: 30px 16px 0;
+  overflow: hidden;
+  border-radius: 26px 26px 0 0;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 58%, var(--sky-low) 100%);
+  color: var(--sky-ink);
 }
 
-@media (min-width: 960px) {
-  .map-area {
-    position: fixed;
-    inset: 0;
-    height: auto;
-  }
-  .sheet {
-    position: fixed;
-    top: 16px;
-    bottom: 16px;
-    left: 16px;
-    width: 432px;
-    min-height: 0;
-    margin: 0;
-    padding: 22px 22px 26px;
-    overflow-y: auto;
-    border-radius: 22px;
-    box-shadow: var(--shadow-float);
-  }
-  .sheet__handle {
-    display: none;
-  }
-  /* Centre map messages in the part of the map the floating sheet doesn't cover. */
-  .map--loading,
-  .map--failed {
-    padding-left: calc(432px + 48px);
+.sky[data-sky="day"] {
+  --sky-top: #d4e6ff;
+  --sky-mid: #e7f0ff;
+  --sky-low: #fff2e2;
+  --ridge-far: #a3b4d8;
+  --ridge-mid: #7489b6;
+  --city: #667bab;
+}
+
+.sky[data-sky="dusk"] {
+  --sky-top: #2a1a5c;
+  --sky-mid: #74307f;
+  --sky-low: #f0786a;
+  --sky-ink: #ffffff;
+  --sky-ink-2: #f6e6f4;
+  --sky-accent: #ffb38d;
+  --sky-chip: rgb(255 255 255 / 0.14);
+  --sky-chip-line: rgb(255 255 255 / 0.35);
+  --ridge-far: #9b4a86;
+  --ridge-mid: #4b2768;
+  --snow: #ffd3c6;
+  --city: #3a1e57;
+}
+
+.sky[data-sky="night"] {
+  --sky-top: #0b0a20;
+  --sky-mid: #1b1745;
+  --sky-low: #2f2766;
+  --sky-ink: #ffffff;
+  --sky-ink-2: #dcd7f3;
+  --sky-accent: #ffb38d;
+  --sky-chip: rgb(255 255 255 / 0.12);
+  --sky-chip-line: rgb(255 255 255 / 0.3);
+  --ridge-far: #3b346f;
+  --ridge-mid: #221d4d;
+  --snow: #d9ddff;
+  --city: #18143c;
+}
+
+.sky__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sky__andes {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: calc(100% + 32px);
+  height: 66px;
+  margin: 2px -16px 0;
+}
+
+.sky__ridge--far {
+  fill: var(--ridge-far);
+}
+.sky__ridge--mid {
+  fill: var(--ridge-mid);
+}
+.sky__ridge--near {
+  fill: var(--paper);
+}
+.sky__snow {
+  fill: var(--snow);
+}
+.sky__city {
+  fill: var(--city);
+}
+
+/* Sun, glow or moon, behind the peaks. */
+.sky__orb {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* The sun rises behind the Andes, east of Santiago: only its top shows above the peaks. */
+.sky[data-sky="dawn"] .sky__orb {
+  right: 14%;
+  bottom: 2px;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff7dc 0 26%,
+    #ffd98f 40%,
+    rgb(255 176 120 / 0.55) 56%,
+    rgb(255 176 120 / 0) 72%
+  );
+}
+
+.sky[data-sky="day"] .sky__orb {
+  right: 6%;
+  bottom: 40px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fffdf5 0 30%,
+    rgb(255 240 205 / 0.85) 46%,
+    rgb(255 240 205 / 0) 70%
+  );
+}
+
+.sky[data-sky="dusk"] .sky__orb {
+  inset: auto 0 0;
+  height: 75%;
+  background: radial-gradient(ellipse at 50% 100%, rgb(255 171 122 / 0.6), transparent 70%);
+}
+
+.sky[data-sky="night"] .sky__orb {
+  top: 52px;
+  right: 26%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow:
+    inset 7px -3px 0 0 #f4f1ff,
+    0 0 18px 2px rgb(220 215 255 / 0.25);
+}
+
+.sky__stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 8% 22%, #fff 50%, transparent 52%),
+    radial-gradient(1.2px 1.2px at 19% 58%, #fff 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 31% 14%, #fff 50%, transparent 52%),
+    radial-gradient(1.1px 1.1px at 43% 40%, #fff 50%, transparent 52%),
+    radial-gradient(1.5px 1.5px at 55% 18%, #fff 50%, transparent 52%),
+    radial-gradient(1.2px 1.2px at 63% 52%, #fff 50%, transparent 52%),
+    radial-gradient(1.7px 1.7px at 82% 12%, #fff 50%, transparent 52%),
+    radial-gradient(1.1px 1.1px at 90% 44%, #fff 50%, transparent 52%),
+    radial-gradient(1.3px 1.3px at 96% 26%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 37% 64%, #fff 50%, transparent 52%),
+    radial-gradient(1px 1px at 70% 30%, #fff 50%, transparent 52%);
+}
+
+.sky[data-sky="dusk"] .sky__stars {
+  opacity: 0.35;
+}
+
+.sky[data-sky="night"] .sky__stars {
+  opacity: 0.95;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  to {
+    opacity: 0.55;
   }
 }
 
@@ -233,44 +422,54 @@ button:disabled {
 }
 
 .sheet__title {
-  font-size: 1.55rem;
+  font-size: 1.7rem;
   line-height: 1;
 }
 
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--ink);
+  gap: 10px;
+  color: var(--sky-ink, var(--ink));
+}
+
+.wordmark__glyph {
+  filter: drop-shadow(0 4px 10px rgb(106 63 214 / 0.35));
 }
 
 .wordmark__text {
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .wordmark__text b {
-  font-weight: 700;
+  color: var(--sky-accent, var(--accent-ink));
+  font-weight: 750;
 }
 
 .sheet__tagline {
-  margin-top: -10px;
-  color: var(--muted);
+  max-width: 34ch;
+  color: var(--sky-ink-2, var(--muted));
   font-size: 0.95rem;
 }
 
 .lang-toggle {
   min-height: var(--touch);
-  padding: 0 14px;
-  border: 1.5px solid var(--rule);
+  padding: 0 16px;
+  border: 1px solid var(--sky-chip-line, var(--rule));
   border-radius: 999px;
-  background: transparent;
+  background: var(--sky-chip, transparent);
+  color: var(--sky-ink, var(--ink));
   font-size: 0.9rem;
   font-weight: 700;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s ease;
 }
 
 .lang-toggle:hover {
-  background: var(--surface-2);
+  background: color-mix(in srgb, var(--sky-chip, transparent), #ffffff 18%);
 }
 
 /* ─── Status ─────────────────────────────────────────────────────────────────────────────── */
@@ -279,26 +478,36 @@ button:disabled {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 11px 15px;
   border: 1px solid var(--rule);
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--surface);
+  box-shadow: var(--shadow-card);
   color: var(--ink-2);
   font-size: 0.92rem;
+}
+
+.status-banner--ok {
+  align-self: flex-start;
+  align-items: center;
+  padding: 8px 16px 8px 12px;
+  border-radius: 999px;
 }
 
 .status-banner--alert {
   border-color: transparent;
   background: var(--unknown-bg);
+  box-shadow: none;
   color: var(--unknown-fg);
   font-weight: 700;
 }
 
-/* Demo mode: clearly not live, in the signal colour rather than an alarm. */
+/* Demo mode: clearly not live, like a ticket stamped "demo", never like an alarm. */
 .status-banner--demo {
-  border: 2px dashed var(--ink);
-  background: var(--signal);
-  color: var(--signal-ink);
+  border: 1.5px dashed rgb(29 23 54 / 0.55);
+  background: linear-gradient(115deg, #ffe7a3, #ffcab2 58%, #f1c9ec);
+  box-shadow: none;
+  color: #1d1736;
   font-weight: 700;
 }
 
@@ -311,7 +520,6 @@ button:disabled {
   flex-shrink: 0;
   width: 10px;
   height: 10px;
-  margin-top: 6px;
   border-radius: 50%;
   background: var(--ok-fg);
   animation: live 2.4s ease-in-out infinite;
@@ -323,7 +531,7 @@ button:disabled {
     box-shadow: 0 0 0 0 rgb(13 107 65 / 0.45);
   }
   50% {
-    box-shadow: 0 0 0 6px rgb(13 107 65 / 0);
+    box-shadow: 0 0 0 7px rgb(13 107 65 / 0);
   }
 }
 
@@ -335,19 +543,33 @@ button:disabled {
   gap: 14px;
 }
 
+.search__greeting {
+  margin-bottom: -10px;
+  color: var(--accent-ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .section-title {
-  font-size: 1.4rem;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-variation-settings: "SOFT" 100;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .trip {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px;
+  gap: 14px;
+  padding: 16px;
   border: 1px solid var(--rule);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
   background: var(--surface);
+  box-shadow: var(--shadow-card);
 }
 
 .trip__fields {
@@ -362,12 +584,12 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   align-self: stretch;
-  padding: 38px 0 24px;
+  padding: 40px 0 25px;
 }
 
 .trip__dot {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border: 3px solid var(--ink);
   border-radius: 50%;
 }
@@ -377,13 +599,14 @@ button:disabled {
 }
 
 .trip__dot--to {
-  background: var(--signal);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgb(var(--glow) / 0.2);
 }
 
 .trip__line {
   flex: 1;
   width: 4px;
-  margin: 4px 0;
+  margin: 5px 0;
   background:
     radial-gradient(circle, var(--muted) 1.6px, transparent 1.9px) center top / 4px 8px repeat-y;
 }
@@ -398,14 +621,14 @@ button:disabled {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .field label {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -420,17 +643,32 @@ button:disabled {
 
 input[type="text"] {
   width: 100%;
-  min-height: 48px;
-  padding: 0 14px;
-  border: 2px solid var(--rule);
-  border-radius: 12px;
-  background: var(--paper);
+  min-height: 50px;
+  padding: 0 15px;
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  background: var(--surface-sunk);
   /* 16px or more: iOS doesn't zoom into the field. */
   font-size: 1rem;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+input[type="text"]:hover {
+  border-color: var(--rule-strong);
 }
 
 input[type="text"]:focus {
-  border-color: var(--ink);
+  border-color: var(--violet);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgb(var(--ring) / 0.2);
+}
+
+input[type="text"]:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 1px;
 }
 
 input::placeholder {
@@ -440,16 +678,17 @@ input::placeholder {
 
 .suggestions {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 6px);
   left: 0;
   right: 0;
   z-index: 20;
   overflow: hidden;
-  padding: 4px;
+  padding: 5px;
   border: 1px solid var(--rule);
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--surface);
   box-shadow: var(--shadow-float);
+  animation: rise 0.18s ease-out both;
 }
 
 .suggestion {
@@ -458,14 +697,14 @@ input::placeholder {
   justify-content: center;
   min-height: 52px;
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 11px;
   cursor: pointer;
 }
 
 .suggestion[aria-selected="true"],
 .suggestion:hover {
   background: var(--surface-2);
-  box-shadow: inset 4px 0 0 var(--signal);
+  box-shadow: inset 4px 0 0 var(--accent);
 }
 
 .suggestion__primary {
@@ -485,12 +724,23 @@ input::placeholder {
   height: var(--touch);
   padding: 0;
   border: 1.5px solid var(--rule);
-  border-radius: 12px;
+  border-radius: 50%;
   background: var(--surface);
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
 .icon-button:hover:not(:disabled) {
   background: var(--surface-2);
+}
+
+.trip__swap svg {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.trip__swap:hover svg {
+  transform: rotate(180deg);
 }
 
 .chip {
@@ -502,30 +752,62 @@ input::placeholder {
   padding: 0 16px 0 12px;
   border: 1.5px solid var(--rule);
   border-radius: 999px;
-  background: transparent;
+  background: var(--surface);
   font-size: 0.92rem;
   font-weight: 700;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .chip:hover:not(:disabled) {
+  border-color: var(--rule-strong);
   background: var(--surface-2);
 }
 
+/* The one main action: an arrebol glow, with a sheen that sweeps across on hover. */
 .button-primary {
-  min-height: 54px;
+  position: relative;
+  overflow: hidden;
+  min-height: 56px;
   width: 100%;
   border: 0;
-  border-radius: var(--radius);
-  background: var(--signal);
-  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 0.16);
-  color: var(--signal-ink);
+  border-radius: 999px;
+  background: var(--gradient-accent);
+  box-shadow:
+    0 12px 26px -10px rgb(var(--glow) / 0.75),
+    inset 0 1px 0 rgb(255 255 255 / 0.4);
+  color: var(--on-accent);
   font-size: 1.08rem;
   font-weight: 700;
+  letter-spacing: 0.01em;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.button-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.4) 46%, transparent 62%);
+  transform: translateX(-110%);
+  transition: transform 0.7s ease;
+}
+
+.button-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 32px -10px rgb(var(--glow) / 0.85),
+    inset 0 1px 0 rgb(255 255 255 / 0.4);
+}
+
+.button-primary:hover:not(:disabled)::after {
+  transform: translateX(110%);
 }
 
 .button-primary:active:not(:disabled) {
-  transform: translateY(1px);
-  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.16);
+  transform: translateY(1px) scale(0.99);
 }
 
 .button-primary:disabled {
@@ -543,7 +825,7 @@ input::placeholder {
 .free-text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .free-text__label {
@@ -554,18 +836,38 @@ input::placeholder {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 4px 4px 6px;
-  border: 2px solid var(--rule);
+  padding: 5px 5px 5px 8px;
+  border: 2px solid transparent;
   border-radius: 999px;
-  background: var(--surface);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(var(--rule), var(--rule)) border-box;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.15s ease;
 }
 
 .free-text__box:focus-within {
-  border-color: var(--ink);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(var(--violet), var(--violet)) border-box;
+  box-shadow: 0 0 0 4px rgb(var(--ring) / 0.2);
 }
 
+/* Listening: the border becomes a flowing coral → magenta → violet ribbon. */
 .free-text__box.is-listening {
-  border-color: var(--recording);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(110deg, var(--accent), var(--recording), var(--violet), var(--accent)) 0 0 /
+    300% 100% border-box;
+  animation: ribbon 2.4s linear infinite;
+}
+
+@keyframes ribbon {
+  to {
+    background-position:
+      0 0,
+      300% 0;
+  }
 }
 
 .free-text__box input[type="text"] {
@@ -575,6 +877,7 @@ input::placeholder {
   padding: 0 10px;
   border: 0;
   background: transparent;
+  box-shadow: none;
 }
 
 .free-text__box input[type="text"]:focus-visible {
@@ -588,37 +891,42 @@ input::placeholder {
 }
 
 .icon-button--voice {
-  background: var(--ink);
-  color: var(--paper);
+  background: linear-gradient(140deg, var(--violet), var(--recording));
+  box-shadow: 0 6px 16px -6px rgb(90 63 209 / 0.7);
+  color: #ffffff;
 }
 
 .icon-button--voice:hover:not(:disabled) {
-  background: var(--ink-2);
+  background: linear-gradient(140deg, var(--violet), var(--recording));
+  transform: scale(1.05);
 }
 
 .icon-button--voice[aria-pressed="true"] {
   background: var(--recording);
-  color: #ffffff;
-  animation: recording 1.4s ease-out infinite;
+  animation: ripple 1.6s ease-out infinite;
 }
 
-@keyframes recording {
+@keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 rgb(196 43 34 / 0.5);
+    box-shadow:
+      0 0 0 0 rgb(214 51 108 / 0.5),
+      0 0 0 0 rgb(214 51 108 / 0.3);
   }
   100% {
-    box-shadow: 0 0 0 12px rgb(196 43 34 / 0);
+    box-shadow:
+      0 0 0 10px rgb(214 51 108 / 0),
+      0 0 0 22px rgb(214 51 108 / 0);
   }
 }
 
 .icon-button--send {
-  background: var(--signal);
-  color: var(--signal-ink);
+  background: var(--gradient-accent);
+  color: var(--on-accent);
 }
 
 .icon-button--send:hover:not(:disabled) {
-  background: var(--signal);
-  filter: brightness(0.95);
+  background: var(--gradient-accent);
+  transform: translateX(2px);
 }
 
 .icon-button--send:disabled {
@@ -627,10 +935,38 @@ input::placeholder {
 }
 
 .free-text__status {
+  display: flex;
+  align-items: center;
   min-height: 1.3em;
   padding-left: 14px;
   color: var(--muted);
   font-size: 0.88rem;
+}
+
+/* Sound bars while listening, so it's obvious the microphone is on. */
+.free-text:has(.is-listening) .free-text__status::before {
+  content: "";
+  width: 22px;
+  height: 14px;
+  margin-right: 8px;
+  background:
+    linear-gradient(var(--recording) 0 0) 0 100% / 3px 40% no-repeat,
+    linear-gradient(var(--recording) 0 0) 25% 100% / 3px 80% no-repeat,
+    linear-gradient(var(--recording) 0 0) 50% 100% / 3px 55% no-repeat,
+    linear-gradient(var(--recording) 0 0) 75% 100% / 3px 95% no-repeat,
+    linear-gradient(var(--recording) 0 0) 100% 100% / 3px 45% no-repeat;
+  animation: bars 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes bars {
+  to {
+    background-size:
+      3px 90%,
+      3px 35%,
+      3px 100%,
+      3px 40%,
+      3px 80%;
+  }
 }
 
 /* The search folded into one line while a result is shown. */
@@ -639,10 +975,11 @@ input::placeholder {
   grid-template-columns: 16px minmax(0, 1fr) auto;
   gap: 0 12px;
   align-items: center;
-  padding: 12px 14px;
+  padding: 13px 14px 13px 16px;
   border: 1px solid var(--rule);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
   background: var(--surface);
+  box-shadow: var(--shadow-card);
 }
 
 .trip-summary .trip__rail {
@@ -678,10 +1015,10 @@ input::placeholder {
 .notice {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   padding: 14px 16px;
-  border-left: 5px solid currentColor;
-  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: 18px;
   font-weight: 700;
 }
 
@@ -697,7 +1034,11 @@ input::placeholder {
 
 .notice__icon {
   flex-shrink: 0;
-  margin-top: 1px;
+  box-sizing: content-box;
+  margin-top: -3px;
+  padding: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, currentColor 14%, transparent);
 }
 
 /* ─── Routes ─────────────────────────────────────────────────────────────────────────────── */
@@ -708,16 +1049,56 @@ input::placeholder {
   gap: 14px;
 }
 
+.plan-result > * {
+  animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.plan-result > :nth-child(2) {
+  animation-delay: 0.05s;
+}
+.plan-result > :nth-child(3) {
+  animation-delay: 0.1s;
+}
+.plan-result > :nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .route {
   --verdict: var(--ok-fg);
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 16px;
+  overflow: hidden;
+  padding: 20px 16px 16px;
   border: 1px solid var(--rule);
-  border-top: 6px solid var(--verdict);
-  border-radius: 18px;
+  border-radius: var(--radius-card);
   background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* The verdict as a glowing band across the top of the card. */
+.route::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--verdict),
+    color-mix(in srgb, var(--verdict) 35%, transparent)
+  );
 }
 
 .route--warning {
@@ -740,13 +1121,20 @@ input::placeholder {
 
 .route__time {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 6px;
+  gap: 2px 8px;
+  font-weight: 400;
 }
 
 .route__minutes {
-  font-size: 1.9rem;
+  font-family: var(--font-display);
+  font-size: 2.15rem;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-variation-settings: "SOFT" 100;
+  font-weight: 650;
   letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
 .route__pace {
@@ -765,8 +1153,9 @@ input::placeholder {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px 6px 10px;
+  padding: 6px 13px 6px 10px;
   border-radius: 999px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 22%, transparent);
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -797,46 +1186,50 @@ input::placeholder {
 
 .route__verdict {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-}
-
-.tag--demo {
-  margin-top: 0;
-  border: 1.5px dashed var(--ink);
-  background: var(--signal);
-  color: var(--signal-ink);
 }
 
 .tag {
   align-self: flex-start;
   margin-top: -4px;
-  padding: 2px 10px;
+  padding: 3px 10px;
   border-radius: 999px;
   background: var(--surface-2);
   font-size: 0.8rem;
   font-weight: 700;
 }
 
+.tag--demo {
+  margin-top: 0;
+  border: 1.5px dashed rgb(29 23 54 / 0.55);
+  background: linear-gradient(115deg, #ffe7a3, #ffcab2);
+  color: #1d1736;
+}
+
 .strip {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .strip__item {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .strip__walk {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
+  padding: 2px 9px 2px 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
   color: var(--ink-2);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 700;
 }
 
@@ -848,9 +1241,10 @@ input::placeholder {
   display: inline-grid;
   place-items: center;
   min-width: 2.5em;
-  height: 1.75em;
-  padding: 0 0.5em;
-  border-radius: 0.45em;
+  height: 1.8em;
+  padding: 0 0.55em;
+  border-radius: 0.5em;
+  box-shadow: 0 2px 6px -2px rgb(29 23 54 / 0.35);
   font-size: 0.85rem;
   font-weight: 700;
   line-height: 1;
@@ -863,7 +1257,7 @@ input::placeholder {
 .findings {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -872,9 +1266,9 @@ input::placeholder {
 .finding {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 12px;
+  gap: 9px;
+  padding: 11px 13px;
+  border-radius: 14px;
   font-size: 0.95rem;
 }
 
@@ -887,7 +1281,7 @@ input::placeholder {
 .finding__detail {
   font-size: 0.85rem;
   font-weight: 400;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .finding__icon {
@@ -908,8 +1302,8 @@ input::placeholder {
   color: var(--warning-fg);
 }
 
-/* The itinerary as a Metro diagram: a bar in the line colour between the boarding and the
-   alighting station; walking as a dotted line. */
+/* The itinerary as a Metro diagram: a glowing bar in the line colour between the boarding and
+   the alighting station; walking as a dotted line. */
 
 .timeline {
   margin: 4px 0 0;
@@ -938,8 +1332,9 @@ input::placeholder {
   top: 18px;
   bottom: 18px;
   width: 8px;
-  border-radius: 4px;
+  border-radius: 999px;
   background: var(--leg-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--leg-color) 18%, transparent);
 }
 
 .tl--walk .tl__rail::before {
@@ -974,11 +1369,17 @@ input::placeholder {
   border: 4px solid var(--leg-color);
   border-radius: 50%;
   background: var(--surface);
+  box-shadow: 0 2px 6px rgb(29 23 54 / 0.2);
 }
 
 .tl__clock {
+  display: inline-block;
   margin-right: 8px;
-  color: var(--ink-2);
+  padding: 0 7px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 0.9rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1031,11 +1432,20 @@ input::placeholder {
 .other-routes summary {
   display: flex;
   align-items: center;
-  gap: 6px;
+  align-self: flex-start;
+  gap: 8px;
   min-height: var(--touch);
+  padding: 0 18px 0 14px;
+  border-radius: 999px;
+  background: var(--surface-2);
   font-weight: 700;
   cursor: pointer;
   list-style: none;
+  transition: background 0.15s ease;
+}
+
+.other-routes summary:hover {
+  background: color-mix(in srgb, var(--surface-2) 70%, var(--rule-strong));
 }
 
 .other-routes summary::-webkit-details-marker {
@@ -1043,7 +1453,7 @@ input::placeholder {
 }
 
 .other-routes__chevron {
-  transition: transform 0.15s ease;
+  transition: transform 0.2s ease;
 }
 
 .other-routes[open] .other-routes__chevron {
@@ -1051,11 +1461,18 @@ input::placeholder {
 }
 
 .other-routes .route {
-  margin-top: 10px;
+  margin-top: 12px;
+  animation: rise 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .route__choose {
-  border-color: var(--ink);
+  border-color: var(--violet);
+  color: var(--violet);
+}
+
+.route__choose:hover:not(:disabled) {
+  border-color: var(--violet);
+  background: rgb(var(--ring) / 0.1);
 }
 
 .chosen-note {
@@ -1064,6 +1481,9 @@ input::placeholder {
   align-items: center;
   gap: 8px 12px;
   margin: 0;
+  padding: 10px 12px 10px 16px;
+  border-radius: 18px;
+  background: rgb(var(--ring) / 0.1);
   font-weight: 700;
 }
 
@@ -1074,7 +1494,7 @@ input::placeholder {
   flex-direction: column;
   gap: 4px;
   margin-top: 8px;
-  padding-top: 14px;
+  padding-top: 16px;
   border-top: 1px solid var(--rule);
   color: var(--muted);
   font-size: 0.8rem;
@@ -1083,18 +1503,21 @@ input::placeholder {
 .legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 16px;
-  margin: 0 0 8px;
+  gap: 6px;
+  margin: 0 0 10px;
   padding: 0;
   color: var(--ink-2);
   list-style: none;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
 }
 
 .legend li {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  padding: 4px 11px 4px 7px;
+  border-radius: 999px;
+  background: var(--surface-2);
 }
 
 .legend__dot {
@@ -1102,7 +1525,7 @@ input::placeholder {
   height: 12px;
   border: 2px solid var(--surface);
   border-radius: 50%;
-  box-shadow: 0 0 0 1px var(--rule);
+  box-shadow: 0 0 0 1px var(--rule-strong);
 }
 
 .debug-footer {
@@ -1141,10 +1564,13 @@ input::placeholder {
 
 .station-card__name {
   margin: 0;
-  padding-top: 10px;
-  color: #121a2e;
-  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
-  font-size: 1.1rem;
+  padding-top: 9px;
+  color: #1d1736;
+  font-family: "Fraunces Variable", Georgia, serif;
+  font-size: 1.25rem;
+  font-variation-settings: "SOFT" 100;
+  font-weight: 650;
+  letter-spacing: -0.01em;
 }
 
 .station-card__close {
@@ -1156,12 +1582,13 @@ input::placeholder {
   margin: -4px -8px 0 0;
   border: 0;
   border-radius: 50%;
-  background: #f0ede6;
-  color: #121a2e;
+  background: #f6eee7;
+  color: #1d1736;
+  transition: background 0.15s ease;
 }
 
 .station-card__close:hover {
-  background: #e3dfd5;
+  background: #ecdfd4;
 }
 
 .station-card {
@@ -1169,14 +1596,17 @@ input::placeholder {
   flex-direction: column;
   gap: 8px;
   min-width: 240px;
-  color: #121a2e;
+  color: #1d1736;
   font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
   font-size: 0.92rem;
 }
 
 .station-card__lines {
-  color: #5b6275;
+  color: #b5381b;
+  font-size: 0.8rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .station-card__summary {
@@ -1184,8 +1614,8 @@ input::placeholder {
 }
 
 .station-card__stale {
-  padding: 6px 8px;
-  border-radius: 8px;
+  padding: 7px 9px;
+  border-radius: 10px;
   background: #ece9fb;
   color: #4532a8;
   font-size: 0.85rem;
@@ -1195,7 +1625,7 @@ input::placeholder {
 .station-card__devices {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   max-height: 220px;
   margin: 0;
   padding: 0;
@@ -1208,9 +1638,13 @@ input::placeholder {
   grid-template-columns: 20px minmax(0, 1fr) auto;
   gap: 8px;
   align-items: center;
-  padding: 6px 8px;
-  border-radius: 8px;
-  background: #f6f4ef;
+  padding: 7px 9px;
+  border-radius: 12px;
+  background: #faf4ee;
+}
+
+.device__icon {
+  color: #463f62;
 }
 
 .device__text {
@@ -1224,19 +1658,19 @@ input::placeholder {
 }
 
 .device__where {
-  color: #5b6275;
+  color: #5f5878;
   font-size: 0.85rem;
 }
 
 .device__description {
   margin-top: 2px;
-  color: #3d4560;
+  color: #463f62;
   font-size: 0.8rem;
   line-height: 1.3;
 }
 
 .device__state {
-  padding: 2px 8px;
+  padding: 2px 9px;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
@@ -1263,43 +1697,48 @@ input::placeholder {
 }
 
 .station-card__age {
-  color: #5b6275;
+  color: #5f5878;
   font-size: 0.8rem;
 }
 
-/* ─── Map buttons (centre on me, whole route) ─────────────────────────────────────────── */
+/* ─── Map buttons (centre on me, whole route): frosted glass over the map ─────────────── */
 
 .map-buttons {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
-  margin: 0 10px 10px 0;
+  gap: 10px;
+  margin: 0 12px 12px 0;
 }
 
-/* On a phone the sheet overlaps the bottom of the map: keep the buttons above its edge. */
+/* On a phone the panel overlaps the bottom of the map: keep the buttons above its edge. */
 @media (max-width: 959px) {
   .map-buttons {
-    margin-bottom: 34px;
+    margin-bottom: 38px;
   }
 }
 
 .map-button {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   padding: 0;
-  border: 0;
+  border: 1px solid rgb(255 255 255 / 0.9);
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgb(16 23 42 / 0.25);
-  color: #121a2e;
+  background: rgb(255 255 255 / 0.86);
+  box-shadow: 0 8px 20px -6px rgb(29 23 54 / 0.4);
+  color: #1d1736;
   cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
 }
 
 .map-button:hover:not(:disabled) {
-  background: #f6f4ef;
+  background: #ffffff;
+  transform: scale(1.06);
 }
 
 .map-button:disabled {
@@ -1309,10 +1748,55 @@ input::placeholder {
 .map-buttons__message {
   max-width: 220px;
   margin: 0;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: #121a2e;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #1d1736;
+  box-shadow: 0 8px 20px -6px rgb(29 23 54 / 0.5);
   color: #ffffff;
   font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
   font-size: 0.85rem;
+}
+
+/* ─── Desktop: a frosted panel floating over the full-screen map ─────────────────────────── */
+
+@media (min-width: 960px) {
+  .map-area {
+    position: fixed;
+    inset: 0;
+    height: auto;
+  }
+  .sheet {
+    position: fixed;
+    top: 16px;
+    bottom: 16px;
+    left: 16px;
+    width: 440px;
+    min-height: 0;
+    margin: 0;
+    padding: 22px 22px 26px;
+    overflow-y: auto;
+    border: 1px solid rgb(255 255 255 / 0.5);
+    border-radius: 28px;
+    background: color-mix(in srgb, var(--paper) 94%, transparent);
+    box-shadow: var(--shadow-float);
+    backdrop-filter: blur(18px) saturate(1.3);
+  }
+  .sheet__handle {
+    display: none;
+  }
+  .sky {
+    margin: -22px -22px 0;
+    padding: 28px 22px 0;
+    border-radius: 27px 27px 0 0;
+  }
+  .sky__andes {
+    width: calc(100% + 44px);
+    height: 78px;
+    margin: 6px -22px 0;
+  }
+  /* Centre map messages in the part of the map the floating panel doesn't cover. */
+  .map--loading,
+  .map--failed {
+    padding-left: calc(440px + 48px);
+  }
 }

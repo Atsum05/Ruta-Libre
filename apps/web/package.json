@@ -12,6 +12,7 @@
     "test:e2e": "vite build --mode e2e && playwright test"
   },
   "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource/atkinson-hyperlegible": "^5.3.0",
     "@rutalibre/contract": "workspace:*",
     "@rutalibre/core": "workspace:*",

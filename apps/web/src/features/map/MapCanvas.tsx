@@ -18,16 +18,32 @@ import { stationMarkers, stationsOnRoute } from './stationStatus.ts'
 // Plaza de Armas, roughly the centre of the Metro network.
 const SANTIAGO = { lat: -33.4378, lng: -70.6505 }
 
-// A quiet base map so the route and the station colours carry the picture: no shops or Google's
-// own transit layer (we draw the Metro ourselves), softer colours. Ignored when a Map ID is set,
-// whose style is managed in Google Cloud.
+// A quiet base map in the Cordillera palette, so the route and the station colours carry the
+// picture: warm snow-white land, lavender-blue water (the Mapocho), sage parks, peach highways,
+// and no shops or Google's own transit layer (we draw the Metro ourselves). Ignored when a Map
+// ID is set, whose style is managed in Google Cloud.
 const QUIET_STYLE: google.maps.MapTypeStyle[] = [
   { featureType: 'poi', stylers: [{ visibility: 'off' }] },
   { featureType: 'poi.park', stylers: [{ visibility: 'simplified' }] },
+  { featureType: 'poi.park', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
   { featureType: 'transit', stylers: [{ visibility: 'off' }] },
   { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
-  { elementType: 'geometry', stylers: [{ saturation: -35 }] },
-  { featureType: 'water', stylers: [{ color: '#b9d3e6' }] },
+  { elementType: 'geometry', stylers: [{ color: '#f7f1ea' }] },
+  { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#f1e8de' }] },
+  { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#dfecd8' }] },
+  { featureType: 'road', elementType: 'geometry.fill', stylers: [{ color: '#ffffff' }] },
+  { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#ece2d8' }] },
+  { featureType: 'road.highway', elementType: 'geometry.fill', stylers: [{ color: '#f8dccb' }] },
+  { featureType: 'road.highway', elementType: 'geometry.stroke', stylers: [{ color: '#efc9b4' }] },
+  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c8d4f3' }] },
+  {
+    featureType: 'administrative',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#d8cae8' }],
+  },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#5f5878' }] },
+  { elementType: 'labels.text.stroke', stylers: [{ color: '#fcf7f2' }, { weight: 3 }] },
+  { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#5a6ea8' }] },
 ]
 
 export interface MapCanvasProps {

@@ -164,6 +164,12 @@ salvo en modo demo (`STATUS_DEMO=true`), que se indica en la interfaz y en cada 
 
 - Diseño pensado primero para el teléfono: un panel inferior sobre el mapa en el teléfono y un
   panel flotante en escritorio.
+- **Diseño "Cordillera":** la parte superior del panel muestra la cordillera bajo un cielo que
+  sigue la hora del día en Santiago (el sol saliendo tras los cerros, la nieve rosada del
+  atardecer, estrellas de noche). Fondo blanco nieve, tinta profunda, un brillo coral para la
+  acción principal; Fraunces para los títulos y Atkinson Hyperlegible para leer; un mapa con los
+  mismos colores y modo oscuro. Agrega `?sky=dawn`, `day`, `dusk` o `night` a la dirección para
+  ver cada cielo.
 - La librería del mapa se carga por separado, así que la primera pantalla es rápida (unos 115 KB
   de JavaScript comprimido).
 - **Accesibilidad:** WCAG 2.2 AA, revisado con axe en los tests de navegador, incluido el
