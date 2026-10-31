@@ -110,7 +110,7 @@ as grouped pull requests from Renovate every Monday.
 ## Data and credits
 
 - Elevator and escalator catalogue and live status: [ariellopez.cl](https://ariellopez.cl/metro/accesibilidad/)
-  and [seguimos.cl](https://velocidades.seguimos.cl/) by Ariel López and Willy Maikowski, used with permission.
+  and [seguimos.cl](https://velocidades.seguimos.cl/) by Ariel López and Willy Maikowski.
 - Metro line geometry: © OpenStreetMap contributors ([ODbL](https://www.openstreetmap.org/copyright)).
 - Maps, routing and place search: Google Maps Platform. Free-text trips: Google Gemini.
 
