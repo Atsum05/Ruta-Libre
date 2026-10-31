@@ -2,11 +2,16 @@
 //   node scripts/coverage-summary.mjs >> "$GITHUB_STEP_SUMMARY"
 // Reads coverage/coverage-summary.json, written by `pnpm test` (json-summary reporter).
 
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 
-const summary = JSON.parse(
-  readFileSync(new URL('../coverage/coverage-summary.json', import.meta.url), 'utf8'),
-)
+const file = new URL('../coverage/coverage-summary.json', import.meta.url)
+// An earlier step (lint, typecheck) failed before the tests ran: say so instead of failing too,
+// so the run shows only the real error.
+if (!existsSync(file)) {
+  console.log(['## Test coverage', '', 'No coverage report: the tests did not run.'].join('\n'))
+  process.exit(0)
+}
+const summary = JSON.parse(readFileSync(file, 'utf8'))
 const metrics = ['lines', 'statements', 'functions', 'branches']
 const pct = (m) => `${m.pct.toFixed(1)}%`
 const relative = (file) => file.replace(/\\/g, '/').replace(/^.*?\/(apps|packages)\//, '$1/')
