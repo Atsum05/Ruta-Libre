@@ -1,9 +1,15 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderApp, stubApi } from '../../test/render.tsx'
 import { FreeTextSearch } from './FreeTextSearch.tsx'
-import { listen, speechSupported } from './speech.ts'
+import {
+  listen,
+  NOTHING_HEARD_MS,
+  QUIET_AFTER_SPEECH_MS,
+  STOP_GRACE_MS,
+  speechSupported,
+} from './speech.ts'
 
 type Script =
   | { heard: string[]; error?: undefined }
@@ -54,6 +60,84 @@ function fakeRecognition(script: Script, created: FakeRecognition[] = []) {
     }
   }
 }
+
+/**
+ * A browser that says it's listening and then goes quiet: no words, no error, no end, even when
+ * asked to stop. What Safari does with dictation off. `audio` makes it report the microphone
+ * starting first; `emit` still feeds words when a test needs them.
+ */
+function silentRecognition(
+  audio: boolean,
+  created: { emit(text: string): void; stopped: boolean }[],
+) {
+  return class {
+    lang = ''
+    interimResults = false
+    stopped = false
+    onresult: ((e: { results: { transcript: string }[][] }) => void) | null = null
+    onerror: ((e: { error: string }) => void) | null = null
+    onend: (() => void) | null = null
+    onaudiostart: (() => void) | null = null
+    constructor() {
+      created.push(this)
+    }
+    emit(text: string) {
+      this.onresult?.({ results: [[{ transcript: text }]] })
+    }
+    start() {
+      if (audio) this.onaudiostart?.()
+    }
+    stop() {
+      this.stopped = true
+    }
+    abort() {}
+  }
+}
+
+describe('listen when the browser goes quiet (Safari)', () => {
+  beforeEach(() => vi.useFakeTimers())
+  afterEach(() => vi.useRealTimers())
+
+  it('gives up when the microphone never starts, and says so', async () => {
+    const created: { emit(text: string): void; stopped: boolean }[] = []
+    vi.stubGlobal('SpeechRecognition', silentRecognition(false, created))
+    const session = listen('es-CL')
+    await vi.advanceTimersByTimeAsync(NOTHING_HEARD_MS + STOP_GRACE_MS)
+    await expect(session.result).resolves.toEqual({ kind: 'failed', reason: 'no-audio' })
+    expect(created[0]?.stopped).toBe(true)
+  })
+
+  it('reports no speech when the microphone worked but nothing was said', async () => {
+    vi.stubGlobal('SpeechRecognition', silentRecognition(true, []))
+    const session = listen('es-CL')
+    await vi.advanceTimersByTimeAsync(NOTHING_HEARD_MS + STOP_GRACE_MS)
+    await expect(session.result).resolves.toEqual({ kind: 'failed', reason: 'no-speech' })
+  })
+
+  it('finishes by itself after a pause in speech, even if the browser never ends', async () => {
+    const created: { emit(text: string): void; stopped: boolean }[] = []
+    vi.stubGlobal('SpeechRecognition', silentRecognition(true, created))
+    const session = listen('es-CL')
+    await vi.advanceTimersByTimeAsync(NOTHING_HEARD_MS - 1000)
+    created[0]?.emit('a Irarrázaval')
+    // Speaking resets the clock: the "nothing heard" limit no longer applies.
+    await vi.advanceTimersByTimeAsync(QUIET_AFTER_SPEECH_MS - 100)
+    expect(created[0]?.stopped).toBe(false)
+    await vi.advanceTimersByTimeAsync(100 + STOP_GRACE_MS)
+    await expect(session.result).resolves.toEqual({ kind: 'heard', text: 'a Irarrázaval' })
+    expect(created[0]?.stopped).toBe(true)
+  })
+
+  it('ends when tapped, even if the browser never confirms', async () => {
+    const created: { emit(text: string): void; stopped: boolean }[] = []
+    vi.stubGlobal('SpeechRecognition', silentRecognition(true, created))
+    const session = listen('es-CL')
+    created[0]?.emit('al hospital')
+    session.stop()
+    await vi.advanceTimersByTimeAsync(STOP_GRACE_MS)
+    await expect(session.result).resolves.toEqual({ kind: 'heard', text: 'al hospital' })
+  })
+})
 
 describe('listen', () => {
   it('is unsupported where the browser has no recognition (Firefox, jsdom)', async () => {
@@ -179,6 +263,63 @@ describe('FreeTextSearch voice input', () => {
     await user.click(mic())
     expect((await screen.findByRole('alert')).textContent).toContain(message)
     expect(calls).toEqual([])
+  })
+
+  it('looks the understood places up in the Santiago place search', async () => {
+    vi.stubGlobal('SpeechRecognition', fakeRecognition({ heard: ['de Toesca a Irarrázaval'] }))
+    stubApi({
+      '/api/v1/interpret': { origin: 'Metro Toesca', destination: 'Metro Irarrázaval' },
+      '/api/v1/places': {
+        suggestions: [
+          {
+            placeId: 'p-ir',
+            primary: 'Metro Irarrázaval',
+            secondary: 'Avenida General Bustamante, Ñuñoa',
+          },
+        ],
+      },
+    })
+    const onInterpreted = vi.fn()
+    const user = userEvent.setup()
+    renderApp(<FreeTextSearch onInterpreted={onInterpreted} />)
+    await user.click(mic())
+    await waitFor(() => expect(onInterpreted).toHaveBeenCalled())
+    // A place ID, not the bare words, which Google once routed to Puente Alto.
+    expect(onInterpreted.mock.calls[0]?.[1]).toEqual({
+      waypoint: { kind: 'place', placeId: 'p-ir' },
+      label: 'Metro Irarrázaval, Avenida General Bustamante, Ñuñoa',
+    })
+  })
+
+  it('falls back to the words when the place search finds nothing', async () => {
+    vi.stubGlobal('SpeechRecognition', fakeRecognition({ heard: ['a Toesca'] }))
+    stubApi({
+      '/api/v1/interpret': { origin: null, destination: 'Metro Toesca' },
+      '/api/v1/places': { suggestions: [] },
+    })
+    const onInterpreted = vi.fn()
+    const user = userEvent.setup()
+    renderApp(<FreeTextSearch onInterpreted={onInterpreted} />)
+    await user.click(mic())
+    await waitFor(() => expect(onInterpreted).toHaveBeenCalled())
+    expect(onInterpreted.mock.calls[0]).toEqual([
+      null,
+      { waypoint: { kind: 'address', text: 'Metro Toesca' }, label: 'Metro Toesca' },
+    ])
+  })
+
+  it('tells Safari users to turn on dictation when the microphone never starts', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    try {
+      vi.stubGlobal('SpeechRecognition', silentRecognition(false, []))
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
+      renderApp(<FreeTextSearch onInterpreted={vi.fn()} />)
+      await user.click(mic())
+      await vi.advanceTimersByTimeAsync(NOTHING_HEARD_MS + STOP_GRACE_MS)
+      expect((await screen.findByRole('alert')).textContent).toContain('activa el Dictado')
+    } finally {
+      vi.useRealTimers()
+    }
   })
 
   it('dictates in English when the app is in English', async () => {

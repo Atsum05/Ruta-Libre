@@ -3,7 +3,7 @@ import { type FormEvent, useId, useRef, useState } from 'react'
 import { api } from '../../shared/api.ts'
 import { useI18n } from '../../shared/i18n/index.tsx'
 import { ArrowIcon, MicIcon, StopIcon } from '../../shared/icons.tsx'
-import type { Selection } from './selection.ts'
+import { newSession, type Selection } from './selection.ts'
 import { type Listening, listen, type SpeechFailure, speechSupported } from './speech.ts'
 
 interface FreeTextSearchProps {
@@ -16,10 +16,29 @@ const asAddress = (text: string): Selection => ({
   label: text,
 })
 
+/**
+ * A name as understood ("Metro Irarrázaval") → the place the search fields would pick for it.
+ * Sent as plain text, Google can geocode a name to the wrong place (that one lands in Puente
+ * Alto); the place search is biased to Santiago. Plain text only if it finds nothing.
+ */
+async function resolvePlace(name: string): Promise<Selection> {
+  try {
+    const top = (await api.places(name, newSession())).suggestions[0]
+    if (top) {
+      const label = top.secondary ? `${top.primary}, ${top.secondary}` : top.primary
+      return { waypoint: { kind: 'place', placeId: top.placeId }, label }
+    }
+  } catch {
+    // The place search is down: the plain text still gives Google something to route.
+  }
+  return asAddress(name)
+}
+
 const FAILURE_MESSAGE = {
   'not-allowed': 'search.voice.notAllowed',
   'no-speech': 'search.voice.noSpeech',
   'no-microphone': 'search.voice.noMicrophone',
+  'no-audio': 'search.voice.noAudio',
   unavailable: 'search.voice.unavailable',
 } as const satisfies Record<SpeechFailure, string>
 
@@ -36,9 +55,15 @@ export function FreeTextSearch({ onInterpreted }: FreeTextSearchProps) {
   const listening = useRef<Listening | null>(null)
   const [isListening, setIsListening] = useState(false)
   const interpret = useMutation({
-    mutationFn: (input: string) => api.interpret(input),
-    onSuccess: (r) =>
-      onInterpreted(r.origin ? asAddress(r.origin) : null, asAddress(r.destination)),
+    mutationFn: async (input: string) => {
+      const r = await api.interpret(input)
+      const [origin, destination] = await Promise.all([
+        r.origin ? resolvePlace(r.origin) : null,
+        resolvePlace(r.destination),
+      ])
+      return { origin, destination }
+    },
+    onSuccess: ({ origin, destination }) => onInterpreted(origin, destination),
   })
 
   function submit(e: FormEvent) {

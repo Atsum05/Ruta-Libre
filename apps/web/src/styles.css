@@ -153,13 +153,45 @@ button:disabled {
   box-shadow: 0 -8px 24px rgb(16 23 42 / 0.12);
 }
 
+/* The handle is a real button with a large touch area around the small visible grip. */
 .sheet__handle {
+  display: grid;
   align-self: center;
+  place-items: center;
+  width: 160px;
+  height: 44px;
+  margin: -8px 0 -22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  touch-action: none;
+}
+
+.sheet__grip {
   width: 44px;
   height: 5px;
-  margin-bottom: -6px;
   border-radius: 3px;
   background: var(--rule);
+}
+
+.sheet__handle:hover .sheet__grip {
+  background: var(--ink-2);
+}
+
+/* Phone: the handle lowers the panel to its top edge, so the map fills the screen. */
+@media (max-width: 959px) {
+  .map-area {
+    transition: height 0.25s ease;
+  }
+  .app--map-open .map-area {
+    height: calc(100dvh - 96px);
+  }
+}
+
+@media (max-width: 959px) and (prefers-reduced-motion: reduce) {
+  .map-area {
+    transition: none;
+  }
 }
 
 @media (min-width: 960px) {
@@ -1099,11 +1131,37 @@ input::placeholder {
    Google draws the info window on white in both themes, so these colours are fixed rather
    than taken from the light/dark tokens. */
 
+.station-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
 .station-card__name {
   margin: 0;
+  padding-top: 10px;
   color: #121a2e;
   font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
   font-size: 1.1rem;
+}
+
+.station-card__close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -4px -8px 0 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f0ede6;
+  color: #121a2e;
+}
+
+.station-card__close:hover {
+  background: #e3dfd5;
 }
 
 .station-card {

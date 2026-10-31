@@ -2,7 +2,7 @@
 // (Google Maps can't run here; map.test.tsx covers it), so this checks the shell: status,
 // search → plan → result, errors, the debug footer, and switching language.
 
-import { screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { App } from './App.tsx'
@@ -199,5 +199,46 @@ describe('App after a result', () => {
     await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
     await screen.findByText('Ruta accesible encontrada.')
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
+  })
+})
+
+describe('the panel handle on a phone', () => {
+  const app = () => document.querySelector('.app')
+  const handle = (name: string) => screen.getByRole('button', { name })
+
+  it('lowers the panel to show the whole map when tapped, and raises it again', async () => {
+    stubApi({ '/api/v1/status': STATUS_OK, '/api/v1/health': HEALTH })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    expect(handle('Ver el mapa completo').getAttribute('aria-expanded')).toBe('true')
+
+    await user.click(handle('Ver el mapa completo'))
+    expect(app()?.classList.contains('app--map-open')).toBe(true)
+    expect(handle('Mostrar el panel').getAttribute('aria-expanded')).toBe('false')
+
+    await user.click(handle('Mostrar el panel'))
+    expect(app()?.classList.contains('app--map-open')).toBe(false)
+  })
+
+  it('follows a swipe: down shows the map, up brings the panel back', () => {
+    stubApi({ '/api/v1/status': STATUS_OK, '/api/v1/health': HEALTH })
+    renderApp(<App config={CONFIG} />)
+    const swipe = (name: string, from: number, to: number) => {
+      const el = handle(name)
+      fireEvent.pointerDown(el, { clientY: from })
+      fireEvent.pointerUp(el, { clientY: to })
+      // The browser also sends a click at the end of the swipe; it must not undo it.
+      fireEvent.click(el)
+    }
+    swipe('Ver el mapa completo', 100, 180)
+    expect(app()?.classList.contains('app--map-open')).toBe(true)
+    swipe('Mostrar el panel', 180, 90)
+    expect(app()?.classList.contains('app--map-open')).toBe(false)
+    // A tiny movement is a tap, not a swipe.
+    const el = handle('Ver el mapa completo')
+    fireEvent.pointerDown(el, { clientY: 100 })
+    fireEvent.pointerUp(el, { clientY: 105 })
+    fireEvent.click(el)
+    expect(app()?.classList.contains('app--map-open')).toBe(true)
   })
 })
