@@ -6,11 +6,15 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { App } from './App.tsx'
-import { plan, ROUTE_OK, renderApp, STATUS_OK, stubApi } from './test/render.tsx'
+import { plan, ROUTE_BLOCKED, ROUTE_OK, renderApp, STATUS_OK, stubApi } from './test/render.tsx'
 
 vi.mock('./features/map/MapCanvas.tsx', () => ({
-  default: ({ route }: { route: unknown }) => (
-    <div data-testid="map" data-route={route ? 'shown' : 'none'} />
+  default: ({ route }: { route?: { durationSeconds: number } }) => (
+    <div
+      data-testid="map"
+      data-route={route ? 'shown' : 'none'}
+      data-duration={route?.durationSeconds}
+    />
   ),
 }))
 
@@ -105,5 +109,95 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
     expect(await screen.findByRole('article')).toBeTruthy()
     expect(screen.getByText('Línea 1 dirección San Pablo')).toBeTruthy()
+  })
+})
+
+describe('App after a result', () => {
+  it('folds the search into a one-line summary so the result sits under the map', async () => {
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan(),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await screen.findByText('Ruta accesible encontrada.')
+
+    const summary = screen.getByRole('region', { name: 'Tu viaje' })
+    expect(summary.textContent).toContain('Universidad de Chile')
+    expect(screen.queryByRole('button', { name: 'Buscar ruta accesible' })).toBeNull()
+
+    // "Cambiar" reopens the form with the same places.
+    await user.click(screen.getByRole('button', { name: 'Cambiar' }))
+    expect(screen.getByRole('combobox', { name: 'Desde' })).toHaveProperty(
+      'value',
+      'Universidad de Chile',
+    )
+    expect(screen.queryByRole('region', { name: 'Tu viaje' })).toBeNull()
+  })
+
+  it('draws the route the rider chooses instead of the recommended one', async () => {
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan({ routes: [ROUTE_OK, { ...ROUTE_BLOCKED, durationSeconds: 2400 }] }),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await screen.findByText('Ruta accesible encontrada.')
+    expect(screen.getByTestId('map').dataset['duration']).toBe('1500')
+
+    await user.click(screen.getByText('Otras opciones (1)'))
+    await user.click(screen.getByRole('button', { name: 'Ver esta ruta' }))
+    expect(screen.getByTestId('map').dataset['duration']).toBe('2400')
+
+    // A new search starts again from the recommended route.
+    await user.click(screen.getByRole('button', { name: 'Cambiar' }))
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await waitFor(() => expect(screen.getByTestId('map').dataset['duration']).toBe('1500'))
+  })
+
+  it('starts over with empty fields after "Nueva búsqueda"', async () => {
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan(),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await screen.findByText('Ruta accesible encontrada.')
+
+    await user.click(screen.getByRole('button', { name: 'Nueva búsqueda' }))
+    expect(screen.queryByText('Ruta accesible encontrada.')).toBeNull()
+    expect(screen.queryByRole('region', { name: 'Tu viaje' })).toBeNull()
+    expect(screen.getByRole('combobox', { name: 'Desde' })).toHaveProperty('value', '')
+    expect(screen.getByTestId('map').dataset['route']).toBe('none')
+  })
+
+  it('scrolls back to the map on a phone, so the route is in view', async () => {
+    const scrollTo = vi.fn()
+    vi.stubGlobal('scrollTo', scrollTo)
+    vi.stubGlobal('matchMedia', (q: string) => ({ matches: q === '(max-width: 959px)' }))
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan(),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await screen.findByText('Ruta accesible encontrada.')
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
   })
 })

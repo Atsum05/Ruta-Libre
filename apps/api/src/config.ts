@@ -29,6 +29,9 @@ const EnvSchema = z
       .min(1)
       .max(7 * 24 * 60)
       .default(13 * 60),
+    // Demo mode (ADR 0014): use the last known statuses as if they were current, for showing how
+    // the app works while the feed is frozen. The UI labels it; never enable it for real users.
+    STATUS_DEMO: z.stringbool().default(false),
 
     // Trip planning (Phase 6). Server-side keys only (ADR 0004); restrict them to these APIs.
     GOOGLE_MAPS_API_KEY: cleanString.optional(),
@@ -64,6 +67,8 @@ export interface Config {
   env: 'local' | 'preview' | 'production'
   commit: string
   status: {
+    /** Demo mode (ADR 0014): treat the last snapshot as current. Never on a public launch. */
+    demo: boolean
     sourceUrl: string
     pollMs: number
     timeoutMs: number
@@ -92,6 +97,7 @@ export function parseConfig(env: Record<string, string | undefined>): Config {
     env: e.APP_ENV,
     commit: e.COMMIT_SHA ?? e.RENDER_GIT_COMMIT ?? 'unknown',
     status: {
+      demo: e.STATUS_DEMO,
       sourceUrl: e.STATUS_SOURCE_URL,
       pollMs: e.STATUS_POLL_SECONDS * 1000,
       timeoutMs: e.STATUS_TIMEOUT_MS,

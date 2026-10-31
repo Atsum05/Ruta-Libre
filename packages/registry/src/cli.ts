@@ -4,7 +4,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { buildRegistry, type Issue, issueKey } from './build.ts'
-import { EXPLAINED_ISSUES } from './config.ts'
+import { COORDINATE_FIXES, EXPLAINED_ISSUES } from './config.ts'
 import { CatalogueSchema, LiveDevicesSchema, StationsFileSchema } from './schema.ts'
 
 const root = new URL('../', import.meta.url)
@@ -51,6 +51,14 @@ function renderReport(stationCount: number, list: readonly Issue[]): string {
     '| Issue | Subject | Detail | Why it is acceptable |',
     '| ----- | ------- | ------ | -------------------- |',
     ...rows,
+    '',
+    '## Coordinate corrections',
+    '',
+    '| Station | Position used | Why |',
+    '| ------- | ------------- | --- |',
+    ...Object.entries(COORDINATE_FIXES).map(
+      ([code, f]) => `| \`${code}\` | ${f.lat}, ${f.lng} | ${f.why} |`,
+    ),
     '',
   ].join('\n')
 }

@@ -1,7 +1,8 @@
+import type { LegView, RouteView } from '@rutalibre/contract'
 import { loadRegistry } from '@rutalibre/registry'
 import { describe, expect, it } from 'vitest'
-import { STATUS_OK } from '../../test/render.tsx'
-import { stationMarkers } from './stationStatus.ts'
+import { ROUTE_OK, STATUS_OK } from '../../test/render.tsx'
+import { isCurrent, stationMarkers, stationsOnRoute } from './stationStatus.ts'
 
 const registry = loadRegistry()
 const losHeroesL1 = registry.stations.find((s) => s.id === 'LH')
@@ -47,5 +48,83 @@ describe('stationMarkers', () => {
     const markers = stationMarkers(registry, undefined)
     expect(new Set(markers.map((m) => m.status))).toEqual(new Set(['unknown']))
     expect(markerFor({ ...status({}), health: 'unavailable' })).toBe('unknown')
+  })
+})
+
+describe('isCurrent and old data', () => {
+  const old = { ...status({ 'LH-60d634': 'out-of-service' }), ageSeconds: 14 * 86_400 }
+
+  it('greys out every station when the data is older than the limit', () => {
+    expect(isCurrent(old)).toBe(false)
+    expect(markerFor(old)).toBe('unknown')
+  })
+
+  it('shows old data as current in demo mode, which says so on screen', () => {
+    expect(isCurrent({ ...old, demo: true })).toBe(true)
+    expect(markerFor({ ...old, demo: true })).toBe('blocked')
+  })
+
+  it('is never current without data', () => {
+    expect(isCurrent(undefined)).toBe(false)
+    expect(isCurrent({ ...STATUS_OK, health: 'unavailable', demo: true })).toBe(false)
+  })
+})
+
+type Transit = Exclude<LegView, { mode: 'walk' }>
+
+describe('stationsOnRoute', () => {
+  const markers = stationMarkers(registry, status({}))
+  const at = (code: string) => {
+    const s = registry.stations.find((x) => x.id === code)
+    if (!s) throw new Error(`no station ${code}`)
+    return { name: s.name, lat: s.location.lat, lng: s.location.lng }
+  }
+  const leg = (mode: 'metro' | 'bus', from: string, to: string): LegView => ({
+    mode,
+    durationSeconds: 300,
+    line: 'L1',
+    label: 'Línea 1',
+    color: '#e1261c',
+    textColor: '#ffffff',
+    headsign: 'San Pablo',
+    expressRoute: null,
+    from: at(from),
+    to: at(to),
+    stopCount: 2,
+    path: [],
+  })
+  const routeOf = (...legs: LegView[]): RouteView => ({ ...ROUTE_OK, legs })
+
+  it('is null without a route, so nothing is faded', () => {
+    expect(stationsOnRoute(undefined, markers)).toBeNull()
+  })
+
+  it('finds where the route boards and alights, including other lines at the same place', () => {
+    const ids = stationsOnRoute(routeOf(leg('metro', 'CH', 'LH')), markers)
+    expect(ids?.has('CH')).toBe(true)
+    expect(ids?.has('LH')).toBe(true)
+    // Los Héroes on L2 is 39 m away: the same place for the rider.
+    expect(ids?.has('HE')).toBe(true)
+    expect(ids?.has('PQU')).toBe(false)
+  })
+
+  it('finds a station by name when its platform is far from the station point', () => {
+    // 300 m from the single Irarrázaval point, like Los Leones Line 6's platform.
+    const far = { name: 'Irarrázaval', lat: -33.4523, lng: -70.6283 }
+    const ids = stationsOnRoute(
+      routeOf({ ...(leg('metro', 'CH', 'LH') as Transit), to: far }),
+      markers,
+    )
+    expect(ids?.has('IR')).toBe(true)
+    // Unnamed, the same spot is too far to count.
+    const other = stationsOnRoute(
+      routeOf({ ...(leg('metro', 'CH', 'LH') as Transit), to: { ...far, name: 'Otra' } }),
+      markers,
+    )
+    expect(other?.has('IR')).toBe(false)
+  })
+
+  it('ignores bus stops', () => {
+    expect(stationsOnRoute(routeOf(leg('bus', 'CH', 'LH')), markers)?.size).toBe(0)
   })
 })

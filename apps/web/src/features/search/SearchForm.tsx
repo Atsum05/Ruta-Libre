@@ -1,18 +1,21 @@
-import type { Waypoint } from '@rutalibre/contract'
 import { type FormEvent, useEffect, useState } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
+import { LocateIcon, SwapIcon } from '../../shared/icons.tsx'
 import { FreeTextSearch } from './FreeTextSearch.tsx'
 import { PlaceField } from './PlaceField.tsx'
 import type { Selection } from './selection.ts'
 import { useLocation } from './useLocation.ts'
 
 interface SearchFormProps {
-  onSearch: (origin: Waypoint, destination: Waypoint) => void
+  onSearch: (origin: Selection, destination: Selection) => void
   busy: boolean
   geolocation?: Geolocation
 }
 
-/** Origin and destination: autocomplete fields as the main path, free text as an extra. */
+/**
+ * Origin and destination as a trip card: two fields joined by a route rail, a swap button
+ * beside them, and the device location as an explicit choice. Free text and voice come after.
+ */
 export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
   const { t } = useI18n()
   const [origin, setOrigin] = useState<Selection | null>(null)
@@ -34,7 +37,7 @@ export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
       return
     }
     setIncomplete(false)
-    onSearch(from.waypoint, to.waypoint)
+    onSearch(from, to)
   }
 
   const locationMessage =
@@ -45,52 +48,64 @@ export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
         : null
 
   return (
-    <div className="search">
-      <form className="search__form" onSubmit={submit} noValidate>
-        <PlaceField
-          label={t('search.origin')}
-          placeholder={t('search.placeholder.origin')}
-          value={origin}
-          onChange={setOrigin}
-        >
+    <section className="search" aria-labelledby="search-title">
+      <h2 id="search-title" className="section-title">
+        {t('search.title')}
+      </h2>
+      <form className="trip" onSubmit={submit} noValidate>
+        <div className="trip__fields">
+          <span className="trip__rail" aria-hidden="true">
+            <span className="trip__dot trip__dot--from" />
+            <span className="trip__line" />
+            <span className="trip__dot trip__dot--to" />
+          </span>
+          <div className="trip__inputs">
+            <PlaceField
+              label={t('search.origin')}
+              placeholder={t('search.placeholder.origin')}
+              value={origin}
+              onChange={setOrigin}
+            />
+            <PlaceField
+              label={t('search.destination')}
+              placeholder={t('search.placeholder.destination')}
+              value={destination}
+              onChange={setDestination}
+            />
+          </div>
           <button
             type="button"
-            className="button button--link"
-            onClick={location.locate}
-            disabled={location.state.kind === 'locating'}
+            className="icon-button trip__swap"
+            onClick={() => {
+              setOrigin(destination)
+              setDestination(origin)
+            }}
           >
-            <span aria-hidden="true">📍 </span>
-            {location.state.kind === 'locating' ? t('search.locating') : t('search.useLocation')}
+            <SwapIcon />
+            <span className="visually-hidden">{t('search.swap')}</span>
           </button>
-          {locationMessage && (
-            <p className="form-message" role="alert">
-              {locationMessage}
-            </p>
-          )}
-        </PlaceField>
+        </div>
+
         <button
           type="button"
-          className="button button--icon search__swap"
-          onClick={() => {
-            setOrigin(destination)
-            setDestination(origin)
-          }}
+          className="chip"
+          onClick={location.locate}
+          disabled={location.state.kind === 'locating'}
         >
-          <span aria-hidden="true">⇅</span>
-          <span className="visually-hidden">{t('search.swap')}</span>
+          <LocateIcon size={18} />
+          {location.state.kind === 'locating' ? t('search.locating') : t('search.useLocation')}
         </button>
-        <PlaceField
-          label={t('search.destination')}
-          placeholder={t('search.placeholder.destination')}
-          value={destination}
-          onChange={setDestination}
-        />
+        {locationMessage && (
+          <p className="form-message" role="alert">
+            {locationMessage}
+          </p>
+        )}
         {incomplete && (
           <p className="form-message" role="alert">
             {t('search.needBoth')}
           </p>
         )}
-        <button type="submit" className="button button--primary" disabled={busy}>
+        <button type="submit" className="button-primary" disabled={busy}>
           {busy ? t('search.searching') : t('search.submit')}
         </button>
       </form>
@@ -102,6 +117,6 @@ export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
           submit(undefined, start, to)
         }}
       />
-    </div>
+    </section>
   )
 }

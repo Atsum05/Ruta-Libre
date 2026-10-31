@@ -28,12 +28,20 @@ export interface Plan<C extends Candidate = Candidate> {
 const TIER: Record<VerdictKind, number> = { ok: 0, warning: 0, unknown: 1, blocked: 2 }
 const SOURCE_ORDER: Record<CandidateSource, number> = { primary: 0, alternative: 1, 'bus-only': 2 }
 
-/** Ranks evaluated routes into the plan we show: the fallback order, expressed as data. */
+/** Routes that ride the Metro: the network whose elevators we can actually check (ADR 0014). */
+export const usesMetro = (route: Route) => route.legs.some((leg) => leg.mode === 'metro')
+
+/**
+ * Ranks evaluated routes into the plan we show: the fallback order, expressed as data. Within a
+ * tier, routes that use the Metro come first (ADR 0014), then the provider's own order.
+ */
 export function chooseRoute<C extends Candidate>(candidates: readonly C[]): Plan<C> {
+  const metroFirst = (c: Candidate) => (usesMetro(c.route) ? 0 : 1)
   // Array.prototype.sort is stable, so the provider's own order survives within a tier.
   const ranked = [...candidates].sort(
     (a, b) =>
       TIER[a.verdict.kind] - TIER[b.verdict.kind] ||
+      metroFirst(a) - metroFirst(b) ||
       SOURCE_ORDER[a.source] - SOURCE_ORDER[b.source],
   )
   const best = ranked[0]
@@ -45,7 +53,10 @@ export function chooseRoute<C extends Candidate>(candidates: readonly C[]): Plan
       : best.verdict.kind === 'unknown'
         ? 'uncertain'
         : 'no-accessible-route'
-  return { ranked, best, outcome, rerouted: best.source !== 'primary' }
+  // "Rerouted" means accessibility changed the answer: the provider's own first choice was worse.
+  const primary = candidates.find((c) => c.source === 'primary')
+  const rerouted = primary !== undefined && TIER[primary.verdict.kind] > TIER[best.verdict.kind]
+  return { ranked, best, outcome, rerouted }
 }
 
 /** Whether any route is ok or warning. If not, the API should also ask for bus-only routes. */

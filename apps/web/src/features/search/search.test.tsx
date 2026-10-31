@@ -1,9 +1,9 @@
-import type { Waypoint } from '@rutalibre/contract'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { axeViolations, renderApp, stubApi } from '../../test/render.tsx'
 import { SearchForm } from './SearchForm.tsx'
+import type { Selection } from './selection.ts'
 
 const SUGGESTIONS = {
   suggestions: [
@@ -26,7 +26,7 @@ function geolocation(answer: { lat: number; lng: number } | 1 | 2): Geolocation 
 }
 
 function setup(geo: Geolocation = geolocation(1)) {
-  const onSearch = vi.fn<(o: Waypoint, d: Waypoint) => void>()
+  const onSearch = vi.fn<(o: Selection, d: Selection) => void>()
   const user = userEvent.setup()
   const view = renderApp(<SearchForm onSearch={onSearch} busy={false} geolocation={geo} />)
   return { onSearch, user, ...view }
@@ -50,8 +50,8 @@ describe('SearchForm', () => {
     await user.click(await screen.findByRole('option', { name: 'Toesca, Santiago, Chile' }))
     await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
     expect(onSearch).toHaveBeenCalledWith(
-      { kind: 'point', lat: -33.44, lng: -70.65 },
-      { kind: 'place', placeId: 'p-toesca' },
+      { waypoint: { kind: 'point', lat: -33.44, lng: -70.65 }, label: 'Mi ubicación' },
+      { waypoint: { kind: 'place', placeId: 'p-toesca' }, label: 'Toesca, Santiago, Chile' },
     )
   })
 
@@ -119,8 +119,8 @@ describe('SearchForm', () => {
     await user.click(screen.getByRole('button', { name: 'Interpretar' }))
     await waitFor(() => expect(onSearch).toHaveBeenCalled())
     expect(onSearch).toHaveBeenCalledWith(
-      { kind: 'address', text: 'Metro San Joaquín' },
-      { kind: 'address', text: 'Metro Toesca' },
+      { waypoint: { kind: 'address', text: 'Metro San Joaquín' }, label: 'Metro San Joaquín' },
+      { waypoint: { kind: 'address', text: 'Metro Toesca' }, label: 'Metro Toesca' },
     )
   })
 

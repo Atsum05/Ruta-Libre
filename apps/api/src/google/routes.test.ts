@@ -24,7 +24,7 @@ function provider(body: unknown, seen: Request[] = [], status = 200) {
 const request = {
   origin: { kind: 'point', lat: -33.4432, lng: -70.6512 },
   destination: { kind: 'place', placeId: 'ChIJ-toesca' },
-  busOnly: false,
+  travel: 'any',
 } as const
 
 describe('GoogleRoutesProvider', () => {
@@ -46,7 +46,7 @@ describe('GoogleRoutesProvider', () => {
 
   it('asks for buses only on the last fallback', async () => {
     const seen: Request[] = []
-    await provider(transfer, seen).plan({ ...request, busOnly: true })
+    await provider(transfer, seen).plan({ ...request, travel: 'bus' })
     expect(await seen[0]?.json()).toMatchObject({
       transitPreferences: { allowedTravelModes: ['BUS'] },
     })
@@ -147,5 +147,30 @@ describe('readableTextColor', () => {
     ['not a colour', '#ffffff'],
   ])('%s → %s', (bg, fg) => {
     expect(readableTextColor(bg)).toBe(fg)
+  })
+})
+
+describe('transit preferences', () => {
+  it('always prefers less walking, for a reduced-mobility pace', async () => {
+    const seen: Request[] = []
+    await provider(transfer, seen).plan(request)
+    expect(await seen[0]?.json()).toMatchObject({
+      transitPreferences: { routingPreference: 'LESS_WALKING' },
+    })
+  })
+
+  it('asks for Metro only when told to (ADR 0014)', async () => {
+    const seen: Request[] = []
+    await provider(transfer, seen).plan({ ...request, travel: 'metro' })
+    expect(await seen[0]?.json()).toMatchObject({
+      transitPreferences: { allowedTravelModes: ['SUBWAY'] },
+    })
+  })
+
+  it('lets Google use any vehicle by default', async () => {
+    const seen: Request[] = []
+    await provider(transfer, seen).plan(request)
+    const body = (await seen[0]?.json()) as { transitPreferences: Record<string, unknown> }
+    expect(body.transitPreferences['allowedTravelModes']).toBeUndefined()
   })
 })

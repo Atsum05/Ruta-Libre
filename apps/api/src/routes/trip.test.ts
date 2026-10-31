@@ -147,25 +147,27 @@ describe('POST /v1/plan', () => {
     devices.set(DeviceId('HE-0f6a35'), 'out-of-service')
     const metroOnly = { routes: [transfer.routes[0]] }
     const { requests, provider } = recording({
-      plan: (r) => google(r.busOnly ? {} : metroOnly).plan(r),
+      plan: (r) => google(r.travel === 'bus' ? {} : metroOnly).plan(r),
     })
     const out = PlanResponseSchema.parse(
       (await plan(await app({ routing: provider, statusStore: await store(devices) }))).body,
     )
-    expect(requests.map((r) => r.busOnly)).toEqual([false, true])
+    expect(requests.map((r) => r.travel)).toEqual(['any', 'metro', 'bus'])
     expect(out).toMatchObject({ outcome: 'no-accessible-route', rerouted: false })
   })
 
   it('does not ask for bus-only routes when a Metro route works', async () => {
     const { requests, provider } = recording(google())
     await plan(await app({ routing: provider }))
-    expect(requests.map((r) => r.busOnly)).toEqual([false])
+    expect(requests.map((r) => r.travel)).toEqual(['any', 'metro'])
   })
 
   // The status feed stopped on 2026-10-16 (ADR 0012): the answer must say it can't be sure.
   it('is uncertain, not ok, when the status data is stale', async () => {
     const metroOnly = { routes: [transfer.routes[0]] }
-    const routing = { plan: (r: RoutingRequest) => google(r.busOnly ? {} : metroOnly).plan(r) }
+    const routing = {
+      plan: (r: RoutingRequest) => google(r.travel === 'bus' ? {} : metroOnly).plan(r),
+    }
     const stale = await store(allWorking(), 12 * 24 * HOUR)
     const out = PlanResponseSchema.parse(
       (await plan(await app({ routing, statusStore: stale }))).body,
@@ -179,7 +181,7 @@ describe('POST /v1/plan', () => {
     devices.set(DeviceId('HE-0f6a35'), 'out-of-service')
     const routing = {
       plan: (r: RoutingRequest) =>
-        r.busOnly
+        r.travel === 'bus'
           ? Promise.reject(new UpstreamError('HTTP 500'))
           : google({ routes: [transfer.routes[0]] }).plan(r),
     }

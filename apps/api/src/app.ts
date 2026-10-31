@@ -64,7 +64,15 @@ export function createApp(deps: AppDeps) {
     })
   })
 
-  app.route('/', statusRoutes({ store: statusStore, maxAgeMs: config.status.maxAgeMs, now }))
+  app.route(
+    '/',
+    statusRoutes({
+      store: statusStore,
+      maxAgeMs: config.status.maxAgeMs,
+      demo: config.status.demo,
+      now,
+    }),
+  )
   app.route('/', openApiRoutes(pkg.version))
   app.route(
     '/',
@@ -76,6 +84,7 @@ export function createApp(deps: AppDeps) {
               statusStore,
               registry,
               maxAgeMs: config.status.maxAgeMs,
+              demo: config.status.demo,
               now,
               log,
             }

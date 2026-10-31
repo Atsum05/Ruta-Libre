@@ -19,7 +19,7 @@
     # Report-only first: Google Maps loads scripts, styles, images and workers from several
     # Google domains. Check the browser console for reports, then rename this header to
     # Content-Security-Policy to enforce it (docs/DEPLOY.md, step 6).
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://maps.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.ggpht.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.google.com https://*.gstatic.com; worker-src blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://maps.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.ggpht.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.google.com https://*.gstatic.com; worker-src blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 
 # Vite fingerprints asset file names, so they can be cached forever.
 [[headers]]

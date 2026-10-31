@@ -26,6 +26,8 @@ export const FIELD_MASK = [
   'routes.legs.steps.transitDetails.stopDetails.departureStop.location',
   'routes.legs.steps.transitDetails.stopDetails.arrivalStop.name',
   'routes.legs.steps.transitDetails.stopDetails.arrivalStop.location',
+  'routes.legs.steps.transitDetails.stopDetails.departureTime',
+  'routes.legs.steps.transitDetails.stopDetails.arrivalTime',
   'routes.legs.steps.transitDetails.transitLine.name',
   'routes.legs.steps.transitDetails.transitLine.nameShort',
   'routes.legs.steps.transitDetails.transitLine.color',
@@ -47,7 +49,13 @@ const StepSchema = z.object({
       headsign: z.string().optional(),
       stopCount: z.number().int().optional(),
       stopDetails: z
-        .object({ departureStop: StopSchema, arrivalStop: StopSchema })
+        .object({
+          departureStop: StopSchema,
+          arrivalStop: StopSchema,
+          // Timetable times, RFC 3339 (e.g. "2026-10-31T17:05:00Z").
+          departureTime: z.iso.datetime({ offset: true }),
+          arrivalTime: z.iso.datetime({ offset: true }),
+        })
         .partial()
         .optional(),
       transitLine: z
@@ -99,7 +107,13 @@ export class GoogleRoutesProvider implements RoutingProvider {
       languageCode: 'es-CL',
       regionCode: 'CL',
       ...(request.departAt && { departureTime: request.departAt }),
-      ...(request.busOnly && { transitPreferences: { allowedTravelModes: ['BUS'] } }),
+      transitPreferences: {
+        // Fewer metres on foot matter more than a few minutes for someone with reduced mobility.
+        routingPreference: 'LESS_WALKING',
+        ...(request.travel !== 'any' && {
+          allowedTravelModes: [request.travel === 'metro' ? 'SUBWAY' : 'BUS'],
+        }),
+      },
     }
     const json = await requestJson(
       ROUTES_URL,
@@ -224,6 +238,8 @@ function toRoute(durationSeconds: number, steps: readonly Step[]): DetailedRoute
       color,
       textColor: line.textColor ?? readableTextColor(color),
       stopCount: t.stopCount ?? null,
+      ...(t.stopDetails?.departureTime && { departAt: t.stopDetails.departureTime }),
+      ...(t.stopDetails?.arrivalTime && { arriveAt: t.stopDetails.arrivalTime }),
       path,
     })
   }

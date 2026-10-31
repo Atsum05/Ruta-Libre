@@ -12,7 +12,9 @@ import {
 } from './__fixtures__/network.ts'
 import { evaluateRoute } from './evaluate.ts'
 import { DeviceId } from './ids.ts'
+import type { Registry } from './registry.ts'
 import type { Leg } from './route.ts'
+import type { DeviceState } from './status.ts'
 
 // Universidad de Chile → Los Héroes on L1 heads west, towards San Pablo.
 const westbound = metro(S.uChile, S.losHeroes, 'San Pablo')
@@ -87,6 +89,96 @@ describe('evaluateRoute', () => {
       )
       expect(v.kind).toBe('warning')
       expect(v.findings[0]?.reason).toMatchObject({ code: 'elevator-out', platform: 'other' })
+    })
+  })
+
+  describe('backup elevators: only one that makes the same trip (ADR 0015)', () => {
+    const STREET = 'UC: boleteria <-> calle'
+    // Universidad de Chile with two street elevators into one ticket hall, and a third that
+    // starts from the same street but goes somewhere else.
+    const withTwins: Registry = {
+      ...registry,
+      stations: registry.stations.map((station) =>
+        station.id !== S.uChile
+          ? station
+          : {
+              ...station,
+              devices: [
+                ...station.devices.map((d) => (d.id === 'UC-ACC' ? { ...d, link: STREET } : d)),
+                {
+                  id: DeviceId('UC-ACC2'),
+                  kind: 'elevator',
+                  scope: { kind: 'station' },
+                  link: STREET,
+                },
+                {
+                  id: DeviceId('UC-ACC3'),
+                  kind: 'elevator',
+                  scope: { kind: 'station' },
+                  link: 'UC: calle <-> servicios',
+                },
+                {
+                  id: DeviceId('UC-ESC2'),
+                  kind: 'escalator',
+                  scope: { kind: 'station' },
+                  link: STREET,
+                },
+              ],
+            },
+      ),
+    }
+    const states = (extra: Record<string, DeviceState | 'missing'>) => {
+      const snap = snapshot(extra)
+      const devices = new Map(snap.devices)
+      for (const id of ['UC-ACC2', 'UC-ACC3', 'UC-ESC2']) {
+        const state = extra[id] ?? 'working'
+        if (state === 'missing') devices.delete(DeviceId(id))
+        else devices.set(DeviceId(id), state)
+      }
+      return { ...snap, devices }
+    }
+    const check = (extra: Record<string, DeviceState | 'missing'>) =>
+      evaluateRoute(route(westbound), states(extra), withTwins, NOW)
+
+    it('warns instead of blocking when a working twin makes the same trip, naming both', () => {
+      const v = check({ 'UC-ACC': 'out-of-service' })
+      expect(v.kind).toBe('warning')
+      expect(v.findings).toEqual([
+        {
+          effect: 'warning',
+          legIndex: 0,
+          reason: {
+            code: 'elevator-out-backup',
+            stationId: S.uChile,
+            deviceId: DeviceId('UC-ACC'),
+            backupDeviceId: DeviceId('UC-ACC2'),
+          },
+        },
+      ])
+    })
+
+    it('still blocks when the twin is out too', () => {
+      const v = check({ 'UC-ACC': 'out-of-service', 'UC-ACC2': 'out-of-service' })
+      expect(v.kind).toBe('blocked')
+    })
+
+    it('does not count a twin whose state is unknown', () => {
+      expect(check({ 'UC-ACC': 'out-of-service', 'UC-ACC2': 'missing' }).kind).toBe('blocked')
+    })
+
+    it('does not count an elevator to another place, or an escalator, as a backup', () => {
+      const v = check({ 'UC-ACC3': 'out-of-service' })
+      expect(v.kind).toBe('blocked') // UC-ACC3 has no twin; UC-ACC goes elsewhere
+      const onlyEscalator = check({ 'UC-ACC': 'out-of-service', 'UC-ACC2': 'out-of-service' })
+      expect(codes(onlyEscalator)).not.toContain('elevator-out-backup')
+    })
+
+    it('says nothing about an unreported elevator whose twin works', () => {
+      expect(check({ 'UC-ACC': 'missing' }).kind).toBe('ok')
+    })
+
+    it('keeps the old rules for an elevator without a link', () => {
+      expect(check({ 'UC-L1-SP': 'out-of-service' }).kind).toBe('blocked')
     })
   })
 
