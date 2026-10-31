@@ -1,11 +1,12 @@
 import type { PlanRequest } from '@rutalibre/contract'
 import { useMutation } from '@tanstack/react-query'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import type { WebConfig } from './config.ts'
 import { DebugFooter } from './features/debug/DebugFooter.tsx'
 import { PlanResult } from './features/itinerary/PlanResult.tsx'
 import { Legend } from './features/map/Legend.tsx'
 import { SearchForm } from './features/search/SearchForm.tsx'
+import { TripSummary } from './features/search/TripSummary.tsx'
 import { StatusBanner } from './features/status/StatusBanner.tsx'
 import { useStatus } from './features/status/useStatus.ts'
 import { api } from './shared/api.ts'
@@ -16,6 +17,17 @@ import { Wordmark } from './shared/Wordmark.tsx'
 const MapCanvas = lazy(() => import('./features/map/MapCanvas.tsx'))
 
 /**
+ * On a phone the sheet covers the map once you scroll down to a result. Scroll back up so the
+ * route on the map and the result below it are seen together. Desktop shows both side by side.
+ */
+function showMapOnPhone() {
+  if (typeof window.matchMedia !== 'function' || !window.matchMedia('(max-width: 959px)').matches)
+    return
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+}
+
+/**
  * Mobile: the map stays put at the top while the panel slides up over it as you scroll, like a
  * bottom sheet (pure CSS, no gesture code). Desktop: a full-screen map with the panel floating
  * on the left.
@@ -23,7 +35,15 @@ const MapCanvas = lazy(() => import('./features/map/MapCanvas.tsx'))
 export function App({ config }: { config: WebConfig }) {
   const { t, locale, setLocale } = useI18n()
   const status = useStatus()
-  const plan = useMutation({ mutationFn: (request: PlanRequest) => api.plan(request) })
+  const [trip, setTrip] = useState<{ from: string; to: string } | null>(null)
+  const [editing, setEditing] = useState(true)
+  const plan = useMutation({
+    mutationFn: (request: PlanRequest) => api.plan(request),
+    onSuccess: () => {
+      setEditing(false)
+      showMapOnPhone()
+    },
+  })
 
   return (
     <div className="app">
@@ -56,10 +76,19 @@ export function App({ config }: { config: WebConfig }) {
         <p className="sheet__tagline">{t('app.tagline')}</p>
 
         <StatusBanner status={status.data} failed={status.isError} />
-        <SearchForm
-          busy={plan.isPending}
-          onSearch={(origin, destination) => plan.mutate({ origin, destination })}
-        />
+        {trip && !editing && (
+          <TripSummary from={trip.from} to={trip.to} onEdit={() => setEditing(true)} />
+        )}
+        {/* Hidden, not removed, while showing a result: "Change" reopens it with the same places. */}
+        <div hidden={!editing}>
+          <SearchForm
+            busy={plan.isPending}
+            onSearch={(origin, destination) => {
+              setTrip({ from: origin.label, to: destination.label })
+              plan.mutate({ origin: origin.waypoint, destination: destination.waypoint })
+            }}
+          />
+        </div>
         {plan.isError && (
           <p className="notice notice--alert" role="alert">
             <AlertIcon className="notice__icon" />

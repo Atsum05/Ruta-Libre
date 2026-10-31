@@ -43,7 +43,7 @@ export function PlanResult({ plan }: { plan: PlanResponse }) {
         )}
         {t(key)}
       </p>
-      {best && <RouteCard route={best} headingId={`${baseId}-best`} />}
+      {best && <RouteCard route={best} headingId={`${baseId}-best`} demo={plan.status.demo} />}
       {others.length > 0 && (
         <details className="other-routes">
           <summary>
@@ -56,6 +56,7 @@ export function PlanResult({ plan }: { plan: PlanResponse }) {
               key={i}
               route={route}
               headingId={`${baseId}-other-${i}`}
+              demo={plan.status.demo}
             />
           ))}
         </details>

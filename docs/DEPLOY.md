@@ -63,6 +63,14 @@ Google Cloud → Credentials → the browser key → **Websites**, add:
 
 Until this is done the key works from any website, so do it right after the first deploy.
 
+## Optional: demo mode
+
+While the status feed is frozen, every Metro route says "No podemos confirmarlo". To show how the
+app works with real elevator data, turn on demo mode ([ADR 0014](adr/0014-metro-first-and-demo-mode.md)):
+Render → `rutalibre-api` → **Environment** → add `STATUS_DEMO` = `true` → save (the API restarts).
+The site then shows a yellow "Modo demo" banner with the data's date, and a "Demo" label on every
+verdict. Set it back to `false`, or delete it, before real people rely on the site.
+
 ## 4. How deploys work from now on
 
 | Event           | Web (Netlify)                                | API (Render)                                              |

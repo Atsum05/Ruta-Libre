@@ -37,6 +37,7 @@ describe('GET /v1/status', () => {
       fetchedAt: '2026-10-28T11:59:00.000Z',
       lastError: null,
       devices: { 'HE-0f6a35': 'out-of-service' },
+      demo: false,
     })
   })
 
@@ -67,5 +68,27 @@ describe('GET /v1/status', () => {
       ageSeconds: null,
       devices: {},
     })
+  })
+})
+
+describe('GET /v1/status in demo mode (ADR 0014)', () => {
+  it('reports two-week-old data as usable, and flags the demo', async () => {
+    const store = new InMemorySnapshotStore()
+    await store.set(good(14 * 24 * HOUR))
+    const demoConfig = parseConfig({ STATUS_DEMO: 'true' })
+    const res = await createApp({ config: demoConfig, statusStore: store, now: () => NOW }).request(
+      '/v1/status',
+    )
+    expect(await res.json()).toMatchObject({ health: 'ok', demo: true, ageSeconds: 14 * 24 * 3600 })
+  })
+
+  it('still reports a failing source as degraded', async () => {
+    const store = new InMemorySnapshotStore()
+    await store.set({ ...good(HOUR), lastError: 'HTTP 503', failingSince: NOW })
+    const demoConfig = parseConfig({ STATUS_DEMO: 'true' })
+    const res = await createApp({ config: demoConfig, statusStore: store, now: () => NOW }).request(
+      '/v1/status',
+    )
+    expect(await res.json()).toMatchObject({ health: 'degraded', demo: true })
   })
 })

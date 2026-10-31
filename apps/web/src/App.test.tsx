@@ -107,3 +107,49 @@ describe('App', () => {
     expect(screen.getByText('Línea 1 dirección San Pablo')).toBeTruthy()
   })
 })
+
+describe('App after a result', () => {
+  it('folds the search into a one-line summary so the result sits under the map', async () => {
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan(),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await screen.findByText('Ruta accesible encontrada.')
+
+    const summary = screen.getByRole('region', { name: 'Tu viaje' })
+    expect(summary.textContent).toContain('Universidad de Chile')
+    expect(screen.queryByRole('button', { name: 'Buscar ruta accesible' })).toBeNull()
+
+    // "Cambiar" reopens the form with the same places.
+    await user.click(screen.getByRole('button', { name: 'Cambiar' }))
+    expect(screen.getByRole('combobox', { name: 'Desde' })).toHaveProperty(
+      'value',
+      'Universidad de Chile',
+    )
+    expect(screen.queryByRole('region', { name: 'Tu viaje' })).toBeNull()
+  })
+
+  it('scrolls back to the map on a phone, so the route is in view', async () => {
+    const scrollTo = vi.fn()
+    vi.stubGlobal('scrollTo', scrollTo)
+    vi.stubGlobal('matchMedia', (q: string) => ({ matches: q === '(max-width: 959px)' }))
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan(),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    await screen.findByText('Ruta accesible encontrada.')
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
+  })
+})

@@ -20,6 +20,8 @@ export interface PlanDeps {
   readonly statusStore: Pick<SnapshotStore, 'get'>
   readonly registry: Registry
   readonly maxAgeMs: number
+  /** Demo mode (ADR 0014): the last snapshot counts as current, however old. Labelled in the UI. */
+  readonly demo: boolean
   readonly now: () => number
   readonly log: Logger
 }
@@ -29,7 +31,8 @@ export interface PlanDeps {
  * is ok or warning, bus-only routes too; then ranked into the fallback order.
  */
 export async function planTrip(deps: PlanDeps, request: PlanRequest): Promise<PlanResponse> {
-  const { routing, statusStore, registry, maxAgeMs, now, log } = deps
+  const { routing, statusStore, registry, now, log, demo } = deps
+  const maxAgeMs = demo ? Number.POSITIVE_INFINITY : deps.maxAgeMs
   const stored = await statusStore.get()
   const t = now()
   const evaluate = (routes: readonly DetailedRoute[], source: (i: number) => CandidateSource) =>
@@ -43,16 +46,33 @@ export async function planTrip(deps: PlanDeps, request: PlanRequest): Promise<Pl
 
   const base = { origin: request.origin, destination: request.destination }
   const when = request.departAt ? { departAt: request.departAt } : {}
-  const main = await routing.plan({ ...base, ...when, busOnly: false })
-  let candidates = evaluate(main, (i) => (i === 0 ? 'primary' : 'alternative'))
+  // The provider's own choice, plus Metro-only options so they're always considered (ADR 0014).
+  // Metro-only is a bonus: if that request fails, the plan goes on without it.
+  const [main, metroOnly] = await Promise.all([
+    routing.plan({ ...base, ...when, travel: 'any' }),
+    routing.plan({ ...base, ...when, travel: 'metro' }).catch((err: unknown) => {
+      log.warn('metro-only request failed', {
+        error: err instanceof Error ? err.message : String(err),
+      })
+      return []
+    }),
+  ])
+  const seen = new Set(main.map(signature))
+  const extraMetro = metroOnly.filter(
+    (r) => !seen.has(signature(r)) && Boolean(seen.add(signature(r))),
+  )
+  let candidates = [
+    ...evaluate(main, (i) => (i === 0 ? 'primary' : 'alternative')),
+    ...evaluate(extraMetro, () => 'alternative'),
+  ]
 
   if (!hasAccessibleRoute(candidates)) {
     try {
-      const busOnly = await routing.plan({ ...base, ...when, busOnly: true })
+      const busOnly = await routing.plan({ ...base, ...when, travel: 'bus' })
       candidates = [...candidates, ...evaluate(busOnly, () => 'bus-only')]
     } catch (err) {
       // The Metro answer still stands; only the last fallback is missing.
-      if (main.length === 0) throw err
+      if (main.length + extraMetro.length === 0) throw err
       log.warn('bus-only fallback failed', {
         error: err instanceof Error ? err.message : String(err),
       })
@@ -68,8 +88,18 @@ export async function planTrip(deps: PlanDeps, request: PlanRequest): Promise<Pl
     status: {
       health: statusHealth(stored, t, maxAgeMs),
       observedAt: stored.snapshot ? new Date(stored.snapshot.observedAt).toISOString() : null,
+      demo,
     },
   }
+}
+
+/** Two routes are the same trip if they ride the same lines between the same stops. */
+function signature(route: DetailedRoute): string {
+  return route.legs
+    .map((leg) =>
+      leg.mode === 'walk' ? 'walk' : `${leg.mode}:${leg.line}:${leg.from.name}>${leg.to.name}`,
+    )
+    .join('|')
 }
 
 function toRouteView(

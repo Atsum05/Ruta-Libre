@@ -97,3 +97,44 @@ describe('hasAccessibleRoute', () => {
     ).toBe(false)
   })
 })
+
+describe('Metro first (ADR 0014)', () => {
+  const busRoute = (kind: VerdictKind, source: Candidate['source']): Candidate => ({
+    route: route(bus(`b-${n++}`)),
+    source,
+    verdict: { kind, findings: [] },
+  })
+
+  it('suggests a working Metro route before an equally accessible bus route', () => {
+    const busPrimary = busRoute('ok', 'primary')
+    const metro = candidate('ok', 'alternative')
+    const plan = chooseRoute([busPrimary, metro])
+    expect(plan.best).toBe(metro)
+    // Not an accessibility reroute: the bus route was fine too.
+    expect(plan).toMatchObject({ outcome: 'accessible', rerouted: false })
+  })
+
+  it('never puts a blocked or unknown Metro route above an accessible bus route', () => {
+    const busOk = busRoute('ok', 'alternative')
+    expect(chooseRoute([candidate('unknown', 'primary'), busOk]).best).toBe(busOk)
+    expect(chooseRoute([candidate('blocked', 'primary'), busOk]).best).toBe(busOk)
+  })
+
+  it('counts a warning Metro route as accessible, ahead of a clean bus route', () => {
+    const metroWarning = candidate('warning', 'alternative')
+    expect(chooseRoute([busRoute('ok', 'primary'), metroWarning]).best).toBe(metroWarning)
+  })
+
+  it('says rerouted only when the provider’s first choice had an accessibility problem', () => {
+    expect(
+      chooseRoute([candidate('warning', 'primary'), candidate('ok', 'alternative')]).rerouted,
+    ).toBe(false)
+    expect(
+      chooseRoute([candidate('unknown', 'primary'), candidate('ok', 'alternative')]).rerouted,
+    ).toBe(true)
+  })
+
+  it('treats a plan without a primary route as not rerouted', () => {
+    expect(chooseRoute([busRoute('ok', 'bus-only')]).rerouted).toBe(false)
+  })
+})

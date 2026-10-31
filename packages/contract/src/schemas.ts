@@ -79,6 +79,8 @@ export const StatusResponseSchema = z.object({
   fetchedAt: z.iso.datetime().nullable(),
   lastError: z.string().nullable(),
   devices: z.record(z.string(), DeviceStateSchema),
+  /** Demo mode (ADR 0014): the last known statuses are shown as if current. Say so in the UI. */
+  demo: z.boolean(),
 })
 
 // --- POST /v1/plan ------------------------------------------------------------------------------
@@ -136,7 +138,11 @@ export const PlanResponseSchema = z.object({
   rerouted: z.boolean(),
   /** Best first. */
   routes: z.array(RouteViewSchema),
-  status: z.object({ health: StatusHealthSchema, observedAt: z.iso.datetime().nullable() }),
+  status: z.object({
+    health: StatusHealthSchema,
+    observedAt: z.iso.datetime().nullable(),
+    demo: z.boolean(),
+  }),
 })
 
 // --- GET /v1/places -----------------------------------------------------------------------------

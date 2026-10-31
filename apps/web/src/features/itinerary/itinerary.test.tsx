@@ -216,3 +216,30 @@ describe('RouteCard', () => {
     expect(screen.getByText('Solo micro')).toBeTruthy()
   })
 })
+
+describe('PlanResult in demo mode (ADR 0014)', () => {
+  it('labels every verdict as demo data', () => {
+    const demoPlan = plan({
+      routes: [ROUTE_OK, ROUTE_BLOCKED],
+      status: { health: 'ok', observedAt: '2026-10-16T23:21:16.000Z', demo: true },
+    })
+    renderApp(<PlanResult plan={demoPlan} />)
+    expect(screen.getAllByText('Demo')).toHaveLength(2)
+  })
+
+  it('shows no demo label for live data', () => {
+    renderApp(<PlanResult plan={plan()} />)
+    expect(screen.queryByText('Demo')).toBeNull()
+  })
+})
+
+describe('Steps grammar', () => {
+  it('says "1 parada", not "1 paradas"', () => {
+    const one = {
+      ...(ROUTE_BLOCKED.legs[0] as Exclude<RouteView['legs'][number], { mode: 'walk' }>),
+      stopCount: 1,
+    }
+    renderApp(<Steps legs={[one]} />)
+    expect(screen.getByText('1 parada')).toBeTruthy()
+  })
+})

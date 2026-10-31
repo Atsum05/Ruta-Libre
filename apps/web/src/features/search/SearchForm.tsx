@@ -1,4 +1,3 @@
-import type { Waypoint } from '@rutalibre/contract'
 import { type FormEvent, useEffect, useState } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
 import { LocateIcon, SwapIcon } from '../../shared/icons.tsx'
@@ -8,7 +7,7 @@ import type { Selection } from './selection.ts'
 import { useLocation } from './useLocation.ts'
 
 interface SearchFormProps {
-  onSearch: (origin: Waypoint, destination: Waypoint) => void
+  onSearch: (origin: Selection, destination: Selection) => void
   busy: boolean
   geolocation?: Geolocation
 }
@@ -38,7 +37,7 @@ export function SearchForm({ onSearch, busy, geolocation }: SearchFormProps) {
       return
     }
     setIncomplete(false)
-    onSearch(from.waypoint, to.waypoint)
+    onSearch(from, to)
   }
 
   const locationMessage =

@@ -46,3 +46,32 @@ describe('StatusBanner', () => {
     expect(screen.getByText('Cargando estado de ascensores…')).toBeTruthy()
   })
 })
+
+describe('StatusBanner in demo mode (ADR 0014)', () => {
+  const demo = {
+    ...STATUS_OK,
+    demo: true,
+    observedAt: '2026-10-16T23:21:16.000Z',
+    ageSeconds: 14 * 86_400,
+  }
+
+  it('says plainly that the data is from a past date, shown as if current', () => {
+    renderApp(<StatusBanner status={demo} failed={false} />)
+    expect(screen.getByRole('note').textContent).toBe(
+      'Modo demo: usamos el estado de ascensores del 16 de octubre como si fuera de hoy, para mostrar cómo funciona RutaLibre.',
+    )
+    expect(screen.queryByRole('alert')).toBeNull()
+  })
+
+  it('works in English', () => {
+    renderApp(<StatusBanner status={demo} failed={false} />, 'en')
+    expect(screen.getByRole('note').textContent).toContain('elevator status from 16 October')
+  })
+
+  it('still alerts when there is no data at all', () => {
+    renderApp(
+      <StatusBanner status={{ ...demo, health: 'unavailable', observedAt: null }} failed={false} />,
+    )
+    expect(screen.getByRole('alert')).toBeTruthy()
+  })
+})

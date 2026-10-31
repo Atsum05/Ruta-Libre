@@ -60,6 +60,7 @@ export const STATUS_OK: StatusResponse = {
   fetchedAt: '2026-10-28T12:09:00.000Z',
   lastError: null,
   devices: {},
+  demo: false,
 }
 
 const L1: LegView = {
@@ -109,6 +110,6 @@ export const plan = (overrides: Partial<PlanResponse> = {}): PlanResponse => ({
   outcome: 'accessible',
   rerouted: false,
   routes: [ROUTE_OK],
-  status: { health: 'ok', observedAt: '2026-10-28T12:00:00.000Z' },
+  status: { health: 'ok', observedAt: '2026-10-28T12:00:00.000Z', demo: false },
   ...overrides,
 })

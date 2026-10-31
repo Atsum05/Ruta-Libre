@@ -1,5 +1,5 @@
-import type { StatusResponse } from '@rutalibre/contract'
-import type { Registry } from '@rutalibre/core'
+import type { RouteView, StatusResponse } from '@rutalibre/contract'
+import { distanceMeters, type Registry } from '@rutalibre/core'
 
 export type MarkerStatus = 'ok' | 'warning' | 'blocked' | 'unknown'
 
@@ -45,4 +45,24 @@ export function stationMarkers(
     }
     return { id: s.id, name: s.name, lat: s.location.lat, lng: s.location.lng, status: result }
   })
+}
+
+/** How far a route's stop may be from a station marker and still count as that station. */
+const ON_ROUTE_M = 200
+
+/**
+ * The stations a route boards or leaves at, so the map can keep them prominent and fade the
+ * rest. Matched by position; transfers count once per line.
+ */
+export function stationsOnRoute(
+  route: RouteView | undefined,
+  markers: readonly StationMarker[],
+): Set<string> | null {
+  if (!route) return null
+  const stops = route.legs.flatMap((leg) => (leg.mode === 'metro' ? [leg.from, leg.to] : []))
+  const ids = new Set<string>()
+  for (const m of markers) {
+    if (stops.some((s) => distanceMeters(s, m) <= ON_ROUTE_M)) ids.add(m.id)
+  }
+  return ids
 }

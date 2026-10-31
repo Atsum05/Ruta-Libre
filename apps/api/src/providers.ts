@@ -33,8 +33,11 @@ export interface RoutingRequest {
   readonly origin: Waypoint
   readonly destination: Waypoint
   readonly departAt?: string
-  /** The last fallback before "no accessible route": buses only. */
-  readonly busOnly: boolean
+  /**
+   * Which vehicles the provider may use: any; Metro only (asked alongside "any", so Metro
+   * options are always on the table, ADR 0014); or buses only, the last fallback.
+   */
+  readonly travel: 'any' | 'metro' | 'bus'
 }
 
 export interface RoutingProvider {

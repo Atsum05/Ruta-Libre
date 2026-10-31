@@ -99,7 +99,13 @@ export class GoogleRoutesProvider implements RoutingProvider {
       languageCode: 'es-CL',
       regionCode: 'CL',
       ...(request.departAt && { departureTime: request.departAt }),
-      ...(request.busOnly && { transitPreferences: { allowedTravelModes: ['BUS'] } }),
+      transitPreferences: {
+        // Fewer metres on foot matter more than a few minutes for someone with reduced mobility.
+        routingPreference: 'LESS_WALKING',
+        ...(request.travel !== 'any' && {
+          allowedTravelModes: [request.travel === 'metro' ? 'SUBWAY' : 'BUS'],
+        }),
+      },
     }
     const json = await requestJson(
       ROUTES_URL,

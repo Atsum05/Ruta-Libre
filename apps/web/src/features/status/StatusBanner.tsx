@@ -1,7 +1,7 @@
 import type { StatusResponse } from '@rutalibre/contract'
 import { formatAge } from '../../shared/format.ts'
 import { useI18n } from '../../shared/i18n/index.tsx'
-import { AlertIcon } from '../../shared/icons.tsx'
+import { AlertIcon, ElevatorIcon } from '../../shared/icons.tsx'
 
 interface StatusBannerProps {
   status: StatusResponse | undefined
@@ -14,7 +14,7 @@ interface StatusBannerProps {
  * fresh data, no route can be confirmed (ADR 0005, 0012).
  */
 export function StatusBanner({ status, failed }: StatusBannerProps) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
 
   if (failed || status?.health === 'unavailable') {
     return (
@@ -26,6 +26,24 @@ export function StatusBanner({ status, failed }: StatusBannerProps) {
   }
   if (!status) {
     return <p className="status-banner">{t('status.loading')}</p>
+  }
+
+  // Demo mode (ADR 0014): say plainly that the data is old and shown as if current.
+  if (status.demo && status.observedAt) {
+    const date = new Date(status.observedAt).toLocaleDateString(
+      locale === 'es' ? 'es-CL' : 'en-GB',
+      {
+        day: 'numeric',
+        month: 'long',
+        timeZone: 'America/Santiago',
+      },
+    )
+    return (
+      <p className="status-banner status-banner--demo" role="note">
+        <ElevatorIcon size={18} className="status-banner__icon" />
+        {t('status.demo', { date })}
+      </p>
+    )
   }
 
   const age = formatAge(status.ageSeconds ?? 0, t)

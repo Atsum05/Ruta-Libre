@@ -6,6 +6,8 @@ export const es = {
   'app.tagline': 'Rutas en Metro y micro según el estado real de ascensores y escaleras.',
 
   'search.title': '¿A dónde vas?',
+  'search.summary': 'Tu viaje',
+  'search.edit': 'Cambiar',
   'search.origin': 'Desde',
   'search.destination': 'Hasta',
   'search.placeholder.origin': 'Calle, lugar o estación',
@@ -56,6 +58,7 @@ export const es = {
   'route.option': 'Opción {n}',
   'route.otherOptions': 'Otras opciones',
   'route.source.bus-only': 'Solo micro',
+  'route.demo': 'Demo',
   'route.showOnMap': 'Ver en el mapa',
 
   'leg.walk': 'Caminar ~{minutes} min a tu ritmo',
@@ -64,6 +67,7 @@ export const es = {
   'leg.bus': 'Micro {line} hacia {headsign}',
   'leg.busNoDirection': 'Micro {line}',
   'leg.rail': '{line}',
+  'leg.stop': '1 parada',
   'leg.stops': '{count} paradas',
   'leg.express': 'Ruta {color}',
   'leg.express.roja': 'Roja',
@@ -90,6 +94,8 @@ export const es = {
   'status.degraded': 'No pudimos actualizar el estado de ascensores. Mostramos datos de {age}.',
   'status.unavailable': 'No hay datos del estado de ascensores. No podemos confirmar rutas.',
   'status.loading': 'Cargando estado de ascensores…',
+  'status.demo':
+    'Modo demo: usamos el estado de ascensores del {date} como si fuera de hoy, para mostrar cómo funciona RutaLibre.',
   'status.ago': 'hace {age}',
 
   'age.seconds': '{n} s',

@@ -5,6 +5,8 @@ export const en: Record<MessageKey, string> = {
   'app.tagline': 'Metro and bus routes based on the live status of elevators and escalators.',
 
   'search.title': 'Where to?',
+  'search.summary': 'Your trip',
+  'search.edit': 'Change',
   'search.origin': 'From',
   'search.destination': 'To',
   'search.placeholder.origin': 'Street, place or station',
@@ -56,6 +58,7 @@ export const en: Record<MessageKey, string> = {
   'route.option': 'Option {n}',
   'route.otherOptions': 'Other options',
   'route.source.bus-only': 'Bus only',
+  'route.demo': 'Demo',
   'route.showOnMap': 'Show on map',
 
   'leg.walk': 'Walk ~{minutes} min at your pace',
@@ -64,6 +67,7 @@ export const en: Record<MessageKey, string> = {
   'leg.bus': 'Bus {line} towards {headsign}',
   'leg.busNoDirection': 'Bus {line}',
   'leg.rail': '{line}',
+  'leg.stop': '1 stop',
   'leg.stops': '{count} stops',
   'leg.express': '{color} route',
   'leg.express.roja': 'Red',
@@ -88,6 +92,8 @@ export const en: Record<MessageKey, string> = {
   'status.degraded': "We couldn't refresh elevator status. Showing data from {age}.",
   'status.unavailable': "No elevator status data. We can't confirm routes.",
   'status.loading': 'Loading elevator status…',
+  'status.demo':
+    'Demo mode: elevator status from {date}, shown as if it were today, to show how RutaLibre works.',
   'status.ago': '{age} ago',
 
   'age.seconds': '{n} s',

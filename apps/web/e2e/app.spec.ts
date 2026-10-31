@@ -163,7 +163,9 @@ test('plans a trip from dictation', async ({ page }) => {
   await expect(
     page.getByRole('status').filter({ hasText: 'Ruta accesible encontrada.' }),
   ).toBeVisible()
-  await expect(page.getByRole('combobox', { name: 'Hasta' })).toHaveValue('Toesca')
+  // The form folds into a summary once there's a result; it shows what was understood.
+  await expect(page.getByRole('region', { name: 'Tu viaje' })).toContainText('Universidad de Chile')
+  await expect(page.getByRole('region', { name: 'Tu viaje' })).toContainText('Toesca')
 })
 
 test('explains why dictation failed instead of doing nothing', async ({ page }) => {
@@ -174,4 +176,18 @@ test('explains why dictation failed instead of doing nothing', async ({ page }) 
   await expect(
     page.getByRole('alert').filter({ hasText: 'permite el uso del micrófono' }),
   ).toBeVisible()
+})
+
+test('labels demo mode clearly, on the status and on each route', async ({ page }) => {
+  await mockApi(page, { status: STATUS.demo, plan: PLANS.demo })
+  await page.goto('/')
+  await expect(page.getByRole('note').filter({ hasText: 'Modo demo' })).toContainText(
+    '16 de octubre',
+  )
+  await planTrip(page)
+  await expect(page.getByRole('article').getByText('Demo', { exact: true })).toBeVisible()
+  await page.screenshot({
+    path: `test-results/demo-${test.info().project.name}.png`,
+    fullPage: true,
+  })
 })

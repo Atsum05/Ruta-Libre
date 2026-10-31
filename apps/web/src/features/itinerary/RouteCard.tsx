@@ -11,10 +11,12 @@ const FINDING_ICON = { blocked: BlockedIcon, unknown: QuestionIcon, warning: Ale
 interface RouteCardProps {
   route: RouteView
   headingId: string
+  /** The verdict comes from demo data (ADR 0014): label it next to the verdict. */
+  demo?: boolean
 }
 
 /** One route: time at the rider's pace and the verdict first, then why, then the steps. */
-export function RouteCard({ route, headingId }: RouteCardProps) {
+export function RouteCard({ route, headingId, demo = false }: RouteCardProps) {
   const { t } = useI18n()
   const findings = orderFindings(route.verdict.findings, t)
 
@@ -27,7 +29,10 @@ export function RouteCard({ route, headingId }: RouteCardProps) {
           </span>{' '}
           <span className="route__pace">{t('route.pace')}</span>
         </h3>
-        <VerdictBadge kind={route.verdict.kind} />
+        <span className="route__verdict">
+          {demo && <span className="tag tag--demo">{t('route.demo')}</span>}
+          <VerdictBadge kind={route.verdict.kind} />
+        </span>
       </header>
       {route.source === 'bus-only' && <span className="tag">{t('route.source.bus-only')}</span>}
       <RouteStrip legs={route.legs} />

@@ -5,7 +5,7 @@ import type { LegView, PlanResponse, RouteView, StatusResponse } from '@rutalibr
 // Responses in the contract's shape. The API's own integration tests prove the real API
 // produces these shapes; here we prove the UI handles each one.
 
-export const STATUS: Record<'ok' | 'stale', StatusResponse> = {
+export const STATUS: Record<'ok' | 'stale' | 'demo', StatusResponse> = {
   ok: {
     health: 'ok',
     observedAt: '2026-10-28T12:00:00.000Z',
@@ -14,6 +14,7 @@ export const STATUS: Record<'ok' | 'stale', StatusResponse> = {
     fetchedAt: '2026-10-28T12:09:00.000Z',
     lastError: null,
     devices: {},
+    demo: false,
   },
   stale: {
     health: 'stale',
@@ -23,6 +24,18 @@ export const STATUS: Record<'ok' | 'stale', StatusResponse> = {
     fetchedAt: '2026-10-28T12:09:00.000Z',
     lastError: null,
     devices: {},
+    demo: false,
+  },
+  // Demo mode (ADR 0014): two-week-old data, reported as usable and flagged as a demo.
+  demo: {
+    health: 'ok',
+    observedAt: '2026-10-16T23:21:16.000Z',
+    ageSeconds: 14 * 86_400,
+    maxAgeSeconds: 46_800,
+    fetchedAt: '2026-10-28T12:09:00.000Z',
+    lastError: null,
+    devices: {},
+    demo: true,
   },
 }
 
@@ -94,9 +107,9 @@ const BUS_ROUTE: RouteView = {
   ],
 }
 
-const status = { health: 'ok', observedAt: '2026-10-28T12:00:00.000Z' } as const
+const status = { health: 'ok', observedAt: '2026-10-28T12:00:00.000Z', demo: false } as const
 
-export const PLANS: Record<'clean' | 'rerouted' | 'noAlternative', PlanResponse> = {
+export const PLANS: Record<'clean' | 'rerouted' | 'noAlternative' | 'demo', PlanResponse> = {
   clean: { outcome: 'accessible', rerouted: false, routes: [OK_ROUTE], status },
   rerouted: { outcome: 'accessible', rerouted: true, routes: [BUS_ROUTE, BLOCKED_ROUTE], status },
   noAlternative: {
@@ -104,6 +117,12 @@ export const PLANS: Record<'clean' | 'rerouted' | 'noAlternative', PlanResponse>
     rerouted: false,
     routes: [BLOCKED_ROUTE],
     status,
+  },
+  demo: {
+    outcome: 'accessible',
+    rerouted: false,
+    routes: [OK_ROUTE],
+    status: { ...status, demo: true },
   },
 }
 

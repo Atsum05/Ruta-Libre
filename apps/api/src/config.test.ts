@@ -49,6 +49,7 @@ describe('status settings', () => {
       pollMs: 120_000,
       timeoutMs: 10_000,
       maxAgeMs: 13 * 60 * 60_000,
+      demo: false,
     })
   })
 
@@ -93,5 +94,16 @@ describe('planning settings', () => {
 
   it('rejects a CORS origin that is not a URL', () => {
     expect(() => parseConfig({ CORS_ORIGINS: 'rutalibre.cl' })).toThrow(/CORS_ORIGINS/)
+  })
+})
+
+describe('demo mode (ADR 0014)', () => {
+  it('is off unless asked for', () => {
+    expect(parseConfig({}).status.demo).toBe(false)
+    expect(parseConfig({ STATUS_DEMO: 'true' }).status.demo).toBe(true)
+  })
+
+  it('rejects a value that is not a clear yes or no', () => {
+    expect(() => parseConfig({ STATUS_DEMO: 'maybe' })).toThrow(/STATUS_DEMO/)
   })
 })

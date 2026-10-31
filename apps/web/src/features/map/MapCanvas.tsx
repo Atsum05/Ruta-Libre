@@ -4,7 +4,7 @@ import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps'
 import { useMemo, useState } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
 import { MetroLines, RoutePath, StationDots } from './overlays.tsx'
-import { stationMarkers } from './stationStatus.ts'
+import { stationMarkers, stationsOnRoute } from './stationStatus.ts'
 
 // Plaza de Armas, roughly the centre of the Metro network.
 const SANTIAGO = { lat: -33.4378, lng: -70.6505 }
@@ -37,6 +37,8 @@ export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasPro
   const { t, locale } = useI18n()
   const [failed, setFailed] = useState(false)
   const markers = useMemo(() => stationMarkers(loadRegistry(), status), [status])
+  // With a route on screen, everything else steps back (focus mode).
+  const focus = useMemo(() => stationsOnRoute(route, markers), [route, markers])
 
   if (failed) {
     return (
@@ -65,8 +67,8 @@ export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasPro
         clickableIcons={false}
         {...(mapId ? { mapId } : { styles: QUIET_STYLE })}
       >
-        <MetroLines />
-        <StationDots markers={markers} />
+        <MetroLines dimmed={route !== undefined} />
+        <StationDots markers={markers} focus={focus} />
         <RoutePath route={route} />
       </GoogleMap>
     </APIProvider>

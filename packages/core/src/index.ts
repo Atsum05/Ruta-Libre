@@ -4,6 +4,7 @@ export {
   chooseRoute,
   hasAccessibleRoute,
   type Plan,
+  usesMetro,
 } from './choose.ts'
 export { DEFAULT_MAX_SNAPSHOT_AGE_MS, type EvaluateOptions, evaluateRoute } from './evaluate.ts'
 export { distanceMeters, type LatLng } from './geo.ts'

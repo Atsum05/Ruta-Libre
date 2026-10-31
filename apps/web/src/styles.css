@@ -262,6 +262,14 @@ button:disabled {
   font-weight: 700;
 }
 
+/* Demo mode: clearly not live, in the signal colour rather than an alarm. */
+.status-banner--demo {
+  border: 2px dashed var(--ink);
+  background: var(--signal);
+  color: var(--signal-ink);
+  font-weight: 700;
+}
+
 .status-banner__icon {
   flex-shrink: 0;
   margin-top: 1px;
@@ -593,6 +601,40 @@ input::placeholder {
   font-size: 0.88rem;
 }
 
+/* The search folded into one line while a result is shown. */
+.trip-summary {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 0 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.trip-summary .trip__rail {
+  padding: 6px 0;
+}
+
+.trip-summary__places {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.trip-summary__place {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trip-summary__edit {
+  align-self: center;
+}
+
 /* ─── Outcome notices ───────────────────────────────────────────────────────────────────── */
 
 .notice {
@@ -707,6 +749,19 @@ input::placeholder {
   color: var(--unknown-fg);
   outline: 2px dashed currentColor;
   outline-offset: -2px;
+}
+
+.route__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag--demo {
+  margin-top: 0;
+  border: 1.5px dashed var(--ink);
+  background: var(--signal);
+  color: var(--signal-ink);
 }
 
 .tag {

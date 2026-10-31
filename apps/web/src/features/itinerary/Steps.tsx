@@ -109,7 +109,9 @@ function TransitStep({ leg }: { leg: TransitLeg }) {
           )}
         </span>
         {leg.stopCount !== null && (
-          <span className="tl__detail">{t('leg.stops', { count: leg.stopCount })}</span>
+          <span className="tl__detail">
+            {leg.stopCount === 1 ? t('leg.stop') : t('leg.stops', { count: leg.stopCount })}
+          </span>
         )}
         <span className="tl__stop">{leg.to.name}</span>
       </span>
