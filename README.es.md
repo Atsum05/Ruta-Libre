@@ -56,15 +56,14 @@ camino en la dirección en que viajas, y dice claramente cuando no puede estar s
 El veredicto es el producto, así que sus reglas son funciones puras y testeadas en `packages/core`,
 y están documentadas como decisiones.
 
-| Situación en tu camino                                       | Veredicto                         |
-| ------------------------------------------------------------ | --------------------------------- |
-| Todos los ascensores funcionan                               | Accesible                         |
-| Una escalera mecánica está fuera de servicio                 | Aviso                             |
-| Un ascensor está fuera de servicio, pero otro hace el mismo recorrido y funciona | Aviso, indicando cuál usar |
-| Un ascensor está fuera de servicio en el andén contrario     | Aviso (por si la dirección está mal) |
-| Un ascensor está fuera de servicio en tu andén, acceso o combinación | **No accesible**          |
-| Estado faltante, muy antiguo, o una parada que no reconocemos | **No podemos confirmarlo**       |
-
+| Situación en tu camino                                                           | Veredicto                            |
+| -------------------------------------------------------------------------------- | ------------------------------------ |
+| Todos los ascensores funcionan                                                   | Accesible                            |
+| Una escalera mecánica está fuera de servicio                                     | Aviso                                |
+| Un ascensor está fuera de servicio, pero otro hace el mismo recorrido y funciona | Aviso, indicando cuál usar           |
+| Un ascensor está fuera de servicio en el andén contrario                         | Aviso (por si la dirección está mal) |
+| Un ascensor está fuera de servicio en tu andén, acceso o combinación             | **No accesible**                     |
+| Estado faltante, muy antiguo, o una parada que no reconocemos                    | **No podemos confirmarlo**           |
 - Un dato faltante nunca se toma como "todo bien" ([ADR 0005](docs/adr/0005-tri-state-accessibility-verdict.md)).
 - La dirección se compara por ID de estación, desde el letrero del tren hasta la estación terminal
   de la línea ([ADR 0006](docs/adr/0006-match-stops-by-location.md), [ADR 0011](docs/adr/0011-registry-stations-per-line.md)).
@@ -105,19 +104,19 @@ Las claves nunca llegan al navegador, salvo la clave restringida para mostrar el
 
 ## Tecnologías
 
-| Área            | Elección                                                          | Por qué |
-| --------------- | ----------------------------------------------------------------- | ------- |
-| Lenguaje        | TypeScript 7, en su modo más estricto                             | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `erasableSyntaxOnly` |
-| Entorno         | Node 24                                                           | Ejecuta TypeScript directamente: la API no necesita compilación |
-| Monorepo        | pnpm workspaces con catálogo de versiones                         | Un solo cambio actualiza una herramienta en todo el repo ([ADR 0002](docs/adr/0002-monorepo-with-pure-core.md)) |
-| API             | Hono sobre `@hono/node-server`                                    | Pequeño, tipado, con `Request`/`Response` estándar |
-| Contrato        | Esquemas zod 4 compartidos por la API y la web, OpenAPI generado de ellos | Una sola fuente de verdad para la API HTTP ([ADR 0013](docs/adr/0013-shared-contract-package.md)) |
-| Web             | React 19, Vite 8, TanStack Query                                  | Builds rápidos; estado del servidor con caché y reintentos |
-| Mapas           | Google Maps (`@vis.gl/react-google-maps`), Routes y Places API    | Rutas de transporte en Santiago ([ADR 0009](docs/adr/0009-google-maps-for-map-rendering.md)) |
-| IA              | Google Gemini                                                     | Convierte texto libre en origen y destino |
-| Lint/formato    | Biome                                                             | Una herramienta rápida para ambos |
-| Tests           | Vitest 5 + Testing Library, Playwright + axe-core                 | Tests unitarios, de integración y en navegador, con revisión de accesibilidad |
-| Hosting         | Render (API), Netlify (web)                                       | [ADR 0008](docs/adr/0008-hosting-platform.md) |
+| Área         | Elección                                                                  | Por qué                                                                                                         |
+| ------------ | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Lenguaje     | TypeScript 7, en su modo más estricto                                     | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `erasableSyntaxOnly`                        |
+| Entorno      | Node 24                                                                   | Ejecuta TypeScript directamente: la API no necesita compilación                                                 |
+| Monorepo     | pnpm workspaces con catálogo de versiones                                 | Un solo cambio actualiza una herramienta en todo el repo ([ADR 0002](docs/adr/0002-monorepo-with-pure-core.md)) |
+| API          | Hono sobre `@hono/node-server`                                            | Pequeño, tipado, con `Request`/`Response` estándar                                                              |
+| Contrato     | Esquemas zod 4 compartidos por la API y la web, OpenAPI generado de ellos | Una sola fuente de verdad para la API HTTP ([ADR 0013](docs/adr/0013-shared-contract-package.md))               |
+| Web          | React 19, Vite 8, TanStack Query                                          | Builds rápidos; estado del servidor con caché y reintentos                                                      |
+| Mapas        | Google Maps (`@vis.gl/react-google-maps`), Routes y Places API            | Rutas de transporte en Santiago ([ADR 0009](docs/adr/0009-google-maps-for-map-rendering.md))                    |
+| IA           | Google Gemini                                                             | Convierte texto libre en origen y destino                                                                       |
+| Lint/formato | Biome                                                                     | Una herramienta rápida para ambos                                                                               |
+| Tests        | Vitest 5 + Testing Library, Playwright + axe-core                         | Tests unitarios, de integración y en navegador, con revisión de accesibilidad                                   |
+| Hosting      | Render (API), Netlify (web)                                               | [ADR 0008](docs/adr/0008-hosting-platform.md)                                                                   |
 
 ## Datos
 
@@ -145,15 +144,14 @@ salvo en modo demo (`STATUS_DEMO=true`), que se indica en la interfaz y en cada 
 
 ## API
 
-| Endpoint               | Qué hace |
-| ---------------------- | -------- |
+| Endpoint               | Qué hace                                                                         |
+| ---------------------- | -------------------------------------------------------------------------------- |
 | `POST /v1/plan`        | Planifica un viaje: rutas de Google, revisadas estación por estación y ordenadas |
-| `GET /v1/places`       | Autocompletado de lugares, priorizando Santiago (con tokens de sesión) |
-| `POST /v1/interpret`   | Texto libre → origen y destino (Gemini) |
-| `GET /v1/status`       | Estado de ascensores y escaleras, su antigüedad y salud |
-| `GET /v1/health`       | Versión, commit y entorno |
-| `GET /v1/openapi.json` | Documento OpenAPI generado desde los esquemas zod |
-
+| `GET /v1/places`       | Autocompletado de lugares, priorizando Santiago (con tokens de sesión)           |
+| `POST /v1/interpret`   | Texto libre → origen y destino (Gemini)                                          |
+| `GET /v1/status`       | Estado de ascensores y escaleras, su antigüedad y salud                          |
+| `GET /v1/health`       | Versión, commit y entorno                                                        |
+| `GET /v1/openapi.json` | Documento OpenAPI generado desde los esquemas zod                                |
 - Las solicitudes y respuestas se validan con los esquemas zod compartidos; la web usa un cliente
   tipado construido con los mismos esquemas, así que un cambio incompatible falla en la revisión de
   tipos y no en producción.
@@ -219,12 +217,11 @@ pull request.
 Cada pull request y cada push a `main` ejecuta, en GitHub Actions
 ([`.github/workflows/`](.github/workflows/)):
 
-| Job            | Qué ejecuta |
-| -------------- | ----------- |
+| Job            | Qué ejecuta                                                                                                                                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **CI / check** | Lint, revisión de tipos, todos los tests con los umbrales de cobertura, una tabla de cobertura en el resumen de la ejecución (con el informe HTML descargable), un build de producción del sitio y una auditoría de vulnerabilidades |
-| **CI / e2e**   | Los tests de Playwright en Chromium, guardando los resultados si fallan |
-| **CodeQL**     | El análisis de seguridad y calidad de GitHub, también cada lunes |
-
+| **CI / e2e**   | Los tests de Playwright en Chromium, guardando los resultados si fallan                                                                                                                                                              |
+| **CodeQL**     | El análisis de seguridad y calidad de GitHub, también cada lunes                                                                                                                                                                     |
 - Un push nuevo cancela las ejecuciones desactualizadas; los jobs tienen tiempo límite y permisos
   de solo lectura.
 - **Protección de `main`:** los cambios solo llegan por pull request, el job `check` debe pasar, y
@@ -267,13 +264,13 @@ Sin claves, la API igual arranca y entrega el estado de los ascensores; para pla
 necesita la clave de Google. Con `STATUS_DEMO=true` en `apps/api/.env`, el último estado conocido
 se usa como actual.
 
-| Comando                                            | Qué hace |
-| -------------------------------------------------- | -------- |
+| Comando                                            | Qué hace                                                                                |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `pnpm check`                                       | Lint, revisión de tipos y todos los tests con cobertura: exactamente lo que corre la CI |
-| `pnpm test:e2e`                                    | Tests en navegador, en teléfono y escritorio, con revisión de accesibilidad |
-| `pnpm test:watch`                                  | Tests en modo observación mientras trabajas |
-| `pnpm format`                                      | Corrige el formato y problemas de lint seguros |
-| `pnpm --filter @rutalibre/registry build:registry` | Regenera `stations.json` y `REPORT.md` desde las fuentes |
+| `pnpm test:e2e`                                    | Tests en navegador, en teléfono y escritorio, con revisión de accesibilidad             |
+| `pnpm test:watch`                                  | Tests en modo observación mientras trabajas                                             |
+| `pnpm format`                                      | Corrige el formato y problemas de lint seguros                                          |
+| `pnpm --filter @rutalibre/registry build:registry` | Regenera `stations.json` y `REPORT.md` desde las fuentes                                |
 
 ### Estructura del repositorio
 

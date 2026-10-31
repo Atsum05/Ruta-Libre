@@ -53,15 +53,14 @@ the rider's own direction, and says plainly when it can't be sure.
 The verdict is the product, so its rules are pure, tested functions in `packages/core` and are
 written down as decisions.
 
-| Situation on your path                                  | Verdict                     |
-| ------------------------------------------------------- | --------------------------- |
-| Every elevator works                                    | Accessible                  |
-| An escalator is out                                     | Warning                     |
-| An elevator is out, but a working one makes the same trip | Warning, naming which to use |
-| An elevator is out on the opposite platform             | Warning (in case the direction is wrong) |
-| An elevator is out on your platform, entrance or transfer | **Not accessible**          |
-| Status missing, too old, or a stop we can't identify    | **We can't be sure**        |
-
+| Situation on your path                                    | Verdict                                  |
+| --------------------------------------------------------- | ---------------------------------------- |
+| Every elevator works                                      | Accessible                               |
+| An escalator is out                                       | Warning                                  |
+| An elevator is out, but a working one makes the same trip | Warning, naming which to use             |
+| An elevator is out on the opposite platform               | Warning (in case the direction is wrong) |
+| An elevator is out on your platform, entrance or transfer | **Not accessible**                       |
+| Status missing, too old, or a stop we can't identify      | **We can't be sure**                     |
 - Missing data is never treated as "fine" ([ADR 0005](docs/adr/0005-tri-state-accessibility-verdict.md)).
 - Directions are compared by station ID, from the train's headsign to the line's terminal
   ([ADR 0006](docs/adr/0006-match-stops-by-location.md), [ADR 0011](docs/adr/0011-registry-stations-per-line.md)).
@@ -101,19 +100,19 @@ API keys never reach the browser except the restricted Maps display key
 
 ## Tech stack
 
-| Area           | Choice                                                           | Why |
-| -------------- | ---------------------------------------------------------------- | --- |
-| Language       | TypeScript 7, strictest settings                                 | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `erasableSyntaxOnly` |
-| Runtime        | Node 24                                                          | Runs TypeScript directly (type stripping): no build step for the API |
-| Monorepo       | pnpm workspaces with a version catalog                           | One edit upgrades a shared tool everywhere ([ADR 0002](docs/adr/0002-monorepo-with-pure-core.md)) |
-| API            | Hono on `@hono/node-server`                                      | Small, typed, standard `Request`/`Response` |
-| Contract       | zod 4 schemas shared by API and web, OpenAPI generated from them | One source of truth for the HTTP API ([ADR 0013](docs/adr/0013-shared-contract-package.md)) |
-| Web            | React 19, Vite 8, TanStack Query                                 | Fast builds; server state with caching and retries |
-| Maps           | Google Maps (`@vis.gl/react-google-maps`), Routes and Places APIs | Transit routing in Santiago ([ADR 0009](docs/adr/0009-google-maps-for-map-rendering.md)) |
-| AI             | Google Gemini                                                    | Turns free text into an origin and a destination |
-| Lint/format    | Biome                                                            | One fast tool for both |
-| Tests          | Vitest 5 + Testing Library, Playwright + axe-core                | Unit, integration and browser tests with accessibility checks |
-| Hosting        | Render (API), Netlify (web)                                      | [ADR 0008](docs/adr/0008-hosting-platform.md) |
+| Area        | Choice                                                            | Why                                                                                               |
+| ----------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Language    | TypeScript 7, strictest settings                                  | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `erasableSyntaxOnly`          |
+| Runtime     | Node 24                                                           | Runs TypeScript directly (type stripping): no build step for the API                              |
+| Monorepo    | pnpm workspaces with a version catalog                            | One edit upgrades a shared tool everywhere ([ADR 0002](docs/adr/0002-monorepo-with-pure-core.md)) |
+| API         | Hono on `@hono/node-server`                                       | Small, typed, standard `Request`/`Response`                                                       |
+| Contract    | zod 4 schemas shared by API and web, OpenAPI generated from them  | One source of truth for the HTTP API ([ADR 0013](docs/adr/0013-shared-contract-package.md))       |
+| Web         | React 19, Vite 8, TanStack Query                                  | Fast builds; server state with caching and retries                                                |
+| Maps        | Google Maps (`@vis.gl/react-google-maps`), Routes and Places APIs | Transit routing in Santiago ([ADR 0009](docs/adr/0009-google-maps-for-map-rendering.md))          |
+| AI          | Google Gemini                                                     | Turns free text into an origin and a destination                                                  |
+| Lint/format | Biome                                                             | One fast tool for both                                                                            |
+| Tests       | Vitest 5 + Testing Library, Playwright + axe-core                 | Unit, integration and browser tests with accessibility checks                                     |
+| Hosting     | Render (API), Netlify (web)                                       | [ADR 0008](docs/adr/0008-hosting-platform.md)                                                     |
 
 ## Data pipeline
 
@@ -140,15 +139,14 @@ by age. Snapshots older than 13 hours make verdicts "we can't be sure", unless d
 
 ## API
 
-| Endpoint             | What it does |
-| -------------------- | ------------ |
-| `POST /v1/plan`      | Plans a trip: routes from Google, checked station by station, ranked |
-| `GET /v1/places`     | Place autocomplete, biased to Santiago (session tokens for billing) |
-| `POST /v1/interpret` | Free text → origin and destination (Gemini) |
-| `GET /v1/status`     | Elevator and escalator status, its age and health |
-| `GET /v1/health`     | Version, commit and environment |
-| `GET /v1/openapi.json` | OpenAPI document generated from the zod schemas |
-
+| Endpoint               | What it does                                                         |
+| ---------------------- | -------------------------------------------------------------------- |
+| `POST /v1/plan`        | Plans a trip: routes from Google, checked station by station, ranked |
+| `GET /v1/places`       | Place autocomplete, biased to Santiago (session tokens for billing)  |
+| `POST /v1/interpret`   | Free text → origin and destination (Gemini)                          |
+| `GET /v1/status`       | Elevator and escalator status, its age and health                    |
+| `GET /v1/health`       | Version, commit and environment                                      |
+| `GET /v1/openapi.json` | OpenAPI document generated from the zod schemas                      |
 - Requests and responses are validated against the shared zod schemas; the web app uses a typed
   client built from the same schemas, so a breaking change fails the typecheck, not production.
 - Outgoing calls have a hard timeout per attempt and exponential backoff on 429 and 5xx.
@@ -208,12 +206,11 @@ About **500 unit and integration tests** and **26 browser tests**, all run on ev
 Every pull request and every push to `main` runs, in GitHub Actions
 ([`.github/workflows/`](.github/workflows/)):
 
-| Job           | What it runs |
-| ------------- | ------------ |
+| Job            | What it runs                                                                                                                                                                                             |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **CI / check** | Lint, typecheck, all tests with the coverage gates, a coverage table on the run's summary page (full HTML report as a download), a production build of the website, and a dependency vulnerability audit |
-| **CI / e2e**  | The Playwright suite in Chromium, with screenshots and traces kept on failure |
-| **CodeQL**    | GitHub's security and quality analysis, also every Monday |
-
+| **CI / e2e**   | The Playwright suite in Chromium, with screenshots and traces kept on failure                                                                                                                            |
+| **CodeQL**     | GitHub's security and quality analysis, also every Monday                                                                                                                                                |
 - Newer pushes cancel outdated runs; jobs have timeouts and read-only permissions.
 - **Branch protection on `main`:** changes only arrive through pull requests, the `check` job must
   pass, and merges are squash-only, so `main` has one commit per change and is always deployable.
@@ -253,13 +250,13 @@ pnpm dev                                        # API on :8787, web on :5173 (pr
 Without keys the API still starts and serves elevator status; planning trips needs the Google
 key. Set `STATUS_DEMO=true` in `apps/api/.env` to use the last known status as current.
 
-| Command                                            | What it does |
-| -------------------------------------------------- | ------------ |
+| Command                                            | What it does                                                      |
+| -------------------------------------------------- | ----------------------------------------------------------------- |
 | `pnpm check`                                       | Lint, typecheck and all tests with coverage: exactly what CI runs |
-| `pnpm test:e2e`                                    | Browser tests on phone and desktop, with accessibility checks |
-| `pnpm test:watch`                                  | Tests in watch mode while working |
-| `pnpm format`                                      | Fix formatting and safe lint issues |
-| `pnpm --filter @rutalibre/registry build:registry` | Rebuild `stations.json` and `REPORT.md` from the sources |
+| `pnpm test:e2e`                                    | Browser tests on phone and desktop, with accessibility checks     |
+| `pnpm test:watch`                                  | Tests in watch mode while working                                 |
+| `pnpm format`                                      | Fix formatting and safe lint issues                               |
+| `pnpm --filter @rutalibre/registry build:registry` | Rebuild `stations.json` and `REPORT.md` from the sources          |
 
 ### Repository layout
 
