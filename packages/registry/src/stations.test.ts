@@ -7,6 +7,7 @@ import {
   type DeviceState,
   evaluateRoute,
   matchStop,
+  normalizeName,
   type Route,
   resolveTerminal,
   type StatusSnapshot,
@@ -44,6 +45,22 @@ describe('stations.json', () => {
       const line = station.lines[0]
       const stop = { name: station.name, location: station.location }
       expect(matchStop(stop, registry, line ? { line } : {})?.id).toBe(station.id)
+    }
+  })
+
+  it('matches platforms far from the complex point, as Google places them (2026-10-31)', () => {
+    // Irarrázaval Line 5, 182 m from the single Irarrázaval point; it used to go unmatched.
+    const ir = { name: 'Irarrázaval', location: { lat: -33.45347, lng: -70.6288 } }
+    expect(matchStop(ir, registry, { line: 'L5' })?.id).toBe('IR')
+    expect(matchStop(ir, registry, { line: 'L3' })?.id).toBe('IRA')
+  })
+
+  it('has no line with two stations of the same name, which named matching relies on', () => {
+    for (const line of registry.lines) {
+      const names = registry.stations
+        .filter((s) => s.lines.includes(line.id))
+        .map((s) => normalizeName(s.name))
+      expect(new Set(names).size, line.id).toBe(names.length)
     }
   })
 

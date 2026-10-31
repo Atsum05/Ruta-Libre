@@ -59,6 +59,8 @@ export const StationsFileSchema = z.object({
           id: z.string().min(1),
           kind: z.enum(['elevator', 'escalator']),
           scope: ScopeSchema,
+          description: z.string().optional(),
+          link: z.string().optional(),
         }),
       ),
     }),
@@ -77,6 +79,8 @@ export function parseStationsFile(json: unknown): Registry {
       devices: s.devices.map((d) => ({
         id: DeviceId(d.id),
         kind: d.kind,
+        ...(d.description !== undefined ? { description: d.description } : {}),
+        ...(d.link !== undefined ? { link: d.link } : {}),
         scope:
           d.scope.kind === 'platform'
             ? { kind: 'platform', towards: d.scope.towards.map(StationId) }

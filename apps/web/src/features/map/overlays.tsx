@@ -42,20 +42,25 @@ export function MetroLines({ dimmed = false }: { dimmed?: boolean }) {
 export function StationDots({
   markers,
   focus,
+  onSelect,
 }: {
   markers: readonly StationMarker[]
   /** Station IDs on the current route, or null when no route is shown. */
   focus: ReadonlySet<string> | null
+  /** Called with the station ID when its dot is tapped. */
+  onSelect?: (id: string) => void
 }) {
   const map = useMap()
   useEffect(() => {
     if (!map) return
     const dots = markers.map((m) => {
       const inFocus = focus === null || focus.has(m.id)
-      return new google.maps.Marker({
+      const dot = new google.maps.Marker({
         map,
         position: { lat: m.lat, lng: m.lng },
         title: m.name,
+        clickable: onSelect !== undefined,
+        cursor: 'pointer',
         zIndex: (inFocus ? 20 : 2) + MARKER_ORDER[m.status],
         icon: {
           path: google.maps.SymbolPath.CIRCLE,
@@ -66,11 +71,13 @@ export function StationDots({
           strokeWeight: inFocus ? 2 : 0,
         },
       })
+      if (onSelect) dot.addListener('click', () => onSelect(m.id))
+      return dot
     })
     return () => {
       for (const d of dots) d.setMap(null)
     }
-  }, [map, markers, focus])
+  }, [map, markers, focus, onSelect])
   return null
 }
 

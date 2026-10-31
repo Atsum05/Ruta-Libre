@@ -1,6 +1,12 @@
 import { distanceMeters, normalizeName } from '@rutalibre/core'
-import { LINES, type LineConfig, TERMINAL_SPELLINGS } from './config.ts'
-import { deviceKind, displayName, parseDirections, type TerminalName } from './parse.ts'
+import { COORDINATE_FIXES, LINES, type LineConfig, TERMINAL_SPELLINGS } from './config.ts'
+import {
+  connectionKey,
+  deviceKind,
+  displayName,
+  parseDirections,
+  type TerminalName,
+} from './parse.ts'
 import type { Catalogue, LiveDevices, StationsFile } from './schema.ts'
 
 export type IssueKind =
@@ -64,7 +70,14 @@ export function buildRegistry(catalogue: Catalogue, live: LiveDevices): BuildRes
     }
     const [lng, lat] = f.geometry.coordinates
     if (!stations.has(p.estacion)) {
-      stations.set(p.estacion, { code: p.estacion, name: p.nombre_estacion, line, lat, lng })
+      const fix = COORDINATE_FIXES[p.estacion]
+      stations.set(p.estacion, {
+        code: p.estacion,
+        name: p.nombre_estacion,
+        line,
+        lat: fix?.lat ?? lat,
+        lng: fix?.lng ?? lng,
+      })
     }
   }
 
@@ -129,7 +142,12 @@ export function buildRegistry(catalogue: Catalogue, live: LiveDevices): BuildRes
           ? { kind: 'unknown' as const }
           : { kind: 'station' as const }
     const list = devicesByStation.get(info.estacion) ?? []
-    list.push({ id, kind, scope })
+    // Scoped to the catalogue code (one line's part of a station): at a transfer complex each
+    // line can have its own ticket hall, so "street ↔ ticket hall" on another line is a
+    // different connection, not a backup (ADR 0015).
+    const key = connectionKey(info.texto)
+    const link = key ? `${info.estacion}: ${key}` : undefined
+    list.push({ id, kind, scope, description: info.texto.trim(), ...(link ? { link } : {}) })
     devicesByStation.set(info.estacion, list)
   }
 

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { buildRegistry, issueKey } from './build.ts'
+import { COORDINATE_FIXES } from './config.ts'
 import type { Catalogue, LiveDevices } from './schema.ts'
 
 // A miniature network: L1 with both terminals and a transfer to L2 at Los Héroes.
@@ -67,11 +68,26 @@ describe('buildRegistry', () => {
 
   it('classifies devices by kind and platform from the live texts', () => {
     expect(station('LH')?.devices).toEqual([
-      { id: 'LH-1', kind: 'elevator', scope: { kind: 'station' } },
-      { id: 'LH-2', kind: 'elevator', scope: { kind: 'platform', towards: ['SP'] } },
+      {
+        id: 'LH-1',
+        kind: 'elevator',
+        scope: { kind: 'station' },
+        description: 'Ascensor de acceso calle',
+      },
+      {
+        id: 'LH-2',
+        kind: 'elevator',
+        scope: { kind: 'platform', towards: ['SP'] },
+        description: 'Ascensor Andén Línea 1 dirección San Pablo',
+      },
     ])
     expect(station('PI')?.devices).toEqual([
-      { id: 'PI-1', kind: 'escalator', scope: { kind: 'station' } },
+      {
+        id: 'PI-1',
+        kind: 'escalator',
+        scope: { kind: 'station' },
+        description: 'Escalera mecánica',
+      },
     ])
   })
 
@@ -101,6 +117,55 @@ describe('buildRegistry', () => {
     expect(station('PZE', points, live)).toMatchObject({
       name: 'Plaza Egaña',
       aliases: ['Plaza Egaña L3'],
+    })
+  })
+
+  it('links devices that make the same trip, scoped to their own station code (ADR 0015)', () => {
+    const points: Point[] = [
+      ...BASE,
+      ['LH-3', 'LH', 'Los Héroes', 'Línea 1', -33.4458, -70.6605],
+      ['HE-2', 'HE', 'Los Héroes', 'Línea 2', -33.4462, -70.6604],
+    ]
+    const live: LiveDevices = {
+      ...LIVE,
+      'LH-1': {
+        estacion: 'LH',
+        tipo: 'ascensor',
+        texto: 'Ascensor de acceso ubicado en Av. Bernardo O’Higgins hacia Boletería ',
+      },
+      'LH-3': {
+        estacion: 'LH',
+        tipo: 'ascensor',
+        texto: 'Ascensor 2 de acceso ubicado en Calle Manuel Rodríguez hacia Boletería',
+      },
+      'HE-2': {
+        estacion: 'HE',
+        tipo: 'ascensor',
+        texto: 'Ascensor de acceso ubicado en Av. Norte Sur hacia Boletería',
+      },
+    }
+    const devices = station('LH', points, live)?.devices ?? []
+    const link = (id: string) => devices.find((d) => d.id === id)?.link
+    // Two street entrances into one ticket hall: the same trip, so each backs the other up.
+    expect(link('LH-1')).toBe('LH: boleteria <-> calle')
+    expect(link('LH-3')).toBe(link('LH-1'))
+    // The source text is kept for riders, trimmed.
+    expect(devices.find((d) => d.id === 'LH-1')?.description).toBe(
+      'Ascensor de acceso ubicado en Av. Bernardo O’Higgins hacia Boletería',
+    )
+    // Line 2’s own ticket hall is another place, even with the same words.
+    const he2 = station('HE', points, live)?.devices.find((d) => d.id === 'HE-2')
+    expect(he2?.link).toBe('HE: boleteria <-> calle')
+    // A text without "X hacia Y" gets no link, so it never counts as a backup.
+    expect(link('LH-2')).toBeUndefined()
+  })
+
+  it('moves a station with a known coordinate correction', () => {
+    const points: Point[] = [...BASE, ['SA-1', 'SA', 'Salvador', 'Línea 1', -33.43, -70.62]]
+    const live = { ...LIVE, 'SA-1': { estacion: 'SA', tipo: 'ascensor', texto: '' } }
+    expect(station('SA', points, live)?.location).toEqual({
+      lat: COORDINATE_FIXES['SA']?.lat,
+      lng: COORDINATE_FIXES['SA']?.lng,
     })
   })
 

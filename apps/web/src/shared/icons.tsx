@@ -73,6 +73,14 @@ export const LocateIcon = (p: IconProps) => (
   </Icon>
 )
 
+export const RouteIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="6" cy="18" r="2.5" />
+    <circle cx="18" cy="6" r="2.5" />
+    <path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5" />
+  </Icon>
+)
+
 export const SwapIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="M8 4v16M8 4 4 8M8 4l4 4" />

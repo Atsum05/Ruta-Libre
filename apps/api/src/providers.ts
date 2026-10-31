@@ -22,6 +22,10 @@ export interface DetailedTransitLeg extends TransitLeg {
   readonly color: string
   readonly textColor: string
   readonly stopCount: number | null
+  /** Timetable departure from `from`, RFC 3339, when the provider gives one. */
+  readonly departAt?: string
+  /** Timetable arrival at `to`, RFC 3339, when the provider gives one. */
+  readonly arriveAt?: string
   readonly path: Path
 }
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { registry, S, stationById } from './__fixtures__/network.ts'
 import { StationId } from './ids.ts'
-import { matchStop, resolveTerminal } from './match.ts'
+import { MATCH_RADIUS_M, matchStop, NAMED_MATCH_RADIUS_M, resolveTerminal } from './match.ts'
 import type { Registry } from './registry.ts'
 
 describe('matchStop', () => {
@@ -40,6 +40,26 @@ describe('matchStop', () => {
 
     it('returns null when only another line is nearby, instead of borrowing its devices', () => {
       expect(matchStop(stop, { lines: registry.lines, stations: [l1] }, { line: 'L2' })).toBeNull()
+    })
+
+    // A line's platforms can be far from the complex's single point (Irarrázaval L5: 232 m).
+    const farPlatform = { name: 'Los Héroes', location: { lat: -33.4482, lng: -70.6603 } }
+
+    it('accepts a stop further away when it has the station name and is on its line', () => {
+      expect(matchStop(farPlatform, transfer, { line: 'L1' })?.id).toBe('LH-L1')
+    })
+
+    it('keeps the strict radius for another name or an unknown line', () => {
+      const renamed = { ...farPlatform, name: 'Otra estación' }
+      expect(matchStop(renamed, transfer, { line: 'L1' })).toBeNull()
+      expect(matchStop(farPlatform, transfer)).toBeNull()
+      expect(matchStop(farPlatform, transfer, { line: 'L1', namedRadiusM: 100 })).toBeNull()
+    })
+
+    it('never reaches beyond the named radius', () => {
+      const tooFar = { name: 'Los Héroes', location: { lat: -33.4512, lng: -70.6603 } }
+      expect(matchStop(tooFar, transfer, { line: 'L1' })).toBeNull()
+      expect(NAMED_MATCH_RADIUS_M).toBeGreaterThan(MATCH_RADIUS_M)
     })
 
     it('ignores a line the registry does not know', () => {

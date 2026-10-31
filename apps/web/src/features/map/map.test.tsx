@@ -1,7 +1,8 @@
 // The map draws through Google Maps, which can't run in jsdom. These tests swap in a small fake
 // of the google.maps classes we use and check what the overlays ask it to draw.
 
-import type { RouteView } from '@rutalibre/contract'
+import type { RouteView, StatusResponse } from '@rutalibre/contract'
+import { loadRegistry } from '@rutalibre/registry'
 import { act, render, screen } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
@@ -9,18 +10,20 @@ import { I18nProvider } from '../../shared/i18n/index.tsx'
 import { ROUTE_OK, STATUS_OK } from '../../test/render.tsx'
 import { MARKER_COLOR } from './colors.ts'
 import { Legend } from './Legend.tsx'
+import { MapButtons } from './MapButtons.tsx'
 import MapCanvas from './MapCanvas.tsx'
 import { MetroLines, RoutePath, routePadding, StationDots } from './overlays.tsx'
+import { StationDetails } from './StationDetails.tsx'
 import type { StationMarker } from './stationStatus.ts'
 
 type Options = Record<string, unknown>
 
 const drawn = {
-  markers: [] as { opts: Options; map: unknown }[],
+  markers: [] as { opts: Options; map: unknown; listeners?: Record<string, () => void> }[],
   polylines: [] as { opts: Options; map: unknown }[],
   layers: [] as { opts: Options; map: unknown; url?: string; style?: (f: unknown) => Options }[],
 }
-const fakeMap = { fitBounds: vi.fn() }
+const fakeMap = { fitBounds: vi.fn(), panTo: vi.fn(), setZoom: vi.fn() }
 let lastProviderError: (() => void) | undefined
 
 vi.mock('@vis.gl/react-google-maps', () => ({
@@ -32,12 +35,32 @@ vi.mock('@vis.gl/react-google-maps', () => ({
   Map: ({ children, 'aria-label': label }: { children: ReactNode; 'aria-label': string }) => (
     <section aria-label={label}>{children}</section>
   ),
+  ControlPosition: { RIGHT_BOTTOM: 9 },
+  MapControl: ({ children }: { children: ReactNode }) => <>{children}</>,
+  InfoWindow: ({
+    children,
+    headerContent,
+    onCloseClick,
+  }: {
+    children: ReactNode
+    headerContent: ReactNode
+    onCloseClick: () => void
+  }) => (
+    <div role="dialog">
+      {headerContent}
+      <button type="button" onClick={onCloseClick}>
+        close
+      </button>
+      {children}
+    </div>
+  ),
 }))
 
 function installFakeGoogle() {
   class Drawable {
     opts: Options
     map: unknown
+    listeners: Record<string, () => void> = {}
     constructor(opts: Options, list: { opts: Options; map: unknown }[]) {
       this.opts = opts
       this.map = opts['map']
@@ -45,6 +68,9 @@ function installFakeGoogle() {
     }
     setMap(map: unknown) {
       this.map = map
+    }
+    addListener(event: string, fn: () => void) {
+      this.listeners[event] = fn
     }
   }
   class Marker extends Drawable {
@@ -89,6 +115,8 @@ beforeEach(() => {
   drawn.polylines.length = 0
   drawn.layers.length = 0
   fakeMap.fitBounds.mockClear()
+  fakeMap.panTo.mockClear()
+  fakeMap.setZoom.mockClear()
   installFakeGoogle()
 })
 
@@ -296,5 +324,148 @@ describe('Legend', () => {
       'Ascensor fuera de servicio',
       'Sin información',
     ])
+  })
+})
+
+describe('StationDetails', () => {
+  const registry = loadRegistry()
+  const losHeroes = registry.stations.find((s) => s.id === 'LH')
+  if (!losHeroes) throw new Error('LH missing from the registry')
+  const allWorking = Object.fromEntries(
+    losHeroes.devices.map((d) => [d.id, 'working' as const]),
+  ) as StatusResponse['devices']
+  const card = (status: StatusResponse | undefined) =>
+    render(
+      <I18nProvider locale="es">
+        <StationDetails station={losHeroes} registry={registry} status={status} />
+      </I18nProvider>,
+    )
+  const text = (cls: string) => document.querySelector(cls)?.textContent
+
+  it('lists every device with where it goes and its state, broken ones first', () => {
+    card({
+      ...STATUS_OK,
+      devices: { ...allWorking, 'LH-eba3d6': 'out-of-service', 'LH-093ca8': 'out-of-service' },
+    })
+    expect(text('.station-card__lines')).toBe('Línea 1')
+    expect(text('.station-card__summary')).toBe(
+      '1 ascensor fuera de servicio · 1 escalera fuera de servicio',
+    )
+    const rows = screen.getAllByRole('listitem')
+    expect(rows).toHaveLength(5)
+    // The broken elevator comes first, then the broken escalator.
+    expect(rows[0]?.textContent).toContain('AscensorAndén dirección Los Dominicos')
+    expect(rows[0]?.textContent).toContain('Fuera de servicio')
+    expect(rows[1]?.textContent).toContain('Escalera mecánica')
+    expect(rows[4]?.textContent).toContain('Funciona')
+    // The source's own description says which elevator it is.
+    expect(screen.getByText(/Ascensor de acceso ubicado en Av. Alameda/)).toBeTruthy()
+    expect(text('.station-card__age')).toBe('Estado observado hace 10 min.')
+  })
+
+  it('counts several broken devices of one kind', () => {
+    card({
+      ...STATUS_OK,
+      devices: { ...allWorking, 'LH-eba3d6': 'out-of-service', 'LH-60d634': 'out-of-service' },
+    })
+    expect(text('.station-card__summary')).toBe('2 ascensores fuera de servicio')
+  })
+
+  it('says all is well, or that some states are missing', () => {
+    const { unmount } = card({ ...STATUS_OK, devices: allWorking })
+    expect(text('.station-card__summary')).toBe('Todos los ascensores y escaleras funcionan.')
+    unmount()
+    const { 'LH-349493': _missing, ...partial } = allWorking
+    card({ ...STATUS_OK, devices: partial })
+    expect(text('.station-card__summary')).toBe(
+      'Sin fallas conocidas, pero falta información de algunos equipos.',
+    )
+  })
+
+  it('shows old data as the last known state, never as current', () => {
+    card({ ...STATUS_OK, devices: allWorking, ageSeconds: 3 * 86_400 })
+    expect(text('.station-card__stale')).toBe(
+      'Último estado conocido, de hace 3 días: puede haber cambiado.',
+    )
+  })
+
+  it('labels demo data instead of its age', () => {
+    card({ ...STATUS_OK, devices: allWorking, ageSeconds: 3 * 86_400, demo: true })
+    expect(document.querySelector('.station-card__stale')).toBeNull()
+    expect(text('.station-card__age')).toBe('Datos del modo demo.')
+  })
+
+  it('has nothing to say about states without data', () => {
+    card(undefined)
+    expect(text('.station-card__summary')).toBe('Sin datos del estado de los equipos.')
+    expect(screen.getAllByText('Sin información')).toHaveLength(5)
+  })
+})
+
+describe('MapCanvas station card', () => {
+  it('opens the details of a station when its dot is tapped, and closes them', () => {
+    render(
+      <I18nProvider locale="es">
+        <MapCanvas apiKey="k" mapId={undefined} status={STATUS_OK} route={undefined} />
+      </I18nProvider>,
+    )
+    const first = loadRegistry().stations[0]
+    act(() => drawn.markers[0]?.listeners?.['click']?.())
+    expect(screen.getByRole('dialog').querySelector('h2')?.textContent).toBe(first?.name)
+    act(() => screen.getByRole('button', { name: 'close' }).click())
+    expect(screen.queryByRole('dialog')).toBeNull()
+  })
+})
+
+describe('MapButtons', () => {
+  type Geo = Pick<Geolocation, 'getCurrentPosition'>
+  const buttons = (route: RouteView | undefined, geolocation: Geo | undefined) => {
+    vi.stubGlobal('navigator', { ...navigator, geolocation })
+    return render(
+      <I18nProvider locale="es">
+        <MapButtons route={route} />
+      </I18nProvider>,
+    )
+  }
+  const failWith = (code: number): Geo => ({
+    getCurrentPosition: (_ok, fail) =>
+      fail?.({ code, PERMISSION_DENIED: 1 } as GeolocationPositionError),
+  })
+  const locate = () => screen.getByRole('button', { name: 'Centrar en mi ubicación' })
+
+  it('centres on the rider and marks them with a blue dot, asked only when tapped', () => {
+    const getCurrentPosition = vi.fn<Geo['getCurrentPosition']>((ok) =>
+      ok({ coords: { latitude: -33.45, longitude: -70.66 } } as GeolocationPosition),
+    )
+    buttons(undefined, { getCurrentPosition })
+    expect(getCurrentPosition).not.toHaveBeenCalled()
+    act(() => locate().click())
+    expect(fakeMap.panTo).toHaveBeenCalledWith({ lat: -33.45, lng: -70.66 })
+    expect(fakeMap.setZoom).toHaveBeenCalledWith(16)
+    expect(drawn.markers.at(-1)?.opts['position']).toEqual({ lat: -33.45, lng: -70.66 })
+  })
+
+  it('explains a refused permission, a failure, and a browser without location', () => {
+    const { unmount } = buttons(undefined, failWith(1))
+    act(() => locate().click())
+    expect(screen.getByRole('alert').textContent).toBe(
+      'Activa el permiso de ubicación para centrar el mapa.',
+    )
+    unmount()
+    for (const geo of [failWith(2), undefined]) {
+      const view = buttons(undefined, geo)
+      act(() => locate().click())
+      expect(screen.getByRole('alert').textContent).toBe('No pudimos obtener tu ubicación.')
+      view.unmount()
+    }
+  })
+
+  it('zooms back to the whole route, only when there is one', () => {
+    const { unmount } = buttons(undefined, undefined)
+    expect(screen.queryByRole('button', { name: 'Ver la ruta completa' })).toBeNull()
+    unmount()
+    buttons(ROUTE_WITH_PATHS, undefined)
+    act(() => screen.getByRole('button', { name: 'Ver la ruta completa' }).click())
+    expect(fakeMap.fitBounds).toHaveBeenCalledTimes(1)
   })
 })

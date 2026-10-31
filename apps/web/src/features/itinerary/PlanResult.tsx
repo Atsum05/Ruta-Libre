@@ -1,5 +1,5 @@
 import type { PlanResponse } from '@rutalibre/contract'
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
 import { AlertIcon, CheckIcon, ChevronIcon } from '../../shared/icons.tsx'
 import { RouteCard } from './RouteCard.tsx'
@@ -22,12 +22,31 @@ function outcomeMessage(plan: PlanResponse): {
   }
 }
 
-/** The answer: what happened, the best route, then the others (collapsed). */
-export function PlanResult({ plan }: { plan: PlanResponse }) {
+interface PlanResultProps {
+  plan: PlanResponse
+  /** Index into `plan.routes` of the route shown in full and drawn on the map. */
+  selected: number
+  onSelect: (index: number) => void
+}
+
+/**
+ * The answer: what happened, the chosen route (the best one until the rider picks another), then
+ * the others, collapsed, each of which can be chosen instead.
+ */
+export function PlanResult({ plan, selected, onSelect }: PlanResultProps) {
   const { t } = useI18n()
   const baseId = useId()
+  const others = useRef<HTMLDetailsElement>(null)
   const { key, tone } = outcomeMessage(plan)
-  const [best, ...others] = plan.routes
+  const shown = plan.routes[selected]
+  const rest = plan.routes.flatMap((route, index) => (index === selected ? [] : [{ route, index }]))
+
+  function choose(index: number) {
+    onSelect(index)
+    if (others.current) others.current.open = false
+    // Move to the chosen route, now the main card, so screen readers and phones follow.
+    requestAnimationFrame(() => document.getElementById(`${baseId}-shown`)?.focus())
+  }
 
   return (
     <section className="plan-result" aria-labelledby={`${baseId}-outcome`}>
@@ -43,20 +62,34 @@ export function PlanResult({ plan }: { plan: PlanResponse }) {
         )}
         {t(key)}
       </p>
-      {best && <RouteCard route={best} headingId={`${baseId}-best`} demo={plan.status.demo} />}
-      {others.length > 0 && (
-        <details className="other-routes">
+      {selected !== 0 && (
+        <p className="chosen-note">
+          {t('route.chosenOther')}
+          <button type="button" className="chip" onClick={() => choose(0)}>
+            {t('route.backToBest')}
+          </button>
+        </p>
+      )}
+      {shown && <RouteCard route={shown} headingId={`${baseId}-shown`} demo={plan.status.demo} />}
+      {rest.length > 0 && (
+        <details className="other-routes" ref={others}>
           <summary>
             <ChevronIcon size={18} className="other-routes__chevron" />
-            {t('route.otherOptions')} ({others.length})
+            {t('route.otherOptions')} ({rest.length})
           </summary>
-          {others.map((route, i) => (
+          {rest.map(({ route, index }) => (
             <RouteCard
-              // biome-ignore lint/suspicious/noArrayIndexKey: ranked order is the identity here
-              key={i}
+              // Ranked order is the identity here: the list only changes with a new plan.
+              key={index}
               route={route}
-              headingId={`${baseId}-other-${i}`}
+              headingId={`${baseId}-other-${index}`}
               demo={plan.status.demo}
+              recommended={index === 0}
+              action={
+                <button type="button" className="chip route__choose" onClick={() => choose(index)}>
+                  {t('route.choose')}
+                </button>
+              }
             />
           ))}
         </details>

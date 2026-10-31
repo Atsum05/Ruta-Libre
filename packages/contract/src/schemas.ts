@@ -35,6 +35,12 @@ export const ReasonSchema = z.discriminatedUnion('code', [
     deviceId: z.string(),
   }),
   z.object({ code: z.literal('escalator-out'), stationId: z.string(), deviceId: z.string() }),
+  z.object({
+    code: z.literal('elevator-out-backup'),
+    stationId: z.string(),
+    deviceId: z.string(),
+    backupDeviceId: z.string(),
+  }),
 ])
 
 export const FindingSchema = z.object({
@@ -43,6 +49,10 @@ export const FindingSchema = z.object({
   reason: ReasonSchema,
   /** Human-facing station name, when the reason names a station. */
   stationName: z.string().nullable(),
+  /** The source's description of the device in question, when known. */
+  deviceDescription: z.string().optional(),
+  /** For elevator-out-backup: the description of the working elevator to use instead. */
+  backupDescription: z.string().optional(),
 })
 
 export const ErrorResponseSchema = z.object({
@@ -121,6 +131,9 @@ export const LegViewSchema = z.discriminatedUnion('mode', [
     from: StopViewSchema,
     to: StopViewSchema,
     stopCount: z.number().int().nullable(),
+    /** Timetable departure and arrival, when the provider gives them. */
+    departAt: z.iso.datetime({ offset: true }).optional(),
+    arriveAt: z.iso.datetime({ offset: true }).optional(),
     path: PathSchema,
   }),
 ])
@@ -130,6 +143,13 @@ export const RouteViewSchema = z.object({
   verdict: z.object({ kind: VerdictKindSchema, findings: z.array(FindingSchema) }),
   /** Whole trip, with walking scaled to a reduced-mobility pace. */
   durationSeconds: z.number().int().nonnegative(),
+  /**
+   * When to leave and when you'll arrive, at a reduced-mobility pace: the first vehicle's
+   * timetable departure minus the walk to it, the last one's arrival plus the walk after it.
+   * Absent when the provider gives no timetable.
+   */
+  departAt: z.iso.datetime({ offset: true }).optional(),
+  arriveAt: z.iso.datetime({ offset: true }).optional(),
   legs: z.array(LegViewSchema),
 })
 

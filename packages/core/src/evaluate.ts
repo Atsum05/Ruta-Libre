@@ -1,6 +1,6 @@
 import type { StationId } from './ids.ts'
 import { matchStop, resolveTerminal } from './match.ts'
-import type { Device, Registry } from './registry.ts'
+import type { Device, Registry, Station } from './registry.ts'
 import type { Route, TransitLeg } from './route.ts'
 import type { StatusSnapshot } from './status.ts'
 import { combineFindings, type Finding, type PlatformRelation, type Verdict } from './verdict.ts'
@@ -84,7 +84,7 @@ function evaluateMetroLeg(
     for (const device of station.devices) {
       const platform = relationTo(device, towards)
       if (device.kind === 'elevator' && platform !== 'other') hasUsableElevator = true
-      const finding = deviceFinding(device, platform, status, station.id, legIndex)
+      const finding = deviceFinding(device, platform, status, station, legIndex)
       if (finding) findings.push(finding)
     }
     if (!hasUsableElevator) {
@@ -110,15 +110,34 @@ function relationTo(device: Device, towards: StationId | null): PlatformRelation
   }
 }
 
+/**
+ * A working elevator at the same station that connects exactly the same two places (ADR 0015).
+ * Only that counts: an elevator reaching the same platform from somewhere else doesn't help
+ * someone standing where the broken one starts (the Los Héroes case).
+ */
+function workingBackup(device: Device, station: Station, status: StatusSnapshot): Device | null {
+  if (device.link === undefined) return null
+  return (
+    station.devices.find(
+      (other) =>
+        other.id !== device.id &&
+        other.kind === 'elevator' &&
+        other.link === device.link &&
+        status.devices.get(other.id) === 'working',
+    ) ?? null
+  )
+}
+
 function deviceFinding(
   device: Device,
   platform: PlatformRelation,
   status: StatusSnapshot,
-  stationId: StationId,
+  station: Station,
   legIndex: number,
 ): Finding | null {
   const state = status.devices.get(device.id)
   const deviceId = device.id
+  const stationId = station.id
 
   if (device.kind === 'escalator') {
     // An escalator never blocks: the elevator still gets you through. A missing status can at
@@ -127,8 +146,12 @@ function deviceFinding(
     return { effect: 'warning', legIndex, reason: { code: 'escalator-out', stationId, deviceId } }
   }
 
+  // A confirmed working twin covers this elevator whatever its own state: still say when it's
+  // broken, so the rider knows which one to use; say nothing when it's merely unreported.
+  const backup = platform === 'other' ? null : workingBackup(device, station, status)
+
   if (state === undefined) {
-    if (platform === 'other') return null
+    if (platform === 'other' || backup) return null
     return {
       effect: 'unknown',
       legIndex,
@@ -136,6 +159,14 @@ function deviceFinding(
     }
   }
   if (state === 'working') return null
+
+  if (backup) {
+    return {
+      effect: 'warning',
+      legIndex,
+      reason: { code: 'elevator-out-backup', stationId, deviceId, backupDeviceId: backup.id },
+    }
+  }
 
   // Warn too much rather than too little: the other platform's elevator still gets a warning,
   // in case we have the direction wrong.

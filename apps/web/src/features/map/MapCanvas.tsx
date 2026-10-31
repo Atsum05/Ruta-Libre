@@ -1,9 +1,17 @@
 import type { RouteView, StatusResponse } from '@rutalibre/contract'
 import { loadRegistry } from '@rutalibre/registry'
-import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps'
+import {
+  APIProvider,
+  ControlPosition,
+  Map as GoogleMap,
+  InfoWindow,
+  MapControl,
+} from '@vis.gl/react-google-maps'
 import { useMemo, useState } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
+import { MapButtons } from './MapButtons.tsx'
 import { MetroLines, RoutePath, StationDots } from './overlays.tsx'
+import { StationDetails } from './StationDetails.tsx'
 import { stationMarkers, stationsOnRoute } from './stationStatus.ts'
 
 // Plaza de Armas, roughly the centre of the Metro network.
@@ -36,7 +44,10 @@ export interface MapCanvasProps {
 export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasProps) {
   const { t, locale } = useI18n()
   const [failed, setFailed] = useState(false)
-  const markers = useMemo(() => stationMarkers(loadRegistry(), status), [status])
+  const registry = loadRegistry()
+  const markers = useMemo(() => stationMarkers(registry, status), [registry, status])
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const selected = registry.stations.find((s) => s.id === selectedId)
   // With a route on screen, everything else steps back (focus mode).
   const focus = useMemo(() => stationsOnRoute(route, markers), [route, markers])
 
@@ -68,8 +79,21 @@ export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasPro
         {...(mapId ? { mapId } : { styles: QUIET_STYLE })}
       >
         <MetroLines dimmed={route !== undefined} />
-        <StationDots markers={markers} focus={focus} />
+        <StationDots markers={markers} focus={focus} onSelect={setSelectedId} />
+        {selected && (
+          <InfoWindow
+            position={selected.location}
+            headerContent={<h2 className="station-card__name">{selected.name}</h2>}
+            onCloseClick={() => setSelectedId(null)}
+            maxWidth={320}
+          >
+            <StationDetails station={selected} registry={registry} status={status} />
+          </InfoWindow>
+        )}
         <RoutePath route={route} />
+        <MapControl position={ControlPosition.RIGHT_BOTTOM}>
+          <MapButtons route={route} />
+        </MapControl>
       </GoogleMap>
     </APIProvider>
   )

@@ -1,6 +1,12 @@
 import { normalizeName, StationId } from '@rutalibre/core'
 import { describe, expect, it } from 'vitest'
-import { deviceKind, displayName, parseDirections, type TerminalName } from './parse.ts'
+import {
+  connectionKey,
+  deviceKind,
+  displayName,
+  parseDirections,
+  type TerminalName,
+} from './parse.ts'
 
 const terminal = (id: string, name: string): TerminalName => ({
   stationId: StationId(id),
@@ -102,5 +108,51 @@ describe('displayName edge cases', () => {
     const started = performance.now()
     displayName(`a${' '.repeat(200_000)}x`)
     expect(performance.now() - started).toBeLessThan(200)
+  })
+})
+
+describe('connectionKey', () => {
+  it('names the two places a device connects, the same in both directions', () => {
+    expect(connectionKey('Ascensor Boletería hacia Andén dirección San Pablo')).toBe(
+      'anden direccion san pablo <-> boleteria',
+    )
+    expect(
+      connectionKey('Escalera mecánica 04 desde Andén dirección San Pablo hacia Boletería'),
+    ).toBe('anden direccion san pablo <-> boleteria')
+  })
+
+  it('treats every street entrance as the same place', () => {
+    const a = connectionKey(
+      'Ascensor de acceso ubicado en Av. Vicuña Mackenna con El Pinar hacia Boletería',
+    )
+    const b = connectionKey('Ascensor 2 de acceso ubicado en Av. Grecia hacia Boletería')
+    expect(a).toBe('boleteria <-> calle')
+    expect(b).toBe(a)
+  })
+
+  it('keeps every destination of a device that serves several, in a fixed order', () => {
+    expect(
+      connectionKey('Ascensor Servicios hacia Cambio de andén y hacia Andén dirección Los Leones'),
+    ).toBe('anden direccion los leones + cambio de anden <-> servicios')
+  })
+
+  it('keeps line and hall details, so different halls are different places', () => {
+    expect(
+      connectionKey(
+        'Ascensor Hall Línea 1 dirección San Pablo hacia Andén Línea 2 dirección Hospital El Pino',
+      ),
+    ).not.toBe(
+      connectionKey(
+        'Ascensor Hall Línea 1 dirección Los Dominicos hacia Andén Línea 2 dirección Hospital El Pino',
+      ),
+    )
+  })
+
+  it('gives up on texts without "X hacia Y"', () => {
+    expect(connectionKey('Ascensor Andén Línea 1 dirección San Pablo')).toBeUndefined()
+    expect(connectionKey('Ascensor de acceso ubicado en Av. Grecia')).toBeUndefined()
+    expect(connectionKey('Ascensor hacia Boletería')).toBeUndefined()
+    expect(connectionKey('Ascensor Boletería hacia ')).toBeUndefined()
+    expect(connectionKey('')).toBeUndefined()
   })
 })

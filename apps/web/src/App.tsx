@@ -37,9 +37,14 @@ export function App({ config }: { config: WebConfig }) {
   const status = useStatus()
   const [trip, setTrip] = useState<{ from: string; to: string } | null>(null)
   const [editing, setEditing] = useState(true)
+  // A new key gives the search form fresh, empty fields after "New search".
+  const [formKey, setFormKey] = useState(0)
+  // Which of the plan's routes is shown and drawn: the best one until the rider picks another.
+  const [selected, setSelected] = useState(0)
   const plan = useMutation({
     mutationFn: (request: PlanRequest) => api.plan(request),
     onSuccess: () => {
+      setSelected(0)
       setEditing(false)
       showMapOnPhone()
     },
@@ -53,7 +58,7 @@ export function App({ config }: { config: WebConfig }) {
             apiKey={config.googleMapsKey}
             mapId={config.googleMapsMapId}
             status={status.data}
-            route={plan.data?.routes[0]}
+            route={plan.data?.routes[selected]}
           />
         </Suspense>
       </div>
@@ -77,11 +82,22 @@ export function App({ config }: { config: WebConfig }) {
 
         <StatusBanner status={status.data} failed={status.isError} />
         {trip && !editing && (
-          <TripSummary from={trip.from} to={trip.to} onEdit={() => setEditing(true)} />
+          <TripSummary
+            from={trip.from}
+            to={trip.to}
+            onEdit={() => setEditing(true)}
+            onReset={() => {
+              plan.reset()
+              setTrip(null)
+              setEditing(true)
+              setFormKey((k) => k + 1)
+            }}
+          />
         )}
         {/* Hidden, not removed, while showing a result: "Change" reopens it with the same places. */}
         <div hidden={!editing}>
           <SearchForm
+            key={formKey}
             busy={plan.isPending}
             onSearch={(origin, destination) => {
               setTrip({ from: origin.label, to: destination.label })
@@ -95,7 +111,7 @@ export function App({ config }: { config: WebConfig }) {
             {t('outcome.error')}
           </p>
         )}
-        {plan.data && <PlanResult plan={plan.data} />}
+        {plan.data && <PlanResult plan={plan.data} selected={selected} onSelect={setSelected} />}
 
         <footer className="sheet__footer">
           <Legend />

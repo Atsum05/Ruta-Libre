@@ -1,7 +1,7 @@
 // Unit tests for the plan service's own decisions, with a fake routing provider. The full
 // request path (Google adapter, real registry, HTTP) is in routes/trip.test.ts.
 
-import { DeviceId, StationId } from '@rutalibre/core'
+import { adjustWalkingTime, DeviceId, StationId } from '@rutalibre/core'
 import { describe, expect, it } from 'vitest'
 import { silentLogger } from '../log.ts'
 import type { DetailedRoute, DetailedTransitLeg, RoutingRequest } from '../providers.ts'
@@ -67,7 +67,7 @@ async function plan(
     'A-1': 'working',
     'B-1': 'working',
   },
-  options: { departAt?: string; demo?: boolean; ageMs?: number } = {},
+  options: { departAt?: string; demo?: boolean; ageMs?: number; registry?: typeof registry } = {},
 ) {
   const requests: RoutingRequest[] = []
   const result = await planTrip(
@@ -84,7 +84,7 @@ async function plan(
         },
       },
       statusStore: await storeWith(states, options.ageMs),
-      registry,
+      registry: options.registry ?? registry,
       maxAgeMs: 13 * 3_600_000,
       demo: options.demo ?? false,
       now: () => NOW,
@@ -194,6 +194,15 @@ describe('Metro options (ADR 0014)', () => {
     expect(result.routes).toHaveLength(1)
   })
 
+  it('drops a trip the provider repeats in one answer, e.g. a later departure', async () => {
+    const { result } = await plan({
+      main: [route(transit('metro')), route(transit('bus')), route(transit('metro'))],
+      metro: [],
+    })
+    expect(result.routes.map((r) => r.legs[0]?.mode)).toEqual(['metro', 'bus'])
+    expect(result.routes[0]?.source).toBe('primary')
+  })
+
   it('carries on without Metro-only routes if that request fails', async () => {
     const { result } = await plan({ main: [route(transit('bus'))], metro: new Error('quota') })
     expect(result.routes).toHaveLength(1)
@@ -219,5 +228,78 @@ describe('demo mode (ADR 0014)', () => {
     )
     expect(result.routes[0]?.verdict.kind).toBe('blocked')
     expect(result.status).toMatchObject({ health: 'ok', demo: true })
+  })
+})
+
+describe('trip times', () => {
+  const walk = (seconds: number) => ({ mode: 'walk' as const, durationSeconds: seconds, path: [] })
+  const timed = {
+    ...transit('metro'),
+    departAt: '2026-10-28T15:10:00Z',
+    arriveAt: '2026-10-28T15:30:00Z',
+  }
+
+  it('leaves earlier and arrives later than the timetable, walking at your pace', async () => {
+    const { result } = await plan({ main: [route(walk(120), timed, walk(60))] })
+    const view = result.routes[0]
+    expect(view?.departAt).toBe(
+      new Date(Date.parse('2026-10-28T15:10:00Z') - adjustWalkingTime(120) * 1000).toISOString(),
+    )
+    expect(view?.arriveAt).toBe(
+      new Date(Date.parse('2026-10-28T15:30:00Z') + adjustWalkingTime(60) * 1000).toISOString(),
+    )
+    expect(view?.legs[1]).toMatchObject({ departAt: timed.departAt, arriveAt: timed.arriveAt })
+  })
+
+  it('gives no times when the provider gave none', async () => {
+    const { result } = await plan({ main: [route(walk(120), transit('metro'))] })
+    expect(result.routes[0]).not.toHaveProperty('departAt')
+    expect(result.routes[0]).not.toHaveProperty('arriveAt')
+  })
+})
+
+describe('device descriptions (ADR 0015)', () => {
+  const link = 'A: boleteria <-> calle'
+  const withTwins = {
+    ...registry,
+    stations: registry.stations.map((st) =>
+      st.id !== 'A'
+        ? st
+        : {
+            ...st,
+            devices: [
+              { ...st.devices[0], description: 'Ascensor de acceso Norte', link },
+              {
+                id: DeviceId('A-2'),
+                kind: 'elevator' as const,
+                scope: { kind: 'station' as const },
+                description: 'Ascensor de acceso Sur',
+                link,
+              },
+            ],
+          },
+    ),
+  } as typeof registry
+
+  it('names the broken elevator and the one to use instead, in the source words', async () => {
+    const { result } = await plan(
+      { main: [route(transit('metro'))] },
+      { 'A-1': 'out-of-service', 'A-2': 'working', 'B-1': 'working' },
+      { registry: withTwins },
+    )
+    expect(result.routes[0]?.verdict.kind).toBe('warning')
+    expect(result.routes[0]?.verdict.findings[0]).toMatchObject({
+      reason: { code: 'elevator-out-backup', deviceId: 'A-1', backupDeviceId: 'A-2' },
+      deviceDescription: 'Ascensor de acceso Norte',
+      backupDescription: 'Ascensor de acceso Sur',
+    })
+  })
+
+  it('leaves the descriptions out when the registry has none', async () => {
+    const { result } = await plan(
+      { main: [route(transit('metro'))] },
+      { 'A-1': 'out-of-service', 'B-1': 'working' },
+    )
+    expect(result.routes[0]?.verdict.findings[0]).not.toHaveProperty('deviceDescription')
   })
 })

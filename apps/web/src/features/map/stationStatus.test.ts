@@ -2,7 +2,7 @@ import type { LegView, RouteView } from '@rutalibre/contract'
 import { loadRegistry } from '@rutalibre/registry'
 import { describe, expect, it } from 'vitest'
 import { ROUTE_OK, STATUS_OK } from '../../test/render.tsx'
-import { stationMarkers, stationsOnRoute } from './stationStatus.ts'
+import { isCurrent, stationMarkers, stationsOnRoute } from './stationStatus.ts'
 
 const registry = loadRegistry()
 const losHeroesL1 = registry.stations.find((s) => s.id === 'LH')
@@ -51,6 +51,27 @@ describe('stationMarkers', () => {
   })
 })
 
+describe('isCurrent and old data', () => {
+  const old = { ...status({ 'LH-60d634': 'out-of-service' }), ageSeconds: 14 * 86_400 }
+
+  it('greys out every station when the data is older than the limit', () => {
+    expect(isCurrent(old)).toBe(false)
+    expect(markerFor(old)).toBe('unknown')
+  })
+
+  it('shows old data as current in demo mode, which says so on screen', () => {
+    expect(isCurrent({ ...old, demo: true })).toBe(true)
+    expect(markerFor({ ...old, demo: true })).toBe('blocked')
+  })
+
+  it('is never current without data', () => {
+    expect(isCurrent(undefined)).toBe(false)
+    expect(isCurrent({ ...STATUS_OK, health: 'unavailable', demo: true })).toBe(false)
+  })
+})
+
+type Transit = Exclude<LegView, { mode: 'walk' }>
+
 describe('stationsOnRoute', () => {
   const markers = stationMarkers(registry, status({}))
   const at = (code: string) => {
@@ -85,6 +106,22 @@ describe('stationsOnRoute', () => {
     // Los Héroes on L2 is 39 m away: the same place for the rider.
     expect(ids?.has('HE')).toBe(true)
     expect(ids?.has('PQU')).toBe(false)
+  })
+
+  it('finds a station by name when its platform is far from the station point', () => {
+    // 300 m from the single Irarrázaval point, like Los Leones Line 6's platform.
+    const far = { name: 'Irarrázaval', lat: -33.4523, lng: -70.6283 }
+    const ids = stationsOnRoute(
+      routeOf({ ...(leg('metro', 'CH', 'LH') as Transit), to: far }),
+      markers,
+    )
+    expect(ids?.has('IR')).toBe(true)
+    // Unnamed, the same spot is too far to count.
+    const other = stationsOnRoute(
+      routeOf({ ...(leg('metro', 'CH', 'LH') as Transit), to: { ...far, name: 'Otra' } }),
+      markers,
+    )
+    expect(other?.has('IR')).toBe(false)
   })
 
   it('ignores bus stops', () => {

@@ -9,7 +9,13 @@ export {
 export { DEFAULT_MAX_SNAPSHOT_AGE_MS, type EvaluateOptions, evaluateRoute } from './evaluate.ts'
 export { distanceMeters, type LatLng } from './geo.ts'
 export { DeviceId, StationId } from './ids.ts'
-export { MATCH_RADIUS_M, type MatchOptions, matchStop, resolveTerminal } from './match.ts'
+export {
+  MATCH_RADIUS_M,
+  type MatchOptions,
+  matchStop,
+  NAMED_MATCH_RADIUS_M,
+  resolveTerminal,
+} from './match.ts'
 export { type Headsign, normalizeName, parseHeadsign } from './names.ts'
 export type { Device, DeviceKind, DeviceScope, Line, Registry, Station } from './registry.ts'
 export type { Leg, Route, TransitLeg, TransitMode, TransitStop, WalkLeg } from './route.ts'

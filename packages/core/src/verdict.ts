@@ -28,6 +28,13 @@ export type Reason =
       readonly deviceId: DeviceId
     }
   | { readonly code: 'escalator-out'; readonly stationId: StationId; readonly deviceId: DeviceId }
+  | {
+      /** Out of service, but another working elevator connects the same two places (ADR 0015). */
+      readonly code: 'elevator-out-backup'
+      readonly stationId: StationId
+      readonly deviceId: DeviceId
+      readonly backupDeviceId: DeviceId
+    }
 
 export interface Finding {
   readonly effect: Exclude<VerdictKind, 'ok'>

@@ -55,3 +55,35 @@ export function displayName(catalogueName: string): string {
   if (lastSpace === -1 || !LINE_TAG.test(name.slice(lastSpace + 1))) return catalogueName
   return name.slice(0, lastSpace).trimEnd()
 }
+
+/**
+ * The two places a device connects, from its live-status text, as a stable key: "Ascensor de
+ * acceso ubicado en Av. X hacia Boletería" → "boleteria <-> calle". Elevators run both ways, so
+ * the ends are sorted. Every street entrance counts as "calle": two entrance elevators into the
+ * same ticket hall do the same job, even from different corners (ADR 0015). Returns undefined
+ * when the text doesn't follow the "X hacia Y" pattern (about 1% of devices).
+ */
+export function connectionKey(text: string): string | undefined {
+  let t = normalizeName(text).replace(
+    /^(ascensor|escalera mecanica)( de acceso| de combinacion)?( \d+[ns]?)?( de acceso)? /,
+    '',
+  )
+  if (t.startsWith('ubicado en ')) {
+    const at = t.indexOf(' hacia ')
+    if (at === -1) return undefined
+    t = `calle${t.slice(at)}`
+  }
+  if (t.startsWith('desde ')) t = t.slice('desde '.length)
+  const at = t.indexOf(' hacia ')
+  if (at <= 0) return undefined
+  const from = t.slice(0, at).trim()
+  const to = t
+    .slice(at + ' hacia '.length)
+    .split(/ y hacia | hacia /)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .sort()
+    .join(' + ')
+  if (!from || !to) return undefined
+  return [from, to].sort().join(' <-> ')
+}

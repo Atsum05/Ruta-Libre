@@ -16,6 +16,13 @@ export interface Device {
   readonly id: DeviceId
   readonly kind: DeviceKind
   readonly scope: DeviceScope
+  /** The source's own words for where it goes ("… hacia Boletería"), shown to riders as is. */
+  readonly description?: string
+  /**
+   * The two places it connects, normalised ("boleteria <-> calle"). Two elevators at a station
+   * with the same link do the same job, so one backs up the other (ADR 0015).
+   */
+  readonly link?: string
 }
 
 export interface Station {

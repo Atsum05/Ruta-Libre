@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAge } from './format.ts'
+import { formatAge, formatClock, formatDuration } from './format.ts'
 import { en } from './i18n/en.ts'
 import { es } from './i18n/es.ts'
 import { format, translator } from './i18n/index.tsx'
@@ -43,5 +43,27 @@ describe('formatAge', () => {
     [-5, '0 s'],
   ])('%d s → %s', (seconds, text) => {
     expect(formatAge(seconds, t)).toBe(text)
+  })
+})
+
+describe('formatDuration', () => {
+  const t = translator('es')
+  it.each([
+    [20, '1 min'],
+    [45 * 60, '45 min'],
+    [59 * 60 + 40, '1 h'],
+    [74 * 60, '1 h 14 min'],
+    [2 * 3600, '2 h'],
+    [2 * 3600 + 60, '2 h 1 min'],
+  ])('%d s → %s', (seconds, text) => {
+    expect(formatDuration(seconds, t)).toBe(text)
+  })
+})
+
+describe('formatClock', () => {
+  it('uses a 24-hour clock in Santiago time, in both languages', () => {
+    expect(formatClock('2026-10-31T18:35:00.000Z', 'es')).toBe('15:35')
+    expect(formatClock('2026-10-31T18:35:00.000Z', 'en')).toBe('15:35')
+    expect(formatClock('2026-10-31T03:05:00.000Z', 'es')).toBe('00:05')
   })
 })

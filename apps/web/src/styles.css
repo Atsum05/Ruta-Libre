@@ -631,8 +631,14 @@ input::placeholder {
   white-space: nowrap;
 }
 
-.trip-summary__edit {
-  align-self: center;
+.trip-summary__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trip-summary__actions .chip {
+  justify-content: center;
 }
 
 /* ─── Outcome notices ───────────────────────────────────────────────────────────────────── */
@@ -715,6 +721,12 @@ input::placeholder {
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 400;
+}
+
+.route__note {
+  margin-top: -6px;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .verdict {
@@ -834,6 +846,18 @@ input::placeholder {
   font-size: 0.95rem;
 }
 
+.finding__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.finding__detail {
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
 .finding__icon {
   flex-shrink: 0;
   margin-top: 1px;
@@ -920,6 +944,12 @@ input::placeholder {
   background: var(--surface);
 }
 
+.tl__clock {
+  margin-right: 8px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
 .tl__ride {
   display: flex;
   flex-wrap: wrap;
@@ -992,6 +1022,19 @@ input::placeholder {
   margin-top: 10px;
 }
 
+.route__choose {
+  border-color: var(--ink);
+}
+
+.chosen-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+  font-weight: 700;
+}
+
 /* ─── Footer and legend ─────────────────────────────────────────────────────────────────── */
 
 .sheet__footer {
@@ -1050,4 +1093,168 @@ input::placeholder {
     animation: none;
     transition: none;
   }
+}
+
+/* ─── Station card (tap a station dot) ───────────────────────────────────────────────────
+   Google draws the info window on white in both themes, so these colours are fixed rather
+   than taken from the light/dark tokens. */
+
+.station-card__name {
+  margin: 0;
+  color: #121a2e;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: 1.1rem;
+}
+
+.station-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 240px;
+  color: #121a2e;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.station-card__lines {
+  color: #5b6275;
+  font-weight: 700;
+}
+
+.station-card__summary {
+  font-weight: 700;
+}
+
+.station-card__stale {
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #ece9fb;
+  color: #4532a8;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.station-card__devices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.device {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #f6f4ef;
+}
+
+.device__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.device__kind {
+  font-weight: 700;
+}
+
+.device__where {
+  color: #5b6275;
+  font-size: 0.85rem;
+}
+
+.device__description {
+  margin-top: 2px;
+  color: #3d4560;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.device__state {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.device--working .device__state {
+  background: #e2f4ea;
+  color: #0d6b41;
+}
+
+.device--out-of-service {
+  background: #fde4e1;
+}
+
+.device--out-of-service .device__state {
+  background: #a3221b;
+  color: #ffffff;
+}
+
+.device--unknown .device__state {
+  background: #ece9fb;
+  color: #4532a8;
+}
+
+.station-card__age {
+  color: #5b6275;
+  font-size: 0.8rem;
+}
+
+/* ─── Map buttons (centre on me, whole route) ─────────────────────────────────────────── */
+
+.map-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 0 10px 10px 0;
+}
+
+/* On a phone the sheet overlaps the bottom of the map: keep the buttons above its edge. */
+@media (max-width: 959px) {
+  .map-buttons {
+    margin-bottom: 34px;
+  }
+}
+
+.map-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgb(16 23 42 / 0.25);
+  color: #121a2e;
+  cursor: pointer;
+}
+
+.map-button:hover:not(:disabled) {
+  background: #f6f4ef;
+}
+
+.map-button:disabled {
+  opacity: 0.6;
+}
+
+.map-buttons__message {
+  max-width: 220px;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #121a2e;
+  color: #ffffff;
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: 0.85rem;
 }

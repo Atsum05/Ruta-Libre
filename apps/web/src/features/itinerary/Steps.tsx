@@ -1,6 +1,6 @@
 import type { LegView } from '@rutalibre/contract'
 import type { CSSProperties } from 'react'
-import { minutes } from '../../shared/format.ts'
+import { formatClock, formatDuration } from '../../shared/format.ts'
 import { useI18n } from '../../shared/i18n/index.tsx'
 import { BusIcon, ChevronIcon, MetroIcon, RailIcon, WalkIcon } from '../../shared/icons.tsx'
 
@@ -22,6 +22,7 @@ export function LineBadge({ leg }: { leg: TransitLeg }) {
 
 /** A one-line summary of the trip for sighted users; the timeline below says the same in full. */
 export function RouteStrip({ legs }: { legs: readonly LegView[] }) {
+  const { t } = useI18n()
   return (
     <div className="strip" aria-hidden="true">
       {legs.map((leg, i) => (
@@ -31,7 +32,7 @@ export function RouteStrip({ legs }: { legs: readonly LegView[] }) {
           {leg.mode === 'walk' ? (
             <span className="strip__walk">
               <WalkIcon size={16} />
-              {minutes(leg.durationSeconds)}
+              {formatDuration(leg.durationSeconds, t)}
             </span>
           ) : (
             <LineBadge leg={leg} />
@@ -71,7 +72,7 @@ function WalkStep({ leg }: { leg: Extract<LegView, { mode: 'walk' }> }) {
       <span className="tl__body">
         <span className="tl__walk">
           <WalkIcon size={18} />
-          {t('leg.walk', { minutes: minutes(leg.durationSeconds) })}
+          {t('leg.walk', { duration: formatDuration(leg.durationSeconds, t) })}
         </span>
       </span>
     </li>
@@ -79,7 +80,7 @@ function WalkStep({ leg }: { leg: Extract<LegView, { mode: 'walk' }> }) {
 }
 
 function TransitStep({ leg }: { leg: TransitLeg }) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const line = leg.label
   const title =
     leg.mode === 'bus'
@@ -97,7 +98,10 @@ function TransitStep({ leg }: { leg: TransitLeg }) {
     <li className="tl tl--transit" style={{ '--leg-color': leg.color } as CSSProperties}>
       <span className="tl__rail" aria-hidden="true" />
       <span className="tl__body">
-        <span className="tl__stop">{leg.from.name}</span>
+        <span className="tl__stop">
+          {leg.departAt && <time className="tl__clock">{formatClock(leg.departAt, locale)}</time>}
+          {leg.from.name}
+        </span>
         <span className="tl__ride">
           <Icon size={18} className="tl__mode" />
           <LineBadge leg={leg} />
@@ -113,7 +117,10 @@ function TransitStep({ leg }: { leg: TransitLeg }) {
             {leg.stopCount === 1 ? t('leg.stop') : t('leg.stops', { count: leg.stopCount })}
           </span>
         )}
-        <span className="tl__stop">{leg.to.name}</span>
+        <span className="tl__stop">
+          {leg.arriveAt && <time className="tl__clock">{formatClock(leg.arriveAt, locale)}</time>}
+          {leg.to.name}
+        </span>
       </span>
     </li>
   )

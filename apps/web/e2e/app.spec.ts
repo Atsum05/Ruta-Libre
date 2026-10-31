@@ -49,6 +49,29 @@ test('explains a rerouted trip and keeps the blocked one for reference', async (
   })
 })
 
+test('lets the rider choose another option and go back to the recommended one', async ({
+  page,
+}) => {
+  await mockApi(page, { plan: PLANS.rerouted })
+  await page.goto('/')
+  await planTrip(page)
+
+  await page.getByText('Otras opciones (1)').click()
+  await page.getByRole('button', { name: 'Ver esta ruta' }).click()
+  const main = page.getByRole('article').first()
+  await expect(main.getByText('No accesible')).toBeVisible()
+  await expect(main.getByRole('heading', { level: 3 })).toBeFocused()
+  await expect(page.getByText('Estás viendo otra opción.')).toBeVisible()
+  expect(await axeViolations(page)).toEqual([])
+  await page.screenshot({
+    path: `test-results/chosen-${test.info().project.name}.png`,
+    fullPage: true,
+  })
+
+  await page.getByRole('button', { name: 'Volver a la recomendada' }).click()
+  await expect(main.getByText('Micro 210 hacia Gran Avenida')).toBeVisible()
+})
+
 test('tells the person to ask for assistance when nothing is accessible', async ({ page }) => {
   await mockApi(page, { plan: PLANS.noAlternative })
   await page.goto('/')

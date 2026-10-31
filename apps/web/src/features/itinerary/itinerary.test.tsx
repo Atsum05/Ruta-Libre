@@ -1,9 +1,10 @@
 import type { Finding, RouteView } from '@rutalibre/contract'
-import { screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { act, screen, within } from '@testing-library/react'
+import { useState } from 'react'
+import { describe, expect, it, vi } from 'vitest'
 import { translator } from '../../shared/i18n/index.tsx'
 import { axeViolations, plan, ROUTE_BLOCKED, ROUTE_OK, renderApp } from '../../test/render.tsx'
-import { describeFinding, orderFindings } from './findings.ts'
+import { describeFinding, findingDetails, orderFindings } from './findings.ts'
 import { PlanResult } from './PlanResult.tsx'
 import { RouteCard } from './RouteCard.tsx'
 import { Steps } from './Steps.tsx'
@@ -93,6 +94,54 @@ describe('describeFinding', () => {
   })
 })
 
+describe('findingDetails (ADR 0015)', () => {
+  const backup = {
+    ...finding({
+      code: 'elevator-out-backup',
+      stationId: 'LH',
+      deviceId: 'a',
+      backupDeviceId: 'b',
+    }),
+    deviceDescription: 'Ascensor de acceso Norte hacia Boletería',
+    backupDescription: 'Ascensor de acceso Sur hacia Boletería',
+  }
+
+  it('says which elevator is out and which one to use instead', () => {
+    expect(findingDetails(backup, t)).toEqual([
+      'Fuera de servicio: Ascensor de acceso Norte hacia Boletería',
+      'Usa este: Ascensor de acceso Sur hacia Boletería',
+    ])
+  })
+
+  it('shows what it has, and the plain description for other findings', () => {
+    const { backupDescription: _b, ...onlyBroken } = backup
+    expect(findingDetails(onlyBroken, t)).toEqual([
+      'Fuera de servicio: Ascensor de acceso Norte hacia Boletería',
+    ])
+    const { deviceDescription: _d, ...onlyBackup } = backup
+    expect(findingDetails(onlyBackup, t)).toEqual([
+      'Usa este: Ascensor de acceso Sur hacia Boletería',
+    ])
+    const plain = {
+      ...finding({ code: 'elevator-out', stationId: 'LH', deviceId: 'a', platform: 'yours' }),
+      deviceDescription: 'Ascensor Boletería hacia Andén',
+    }
+    expect(findingDetails(plain, t)).toEqual(['Ascensor Boletería hacia Andén'])
+    expect(findingDetails(finding({ code: 'status-unavailable' }), t)).toEqual([])
+  })
+
+  it('shows the details under the finding on the card', () => {
+    renderApp(
+      <RouteCard
+        route={{ ...ROUTE_OK, verdict: { kind: 'warning', findings: [backup] } }}
+        headingId="h"
+      />,
+    )
+    expect(screen.getByText(describeFinding(backup, t))).toBeTruthy()
+    expect(screen.getByText('Usa este: Ascensor de acceso Sur hacia Boletería')).toBeTruthy()
+  })
+})
+
 describe('orderFindings', () => {
   it('puts the worst first and drops exact repeats', () => {
     const escalator = finding({ code: 'escalator-out', stationId: 'LH', deviceId: 'e' }, 'warning')
@@ -111,7 +160,7 @@ describe('orderFindings', () => {
 
 describe('PlanResult', () => {
   it('shows the best route with its verdict, duration at your pace, and steps', () => {
-    renderApp(<PlanResult plan={plan()} />)
+    renderApp(<PlanResult plan={plan()} selected={0} onSelect={() => {}} />)
     expect(screen.getByRole('status')).toHaveProperty('textContent', 'Ruta accesible encontrada.')
     const card = screen.getByRole('article')
     // Shown as a big "25 min" with a smaller "a tu ritmo", read as one heading.
@@ -122,43 +171,63 @@ describe('PlanResult', () => {
   })
 
   it('says the route was adjusted when we rerouted', () => {
-    renderApp(<PlanResult plan={plan({ rerouted: true })} />)
+    renderApp(<PlanResult plan={plan({ rerouted: true })} selected={0} onSelect={() => {}} />)
     expect(screen.getByRole('status').textContent).toMatch(/Ruta ajustada/)
   })
 
   it('tells the person to ask for assistance when nothing is accessible, as an alert', () => {
     renderApp(
-      <PlanResult plan={plan({ outcome: 'no-accessible-route', routes: [ROUTE_BLOCKED] })} />,
+      <PlanResult
+        plan={plan({ outcome: 'no-accessible-route', routes: [ROUTE_BLOCKED] })}
+        selected={0}
+        onSelect={() => {}}
+      />,
     )
     expect(screen.getByRole('alert').textContent).toMatch(/Pide asistencia/)
     expect(screen.getByText('Ascensor fuera de servicio en Los Héroes, en tu andén.')).toBeTruthy()
   })
 
   it('makes "unknown" an alert too, never a footnote', () => {
-    renderApp(<PlanResult plan={plan({ outcome: 'uncertain' })} />)
+    renderApp(<PlanResult plan={plan({ outcome: 'uncertain' })} selected={0} onSelect={() => {}} />)
     expect(screen.getByRole('alert').textContent).toMatch(/No podemos confirmar/)
   })
 
   it('collapses the other options', () => {
-    renderApp(<PlanResult plan={plan({ routes: [ROUTE_OK, ROUTE_BLOCKED] })} />)
+    renderApp(
+      <PlanResult
+        plan={plan({ routes: [ROUTE_OK, ROUTE_BLOCKED] })}
+        selected={0}
+        onSelect={() => {}}
+      />,
+    )
     expect(screen.getByText('Otras opciones (1)').closest('details')?.open).toBe(false)
   })
 
   it('reports no routes at all', () => {
-    renderApp(<PlanResult plan={plan({ outcome: 'no-route', routes: [] })} />)
+    renderApp(
+      <PlanResult
+        plan={plan({ outcome: 'no-route', routes: [] })}
+        selected={0}
+        onSelect={() => {}}
+      />,
+    )
     expect(screen.getByRole('alert').textContent).toMatch(/No encontramos rutas/)
     expect(screen.queryByRole('article')).toBeNull()
   })
 
   it('works in English', () => {
-    renderApp(<PlanResult plan={plan()} />, 'en')
+    renderApp(<PlanResult plan={plan()} selected={0} onSelect={() => {}} />, 'en')
     expect(screen.getByRole('heading', { level: 3, name: '25 min at your pace' })).toBeTruthy()
     expect(screen.getByText('Accessible now')).toBeTruthy()
   })
 
   it('has no accessibility violations', async () => {
     const { container } = renderApp(
-      <PlanResult plan={plan({ routes: [ROUTE_OK, ROUTE_BLOCKED] })} />,
+      <PlanResult
+        plan={plan({ routes: [ROUTE_OK, ROUTE_BLOCKED] })}
+        selected={0}
+        onSelect={() => {}}
+      />,
     )
     expect(await axeViolations(container)).toEqual([])
   })
@@ -211,6 +280,27 @@ describe('Steps', () => {
 })
 
 describe('RouteCard', () => {
+  it('shows when you leave and arrive, read as a sentence', () => {
+    const timed = {
+      ...ROUTE_OK,
+      departAt: '2026-10-31T18:35:00.000Z',
+      arriveAt: '2026-10-31T19:49:00.000Z',
+      durationSeconds: 74 * 60,
+    }
+    renderApp(<RouteCard route={timed} headingId="h" />)
+    const heading = screen.getByRole('heading', {
+      level: 3,
+      name: 'Sales a las 15:35, llegas a las 16:49. 1 h 14 min a tu ritmo',
+    })
+    expect(heading.textContent).toBe('15:35 – 16:49 1 h 14 min a tu ritmo')
+    expect(screen.getByText(/Horarios estimados/)).toBeTruthy()
+  })
+
+  it('shows long walks in hours and minutes', () => {
+    renderApp(<Steps legs={[{ mode: 'walk', durationSeconds: 65 * 60, path: [] }]} />)
+    expect(screen.getByText('Caminar ~1 h 5 min a tu ritmo')).toBeTruthy()
+  })
+
   it('marks a bus-only route', () => {
     renderApp(<RouteCard route={{ ...ROUTE_OK, source: 'bus-only' }} headingId="h" />)
     expect(screen.getByText('Solo micro')).toBeTruthy()
@@ -223,12 +313,12 @@ describe('PlanResult in demo mode (ADR 0014)', () => {
       routes: [ROUTE_OK, ROUTE_BLOCKED],
       status: { health: 'ok', observedAt: '2026-10-16T23:21:16.000Z', demo: true },
     })
-    renderApp(<PlanResult plan={demoPlan} />)
+    renderApp(<PlanResult plan={demoPlan} selected={0} onSelect={() => {}} />)
     expect(screen.getAllByText('Demo')).toHaveLength(2)
   })
 
   it('shows no demo label for live data', () => {
-    renderApp(<PlanResult plan={plan()} />)
+    renderApp(<PlanResult plan={plan()} selected={0} onSelect={() => {}} />)
     expect(screen.queryByText('Demo')).toBeNull()
   })
 })
@@ -241,5 +331,43 @@ describe('Steps grammar', () => {
     }
     renderApp(<Steps legs={[one]} />)
     expect(screen.getByText('1 parada')).toBeTruthy()
+  })
+})
+
+// A parent holding the choice, as App does.
+const SLOW: RouteView = { ...ROUTE_OK, durationSeconds: 3000 }
+function Chooser() {
+  const [selected, setSelected] = useState(0)
+  return (
+    <PlanResult
+      plan={plan({ routes: [ROUTE_OK, SLOW, ROUTE_BLOCKED] })}
+      selected={selected}
+      onSelect={setSelected}
+    />
+  )
+}
+describe('choosing another route', () => {
+  const mainHeading = () => screen.getAllByRole('heading', { level: 3 })[0]
+
+  it('offers each other option, and shows the chosen one as the main route', async () => {
+    vi.stubGlobal('requestAnimationFrame', (fn: () => void) => fn())
+    renderApp(<Chooser />)
+    expect(mainHeading()?.textContent).toBe('25 min a tu ritmo')
+    const buttons = screen.getAllByRole('button', { name: 'Ver esta ruta' })
+    expect(buttons).toHaveLength(2)
+
+    await act(async () => buttons[0]?.click())
+    expect(mainHeading()?.textContent).toBe('50 min a tu ritmo')
+    // Focus follows, so a screen reader or a phone lands on the chosen route.
+    expect(document.activeElement).toBe(mainHeading())
+    expect(screen.getByText('Otras opciones (2)').closest('details')?.open).toBe(false)
+    expect(screen.getByText('Estás viendo otra opción.')).toBeTruthy()
+    // The recommended route is now among the others, marked as such.
+    expect(screen.getByText('Recomendada')).toBeTruthy()
+
+    await act(async () => screen.getByRole('button', { name: 'Volver a la recomendada' }).click())
+    expect(mainHeading()?.textContent).toBe('25 min a tu ritmo')
+    expect(screen.queryByText('Estás viendo otra opción.')).toBeNull()
+    expect(screen.queryByText('Recomendada')).toBeNull()
   })
 })
