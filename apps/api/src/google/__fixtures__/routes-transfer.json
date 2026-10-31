@@ -1,0 +1,182 @@
+{
+  "routes": [
+    {
+      "duration": "1680s",
+      "legs": [
+        {
+          "steps": [
+            {
+              "travelMode": "WALK",
+              "staticDuration": "120s",
+              "polyline": {
+                "encodedPolyline": "~zbkE~`fnLrDsI"
+              }
+            },
+            {
+              "travelMode": "WALK",
+              "staticDuration": "60s",
+              "polyline": {
+                "encodedPolyline": "r`ckEjvenL??"
+              }
+            },
+            {
+              "travelMode": "TRANSIT",
+              "staticDuration": "300s",
+              "polyline": {
+                "encodedPolyline": "r`ckEjvenLzI~cA"
+              },
+              "transitDetails": {
+                "headsign": "San Pablo",
+                "stopCount": 2,
+                "stopDetails": {
+                  "departureStop": {
+                    "name": "Universidad de Chile",
+                    "location": {
+                      "latLng": {
+                        "latitude": -33.4440996,
+                        "longitude": -70.6494972
+                      }
+                    }
+                  },
+                  "arrivalStop": {
+                    "name": "Los Héroes",
+                    "location": {
+                      "latLng": {
+                        "latitude": -33.4458444,
+                        "longitude": -70.6605366
+                      }
+                    }
+                  }
+                },
+                "transitLine": {
+                  "name": "Línea 1",
+                  "nameShort": "L1",
+                  "color": "#e1261c",
+                  "textColor": "#ffffff",
+                  "vehicle": {
+                    "type": "SUBWAY"
+                  }
+                }
+              }
+            },
+            {
+              "travelMode": "WALK",
+              "staticDuration": "180s",
+              "polyline": {
+                "encodedPolyline": "nkckEj{gnLbAQ"
+              }
+            },
+            {
+              "travelMode": "TRANSIT",
+              "staticDuration": "240s",
+              "polyline": {
+                "encodedPolyline": "tmckExzgnLli@sJ"
+              },
+              "transitDetails": {
+                "headsign": "Hospital El Pino (Ruta Roja)",
+                "stopCount": 1,
+                "stopDetails": {
+                  "departureStop": {
+                    "name": "Los Héroes",
+                    "location": {
+                      "latLng": {
+                        "latitude": -33.4461853,
+                        "longitude": -70.6604458
+                      }
+                    }
+                  },
+                  "arrivalStop": {
+                    "name": "Toesca",
+                    "location": {
+                      "latLng": {
+                        "latitude": -33.4529746,
+                        "longitude": -70.6585851
+                      }
+                    }
+                  }
+                },
+                "transitLine": {
+                  "name": "Línea 2",
+                  "nameShort": "L2",
+                  "color": "#fbb800",
+                  "vehicle": {
+                    "type": "SUBWAY"
+                  }
+                }
+              }
+            },
+            {
+              "travelMode": "WALK",
+              "staticDuration": "300s",
+              "polyline": {
+                "encodedPolyline": "`xdkEdognLhByE"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "duration": "2100s",
+      "legs": [
+        {
+          "steps": [
+            {
+              "travelMode": "WALK",
+              "staticDuration": "240s",
+              "polyline": {
+                "encodedPolyline": "~zbkE~`fnL~CfJ"
+              }
+            },
+            {
+              "travelMode": "TRANSIT",
+              "staticDuration": "1500s",
+              "polyline": {
+                "encodedPolyline": "~_ckEflfnLfw@~W"
+              },
+              "transitDetails": {
+                "headsign": "Gran Avenida",
+                "stopCount": 9,
+                "stopDetails": {
+                  "departureStop": {
+                    "name": "PB1960-Parada 6 / (M) Universidad de Chile",
+                    "location": {
+                      "latLng": {
+                        "latitude": -33.444,
+                        "longitude": -70.653
+                      }
+                    }
+                  },
+                  "arrivalStop": {
+                    "name": "PA123-Parada 2 / Toesca",
+                    "location": {
+                      "latLng": {
+                        "latitude": -33.453,
+                        "longitude": -70.657
+                      }
+                    }
+                  }
+                },
+                "transitLine": {
+                  "nameShort": "210",
+                  "name": "210 Estación Central - Gran Avenida",
+                  "color": "#00a0e9",
+                  "vehicle": {
+                    "type": "BUS"
+                  }
+                }
+              }
+            },
+            {
+              "travelMode": "WALK",
+              "staticDuration": "120s",
+              "polyline": {
+                "encodedPolyline": "fxdkEfegnLbBbB"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

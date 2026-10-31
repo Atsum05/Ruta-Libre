@@ -1,0 +1,23 @@
+{
+  "name": "@rutalibre/registry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Builds the station registry (stations.json) from the device catalogue and live-status texts (ADR 0006, 0011).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build:registry": "node src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@rutalibre/core": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

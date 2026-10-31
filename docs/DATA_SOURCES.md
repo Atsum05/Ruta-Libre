@@ -39,6 +39,12 @@
 - **Approved:** covered by Ariel López's permission (see the catalogue above).
 - We poll from one server at most once per 1–2 min (ADR 0004), with a `User-Agent` naming RutaLibre
   and a contact. **Follow-up:** tell Ariel that rate and agent string before Phase 5 goes live.
+- ⚠️ **Found 2026-10-28:** each device record carries the time seguimos.cl last checked it. Checks
+  happen about twice a day (12:21 and 20:21), and the newest was **2026-10-16 20:21**: the feed
+  had stopped updating 12 days earlier while still answering normally. We date snapshots by that
+  time, so the app shows `unknown`/`stale` instead of a false all-clear
+  ([ADR 0012](adr/0012-status-freshness-follows-the-source.md)). **Ask Ariel** about the intended
+  cadence and the outage, and where elevator status originates (an official Metro source?).
 
 ### OpenStreetMap
 

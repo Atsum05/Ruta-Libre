@@ -1,0 +1,10 @@
+{
+  // Code that runs in Node: build and test configs, and the Playwright e2e tests.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // DOM for code that Playwright evaluates inside the page.
+    "lib": ["ES2024", "DOM"],
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts", "vitest.config.ts", "playwright.config.ts", "e2e", "scripts"]
+}

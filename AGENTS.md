@@ -8,7 +8,8 @@ RutaLibre: accessible public-transport routing for Santiago. Plans Metro and bus
 elevators and escalators that are out of service right now, and says so plainly when it can't be
 sure. A broken elevator blocks a route; a broken escalator only warns.
 
-- **Status:** production rebuild in progress, following [`docs/ROADMAP.md`](docs/ROADMAP.md) phase by phase.
+- **Status:** code for phases 0–7 is built and tested; deployment (phase 2's CD, phases 8–9) is
+  next. Follow [`docs/ROADMAP.md`](docs/ROADMAP.md) phase by phase.
 - **Team:** one developer. Keep process lightweight but keep the gates (CI, tests, ADRs).
 - The original hackathon prototype (`equipo-3-haCAIthon-2026`) is **reference only**. Don't copy
   code from it without tests. What it taught us (data formats, API quirks, known bugs) is in
@@ -23,6 +24,11 @@ sure. A broken elevator blocks a route; a broken escalator only warns.
   the Maps JavaScript key, restricted to our domains and to that API only.
 - Verdicts are `ok | warning | blocked | unknown`. Never treat missing data as "fine".
 - Stops are matched to stations by location via a generated station registry, not by name.
+  One registry station per line; transfer complexes share street access (ADR 0011).
+- Status snapshots are dated by the source's own observation time, never our fetch time; the
+  freshness threshold follows the source's cadence (ADR 0012, proposed).
+- The HTTP contract lives in `packages/contract` (zod schemas, typed client, OpenAPI). No
+  hand-written request or response types (ADR 0013).
 - External services (Google Routes/Places, seguimos.cl, Gemini) sit behind provider interfaces.
   Google is the routing provider for now.
 - Hosting: Netlify (web) + Render (API, Postgres, Key Value), ADR 0008. Keep code platform-neutral
@@ -32,7 +38,9 @@ sure. A broken elevator blocks a route; a broken escalator only warns.
 
 ```bash
 pnpm install
+pnpm dev          # API on :8787 + web on :5173 (needs apps/web/.env.local, see .env.example)
 pnpm check        # lint + typecheck + test (exactly what CI runs). Must pass before "done"
+pnpm test:e2e     # Playwright on phone + desktop with axe; run after UI changes
 pnpm format       # auto-fix formatting and safe lint issues
 pnpm test:watch
 ```

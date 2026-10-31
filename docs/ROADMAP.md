@@ -99,18 +99,23 @@ safer than building everything first and deploying at the end.
 
 **Goal:** the full path (browser → API → response) is live and deploys itself.
 
-- [ ] `apps/web`: Vite + React + TS rendering a **Google Maps** map of Santiago
-  ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)), with a browser key restricted to our
-  domains and the Maps JavaScript API.
-- [ ] `apps/api`: **Hono** with `GET /v1/health` returning version + commit SHA.
-- [ ] Web calls `/v1/health` and shows the version in a debug footer.
-- [ ] **Config:** every env var is declared in a zod schema per app; the app refuses to start
+- [x] `apps/web`: Vite + React + TS rendering a **Google Maps** map of Santiago
+  ([ADR 0009](adr/0009-google-maps-for-map-rendering.md)) behind `<MapCanvas>`.
+- [ ] Browser Maps key restricted to our domains and the Maps JavaScript API, with a quota cap.
+- [x] `apps/api`: **Hono** with `GET /v1/health` returning version + commit SHA.
+- [x] Web calls `/v1/health` (through the same-origin `/api` proxy) and shows the version in a
+  debug footer.
+- [x] **Config:** every env var is declared in a zod schema per app; the app refuses to start
   with missing or malformed config (this would have caught the prototype's BOM-in-the-key bug
   at boot instead of as a fake CORS error).
+- [x] **Deployment as code:** `render.yaml` (API) and `netlify.toml` (web, headers, `/api` proxy
+  built from `API_ORIGIN`), with step-by-step setup in [`DEPLOY.md`](DEPLOY.md). Both commands
+  verified locally.
 - [ ] **Environments:** `local`, `preview` (every PR), `production` (main). Secrets live only in
   the hosting platform's secret store, with a template in `.env.example`.
 - [ ] **CD:** PR → preview URL posted on the PR; merge → production. No manual deploy steps.
-- [ ] **Rollback** documented and tried once (redeploy the previous version).
+- [x] **Rollback** documented ([`DEPLOY.md`](DEPLOY.md), step 7).
+- [ ] Rollback tried once, on purpose.
 
 **Done when:** merging a PR changes the live site within minutes with no human action, and you've
 rolled back once on purpose.
@@ -121,26 +126,29 @@ rolled back once on purpose.
 
 **Goal:** the accessibility verdict as a pure, fully tested library.
 
-- [ ] **Types:** `StationId`, `DeviceId` (branded), `Station`, `Platform` (by terminal station),
-  `Device`, `DeviceStatus`, `StatusSnapshot` (with `fetchedAt`), `Route`, `Leg`, `Verdict`.
-- [ ] **Functions (no I/O):**
+- [x] **Types:** `StationId`, `DeviceId` (branded), `Station`, `Device` with a platform scope (by
+  terminal station), `StatusSnapshot` (with `observedAt`), `Route`, `Leg`, `Verdict` with findings.
+- [x] **Functions (no I/O):**
   - `matchStop(stop, registry)`: location first (nearest station within ~150 m), name as tie-breaker
     ([ADR 0006](adr/0006-match-stops-by-location.md))
   - `evaluateRoute(route, snapshot, registry, now)` → `ok | warning | blocked | unknown` with reasons
   - `chooseRoute(evaluated[])` → ranked plans (the fallback order, expressed as data)
   - `adjustWalkingTime(seconds)` (factor documented and configurable)
-- [ ] **Write the rules as tests first**, including every prototype bug as a regression test:
+- [x] **Write the rules as tests first**, including every prototype bug as a regression test.
+  The full rule table is [ADR 0010](adr/0010-verdict-rules.md):
   - transfer station: each leg is checked against **its own** direction
   - broken elevator on your platform → `blocked`
   - broken elevator on the opposite platform → `warning`, not silently ignored
   - broken escalator only → `warning`
   - snapshot older than the threshold → `unknown`
   - unmatched stop → `unknown`
-  - device with no status → `unknown`
+  - elevator with no status → `unknown` (an escalator with no status is ignored: ADR 0010)
 - [ ] **Golden tests:** record ~15 real Google responses (transfers, express "Ruta Roja/Verde",
-  bus-only, no-alternative) as fixtures; assert the full plan output.
-- [ ] Coverage gate on core (e.g. ≥ 95% branches). Optional: mutation testing (Stryker) to check the
-  tests actually catch broken logic.
+  bus-only, no-alternative) as fixtures; assert the full plan output. Needs a Google key and the
+  Routes adapter, so it's done with Phase 6.
+- [x] Coverage gate on core: ≥ 95% branches, lines, functions and statements, enforced by `pnpm test`.
+  Mutation check done by hand (2026-10-28): reintroducing prototype bugs #1 and #2, ignoring the
+  direction, or letting escalators block each makes the suite fail.
 
 **Done when:** every rule above has a test, and core has zero runtime dependencies.
 
@@ -150,15 +158,22 @@ rolled back once on purpose.
 
 **Goal:** stations identified by ID, not by fuzzy strings.
 
-- [ ] Script that reads the elevator catalogue, GTFS stops, and OSM line geometry, and outputs
+- [x] Script that reads the elevator catalogue and the live feed's device texts, and outputs
   `stations.json`: ID, coordinates, lines, platforms by terminal, device IDs, name aliases.
-- [ ] Zod schema for the output; the build fails on schema violations.
-- [ ] **Validation report:** devices without a station, stations without coordinates, terminals
-  that don't exist, duplicate aliases. Zero unexplained exceptions.
-- [ ] Output is **committed** so every data change is a reviewable diff in a PR.
-- [ ] Document how and when to regenerate (e.g. when Line 7 opens).
+  One station per line, grouped into complexes ([ADR 0011](adr/0011-registry-stations-per-line.md)).
+- [ ] Add DTPM GTFS stop coordinates (fixes Baquedano, see the report) once DTPM confirms the
+  licence. OSM line geometry is a map overlay, so it moves to Phase 7.
+- [x] Zod schema for the output; the build fails on schema violations.
+- [x] **Validation report** (`packages/registry/REPORT.md`): devices without a station, unknown
+  device kinds, unrecognised directions, terminals that don't exist, duplicate names, spread-out
+  complexes. The build fails on any exception not explained in its config.
+- [x] Output is **committed** so every data change is a reviewable diff in a PR; a test fails if
+  it's stale or hand-edited.
+- [x] Document how and when to regenerate: `packages/registry/sources/README.md`.
 
 **Done when:** the report is clean (or every exception is listed with a reason) and core tests use it.
+✅ 2026-10-28: 143 stations, 1,111 device entries, 4 explained issues; core's rules are tested on
+the real registry (`packages/registry/src/stations.test.ts`).
 
 ---
 
@@ -166,15 +181,22 @@ rolled back once on purpose.
 
 **Goal:** fresh, shared, validated live status, so no user's request ever hits the upstream directly.
 
-- [ ] `StatusProvider` adapter for seguimos.cl: parse with zod and map to `DeviceId`s.
-- [ ] **Scheduled poller** (cron every 1–2 min, as agreed with the maintainer) writes the latest
-  snapshot to a key-value store with `fetchedAt`.
-- [ ] On a failed fetch or a schema mismatch: **keep the last good snapshot, mark the source degraded,
-      alert**. Never overwrite good data with garbage.
-- [ ] Record **status changes** (device, old → new, timestamp) in a database. This is cheap, and it's
-  the basis for reliability scores later.
-- [ ] `GET /v1/status` → snapshot + age + health, with cache headers.
-- [ ] Contract tests against saved upstream payloads (good, empty, malformed).
+- [x] `StatusProvider` adapter for seguimos.cl: parse with zod and map to `DeviceId`s. Snapshots
+  are dated by the source's own observation time, not our fetch time
+  ([ADR 0012](adr/0012-status-freshness-follows-the-source.md), proposed).
+- [x] **Scheduled poller** (every 2 min by default, minimum 1 min) writes the latest snapshot to a
+  store behind a `SnapshotStore` interface. In memory now; Render Key Value at deploy time.
+- [x] On a failed fetch or a schema mismatch: **keep the last good snapshot, mark the source
+  degraded, log an error** (alerts come with Phase 8). Never overwrite good data with garbage,
+  nor with an older snapshot.
+- [x] Record **status changes** (device, old → new, timestamp) behind a `StatusHistory` interface.
+  In memory now; Render Postgres at deploy time.
+- [x] `GET /v1/status` → snapshot + age + health (`ok | stale | degraded | unavailable`), with
+  cache headers.
+- [x] Contract tests against saved upstream payloads (a real sample, empty, malformed, HTML, HTTP
+  error, timeout).
+- [ ] Persistent store and history (Key Value, Postgres) when deploying.
+- [ ] Decide ADR 0012: the freshness threshold (13 h proposed) and the freshness metric.
 
 **Done when:** blocking the upstream in preview makes the UI show "degraded", and verdicts turn
 `unknown` once the snapshot passes the freshness threshold.
@@ -185,19 +207,23 @@ rolled back once on purpose.
 
 **Goal:** one request returns ranked, evaluated plans; no keys ever reach the browser.
 
-- [ ] `POST /v1/plan {origin, destination, departAt?}`, with the request validated by zod.
-- [ ] `RoutingProvider` Google adapter: field mask includes **stop locations** and **line text
-      colour**; bus-only fallback request; results mapped to core `Route`.
-- [ ] `/plan` runs `core.evaluateRoute` on all candidates → `core.chooseRoute` → response.
-- [ ] `GET /v1/places?q=` autocomplete proxy, biased to Santiago, using session tokens (Google bills
-  per session).
-- [ ] `POST /v1/interpret`: `LanguageProvider` (Gemini), structured output **validated by zod**,
-  hard timeout; any failure falls back to "use the search fields".
-- [ ] **Cross-cutting:** upstream timeouts + retry with backoff, per-IP rate limiting, request IDs,
-  structured JSON logs, CORS locked to your own origins, versioned routes (`/v1`).
-- [ ] **Typed contract:** generate OpenAPI from the zod schemas (`@hono/zod-openapi`) and a typed
-  client for the web app. No hand-written response types.
-- [ ] Integration tests with fake providers (no network in CI).
+- [x] `POST /v1/plan {origin, destination, departAt?}`, with the request validated by zod.
+- [x] `RoutingProvider` Google adapter: field mask includes **stop locations** and **line text
+      colour**; bus-only fallback request; results mapped to core `Route` (Metro lines to registry
+  IDs, ADR 0011).
+- [x] `/plan` runs `core.evaluateRoute` on all candidates → `core.chooseRoute` → response. Bus-only
+  is requested only when no route is ok or warning.
+- [x] `GET /v1/places?q=&session=` autocomplete proxy, biased to Santiago, using session tokens.
+- [x] `POST /v1/interpret`: `LanguageProvider` (Gemini), structured output **validated by zod**,
+  hard timeout; any failure is a 502/503 and the web falls back to the search fields.
+- [x] **Cross-cutting:** upstream timeouts + retry with backoff, per-IP rate limiting, request IDs,
+  structured JSON logs (paths only: no query strings, bodies or coordinates), CORS locked to
+  configured origins, versioned routes (`/v1`), contract-shaped errors.
+- [x] **Typed contract:** `packages/contract` zod schemas → inferred types, a typed client, and
+  OpenAPI 3.1 at `/v1/openapi.json` ([ADR 0013](adr/0013-shared-contract-package.md)).
+- [x] Integration tests with fake providers (no network in CI): the real Google adapter fed a
+  saved response, evaluated against the real registry.
+- [ ] Measure `/plan` p95 latency in preview (needs deployment and a Google key).
 
 **Done when:** integration tests pass, and the p95 latency of `/plan` is measured in preview.
 
@@ -207,24 +233,31 @@ rolled back once on purpose.
 
 **Goal:** a mobile-first, accessible app built on the typed API.
 
-- [ ] **Structure by feature:** `features/search`, `features/itinerary`, `features/alerts`,
+- [x] **Structure by feature:** `features/search`, `features/itinerary`, `features/status`,
   `features/map`, plus `shared/`. No component over ~200 lines.
-- [ ] **Server state with TanStack Query:** status refetch every 60 s, "updated 40 s ago"
-  indicator, degraded banner.
-- [ ] **`<MapCanvas>`** owns the Google Maps lifecycle: declarative overlays (Metro lines, device
-  status, route), re-applied after a theme change. That trap lives in one place. OSM attribution
-  shown for the Metro line overlay.
-- [ ] **Verdict UI:** `ok / warning / blocked / unknown` each with colour **+ icon + text** (never
-  colour alone). `unknown` is prominent, not a footnote.
-- [ ] **Inputs:** autocomplete fields as the main path; voice → `/interpret` as an extra.
-- [ ] **Location:** explicit permission request; if denied, ask for an origin. No silent default.
-- [ ] **i18n from day one** (es-CL default, en): all strings in a catalogue.
-- [ ] **Accessibility (WCAG 2.2 AA):** axe checks in CI, full keyboard use, screen-reader labels on
-  the itinerary, 44 px touch targets, `prefers-reduced-motion`, contrast from line text colour.
-- [ ] **Performance budget:** set JS size and LCP targets (e.g. LCP < 2.5 s on a mid-range Android
-  over 4G); enforce with Lighthouse CI. Lazy-load the map library.
-- [ ] Playwright e2e for main flows against a mocked API: plan a clean trip, a rerouted trip, a
-  no-alternative trip, the degraded-status state.
+- [x] **Server state with TanStack Query:** status refetch every 60 s, "updated 10 min ago"
+  indicator, stale/degraded/unavailable banner.
+- [x] **`<MapCanvas>`** owns the Google Maps lifecycle: declarative overlays (Metro lines, station
+  status, route). OSM attribution shown for the Metro line overlay. Falls back to a message when
+  Maps can't load; search keeps working. A dark map style needs a Map ID (later).
+- [x] **Verdict UI:** `ok / warning / blocked / unknown` each with colour **+ icon + text** (never
+  colour alone). `unknown` is an alert, not a footnote.
+- [x] **Inputs:** autocomplete fields (ARIA combobox) as the main path; free text and voice →
+  `/interpret` as an extra.
+- [x] **Location:** explicit button; if denied or failed, say so and ask for an origin.
+- [x] **i18n from day one** (es-CL default, en): all strings in a catalogue; a test checks both
+  languages have the same keys and placeholders.
+- [x] **Accessibility (WCAG 2.2 AA):** axe in unit tests (jsdom) and in e2e (real browser, with
+  colour contrast), full keyboard use, labelled itinerary, 44 px touch targets,
+  `prefers-reduced-motion`, readable text colour computed for line badges.
+- [x] Lazy-load the map library (separate chunk). Current size: initial JS 115 KB gzipped, map
+  chunk 28 KB.
+- [ ] **Performance budget** enforced with Lighthouse CI (LCP < 2.5 s on a mid-range Android over
+  4G): needs a deployed preview.
+- [x] Playwright e2e for main flows against a mocked API (phone and desktop): a clean trip, a
+  rerouted trip, a no-alternative trip, the stale-status state, map fallback, English, keyboard
+  only, no sideways scrolling. Runs in CI.
+- [ ] Check on a real phone with a real Google key.
 
 **Done when:** e2e and axe checks pass in CI and the budget holds on a real phone.
 
@@ -240,9 +273,10 @@ rolled back once on purpose.
 - [ ] **Alerts** (and fire each one once on purpose to test it): status stale > 5 min, upstream
   error spike, match-rate drop, spend over budget.
 - [ ] **Synthetic check:** a scheduled real `/plan` request in production every 5–10 min.
-- [ ] **Security:** CSP and security headers; `pnpm audit` / secret scanning in CI; Google key
-  restricted to only the APIs used; billing quotas capped; **no raw locations in logs** (round
-  coordinates, no user identifiers).
+- [x] **Security (code side):** API security headers with a deny-all CSP; `pnpm audit` in CI;
+  **no raw locations in logs** (paths only: no query strings, bodies or coordinates; tested).
+- [ ] **Security (deploy side):** web CSP in the Netlify headers; GitHub secret scanning; Google
+  keys restricted to only the APIs used; billing quotas capped.
 - [ ] **Load test** `/plan` and `/status` (k6) at ~10× expected launch traffic.
 
 **Done when:** every alert has fired once in a test, and the load test passes within the latency targets.

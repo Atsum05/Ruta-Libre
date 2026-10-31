@@ -6,7 +6,12 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/pnpm-lock.yaml"]
+    "includes": [
+      "**",
+      "!**/pnpm-lock.yaml",
+      "!packages/registry/stations.json",
+      "!packages/registry/REPORT.md"
+    ]
   },
   "formatter": {
     "indentStyle": "space",
@@ -21,7 +26,10 @@
   },
   "linter": {
     "rules": {
-      "preset": "recommended"
+      "preset": "recommended",
+      "complexity": {
+        "useLiteralKeys": "off"
+      }
     }
   },
   "overrides": [
