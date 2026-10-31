@@ -9,6 +9,7 @@ import {
 } from '@vis.gl/react-google-maps'
 import { useMemo, useState } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
+import { CloseIcon } from '../../shared/icons.tsx'
 import { MapButtons } from './MapButtons.tsx'
 import { MetroLines, RoutePath, StationDots } from './overlays.tsx'
 import { StationDetails } from './StationDetails.tsx'
@@ -48,6 +49,7 @@ export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasPro
   const markers = useMemo(() => stationMarkers(registry, status), [registry, status])
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const selected = registry.stations.find((s) => s.id === selectedId)
+  const close = () => setSelectedId(null)
   // With a route on screen, everything else steps back (focus mode).
   const focus = useMemo(() => stationsOnRoute(route, markers), [route, markers])
 
@@ -76,17 +78,23 @@ export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasPro
         streetViewControl={false}
         fullscreenControl={false}
         clickableIcons={false}
+        // Tapping the map anywhere else closes the station card.
+        onClick={close}
         {...(mapId ? { mapId } : { styles: QUIET_STYLE })}
       >
         <MetroLines dimmed={route !== undefined} />
         <StationDots markers={markers} focus={focus} onSelect={setSelectedId} />
         {selected && (
-          <InfoWindow
-            position={selected.location}
-            headerContent={<h2 className="station-card__name">{selected.name}</h2>}
-            onCloseClick={() => setSelectedId(null)}
-            maxWidth={320}
-          >
+          // Our own header instead of Google's: its close button is small and easy to miss,
+          // and on some phones it didn't show at all. Ours is a 44 px target with a label.
+          <InfoWindow position={selected.location} headerDisabled onClose={close} maxWidth={320}>
+            <div className="station-card__header">
+              <h2 className="station-card__name">{selected.name}</h2>
+              <button type="button" className="station-card__close" onClick={close}>
+                <CloseIcon />
+                <span className="visually-hidden">{t('station.close')}</span>
+              </button>
+            </div>
             <StationDetails station={selected} registry={registry} status={status} />
           </InfoWindow>
         )}

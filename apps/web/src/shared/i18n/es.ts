@@ -35,6 +35,8 @@ export const es = {
   'search.voice.notAllowed':
     'Para dictar, permite el uso del micrófono en tu navegador (ícono junto a la dirección del sitio).',
   'search.voice.noSpeech': 'No te escuchamos. Toca el micrófono y habla cerca del teléfono.',
+  'search.voice.noAudio':
+    'El micrófono no llegó a encenderse. En iPhone o Mac, activa el Dictado en Ajustes y permite el micrófono para este sitio, o escribe tu viaje.',
   'search.voice.noMicrophone': 'No encontramos un micrófono en este dispositivo.',
   'search.voice.unavailable':
     'El dictado no funciona en este navegador. Prueba con Chrome o Safari, o escribe tu viaje.',
@@ -147,6 +149,8 @@ export const es = {
   'device.unknown': 'Sin información',
   'map.locate': 'Centrar en mi ubicación',
   'map.showRoute': 'Ver la ruta completa',
+  'map.showWholeMap': 'Ver el mapa completo',
+  'map.showPanel': 'Mostrar el panel',
   'map.locateDenied': 'Activa el permiso de ubicación para centrar el mapa.',
   'map.locateFailed': 'No pudimos obtener tu ubicación.',
   'map.attribution': 'Líneas de Metro © colaboradores de OpenStreetMap',

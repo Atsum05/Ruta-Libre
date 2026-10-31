@@ -25,6 +25,7 @@ const drawn = {
 }
 const fakeMap = { fitBounds: vi.fn(), panTo: vi.fn(), setZoom: vi.fn() }
 let lastProviderError: (() => void) | undefined
+let lastMapClick: (() => void) | undefined
 
 vi.mock('@vis.gl/react-google-maps', () => ({
   useMap: () => fakeMap,
@@ -32,28 +33,21 @@ vi.mock('@vis.gl/react-google-maps', () => ({
     lastProviderError = onError
     return <>{children}</>
   },
-  Map: ({ children, 'aria-label': label }: { children: ReactNode; 'aria-label': string }) => (
-    <section aria-label={label}>{children}</section>
-  ),
-  ControlPosition: { RIGHT_BOTTOM: 9 },
-  MapControl: ({ children }: { children: ReactNode }) => <>{children}</>,
-  InfoWindow: ({
+  Map: ({
     children,
-    headerContent,
-    onCloseClick,
+    'aria-label': label,
+    onClick,
   }: {
     children: ReactNode
-    headerContent: ReactNode
-    onCloseClick: () => void
-  }) => (
-    <div role="dialog">
-      {headerContent}
-      <button type="button" onClick={onCloseClick}>
-        close
-      </button>
-      {children}
-    </div>
-  ),
+    'aria-label': string
+    onClick?: () => void
+  }) => {
+    lastMapClick = onClick
+    return <section aria-label={label}>{children}</section>
+  },
+  ControlPosition: { RIGHT_BOTTOM: 9 },
+  MapControl: ({ children }: { children: ReactNode }) => <>{children}</>,
+  InfoWindow: ({ children }: { children: ReactNode }) => <div role="dialog">{children}</div>,
 }))
 
 function installFakeGoogle() {
@@ -412,7 +406,20 @@ describe('MapCanvas station card', () => {
     const first = loadRegistry().stations[0]
     act(() => drawn.markers[0]?.listeners?.['click']?.())
     expect(screen.getByRole('dialog').querySelector('h2')?.textContent).toBe(first?.name)
-    act(() => screen.getByRole('button', { name: 'close' }).click())
+    // Our own close button: Google's was small, and missing on some phones.
+    act(() => screen.getByRole('button', { name: 'Cerrar' }).click())
+    expect(screen.queryByRole('dialog')).toBeNull()
+  })
+
+  it('closes the station details when the map is tapped elsewhere', () => {
+    render(
+      <I18nProvider locale="es">
+        <MapCanvas apiKey="k" mapId={undefined} status={STATUS_OK} route={undefined} />
+      </I18nProvider>,
+    )
+    act(() => drawn.markers[0]?.listeners?.['click']?.())
+    expect(screen.getByRole('dialog')).toBeTruthy()
+    act(() => lastMapClick?.())
     expect(screen.queryByRole('dialog')).toBeNull()
   })
 })

@@ -36,6 +36,8 @@ export const en: Record<MessageKey, string> = {
     'To dictate, allow the microphone in your browser (icon next to the site address).',
   'search.voice.noSpeech':
     "We didn't hear anything. Tap the microphone and speak close to the phone.",
+  'search.voice.noAudio':
+    'The microphone never started. On an iPhone or Mac, turn on Dictation in Settings and allow the microphone for this site, or type your trip.',
   'search.voice.noMicrophone': "We couldn't find a microphone on this device.",
   'search.voice.unavailable':
     "Dictation doesn't work in this browser. Try Chrome or Safari, or type your trip.",
@@ -145,6 +147,8 @@ export const en: Record<MessageKey, string> = {
   'device.unknown': 'No information',
   'map.locate': 'Centre on my location',
   'map.showRoute': 'Show the whole route',
+  'map.showWholeMap': 'Show the whole map',
+  'map.showPanel': 'Show the panel',
   'map.locateDenied': 'Allow location access to centre the map.',
   'map.locateFailed': "We couldn't get your location.",
   'map.attribution': 'Metro lines © OpenStreetMap contributors',

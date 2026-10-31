@@ -12,6 +12,7 @@ import { useStatus } from './features/status/useStatus.ts'
 import { api } from './shared/api.ts'
 import { useI18n } from './shared/i18n/index.tsx'
 import { AlertIcon } from './shared/icons.tsx'
+import { SheetHandle } from './shared/SheetHandle.tsx'
 import { Wordmark } from './shared/Wordmark.tsx'
 
 const MapCanvas = lazy(() => import('./features/map/MapCanvas.tsx'))
@@ -29,8 +30,8 @@ function showMapOnPhone() {
 
 /**
  * Mobile: the map stays put at the top while the panel slides up over it as you scroll, like a
- * bottom sheet (pure CSS, no gesture code). Desktop: a full-screen map with the panel floating
- * on the left.
+ * bottom sheet; its handle lowers the panel to show the whole map. Desktop: a full-screen map
+ * with the panel floating on the left.
  */
 export function App({ config }: { config: WebConfig }) {
   const { t, locale, setLocale } = useI18n()
@@ -41,6 +42,8 @@ export function App({ config }: { config: WebConfig }) {
   const [formKey, setFormKey] = useState(0)
   // Which of the plan's routes is shown and drawn: the best one until the rider picks another.
   const [selected, setSelected] = useState(0)
+  // Phone only: the panel lowered so the map fills the screen.
+  const [mapOpen, setMapOpen] = useState(false)
   const plan = useMutation({
     mutationFn: (request: PlanRequest) => api.plan(request),
     onSuccess: () => {
@@ -51,7 +54,7 @@ export function App({ config }: { config: WebConfig }) {
   })
 
   return (
-    <div className="app">
+    <div className={mapOpen ? 'app app--map-open' : 'app'}>
       <div className="map-area">
         <Suspense fallback={<div className="map map--loading" />}>
           <MapCanvas
@@ -64,7 +67,13 @@ export function App({ config }: { config: WebConfig }) {
       </div>
 
       <main className="sheet">
-        <span className="sheet__handle" aria-hidden="true" />
+        <SheetHandle
+          mapOpen={mapOpen}
+          onChange={(open) => {
+            setMapOpen(open)
+            showMapOnPhone()
+          }}
+        />
         <header className="sheet__header">
           <h1 className="sheet__title">
             <Wordmark />
