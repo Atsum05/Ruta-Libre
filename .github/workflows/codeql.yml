@@ -1,0 +1,26 @@
+name: CodeQL
+
+# GitHub's security analysis for the TypeScript code: injection, unsafe data flows, leaked
+# secrets in code. Free for public repositories. Results appear under Security → Code scanning.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 6 * * 1" # Mondays, to catch newly published vulnerability patterns
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-and-quality
+      - uses: github/codeql-action/analyze@v3

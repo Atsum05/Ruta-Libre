@@ -344,3 +344,18 @@ describe('security headers', () => {
     expect(res.headers.get('strict-transport-security')).toMatch(/max-age=/)
   })
 })
+
+describe('not configured', () => {
+  it('answers 503 for place search without a Google key', async () => {
+    const res = await (await app({ places: null })).request(
+      `/v1/places?q=Toesca&session=${SESSION}`,
+    )
+    expect(res.status).toBe(503)
+    expect(ErrorResponseSchema.parse(await res.json()).error.code).toBe('not-configured')
+  })
+
+  it('rejects an empty free-text request', async () => {
+    const res = await (await app()).request('/v1/interpret', post({ text: '' }))
+    expect(res.status).toBe(400)
+  })
+})

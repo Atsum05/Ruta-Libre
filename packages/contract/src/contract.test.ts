@@ -109,3 +109,34 @@ describe('createApiClient', () => {
     await expect(client.status()).rejects.toMatchObject({ code: 'internal', status: 502 })
   })
 })
+
+describe('cancelling a request', () => {
+  it('passes the abort through instead of reporting a network error', async () => {
+    const controller = new AbortController()
+    const client = createApiClient({
+      fetchFn: () => {
+        controller.abort()
+        return Promise.reject(new DOMException('aborted', 'AbortError'))
+      },
+    })
+    const err = await client.status(controller.signal).catch((e: unknown) => e)
+    expect(err).toBeInstanceOf(DOMException)
+  })
+
+  it('sends plan and interpret requests as JSON with the signal', async () => {
+    const seen: RequestInit[] = []
+    const client = createApiClient({
+      fetchFn: async (_url, init) => {
+        seen.push(init ?? {})
+        return new Response(JSON.stringify({ origin: null, destination: 'x' }))
+      },
+    })
+    const controller = new AbortController()
+    await client.interpret('a Toesca', controller.signal)
+    expect(seen[0]).toMatchObject({
+      method: 'POST',
+      body: '{"text":"a Toesca"}',
+      signal: controller.signal,
+    })
+  })
+})

@@ -26,8 +26,20 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # The same command you run locally: lint, typecheck, test
+      # The same command you run locally: lint, typecheck, tests with the coverage gate
       - run: pnpm check
+      - name: Coverage summary
+        if: always()
+        run: node scripts/coverage-summary.mjs >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+          retention-days: 14
+      # The production bundle must build (the e2e mode supplies a dummy, non-secret Maps key).
+      - run: pnpm --filter @rutalibre/web exec vite build --mode e2e
       # Known-vulnerable production dependencies fail the build (roadmap phase 8).
       - run: pnpm audit --prod --audit-level high
 

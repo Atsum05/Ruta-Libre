@@ -1,0 +1,109 @@
+// The whole app, wired as in production, against a stubbed API. The map component is replaced
+// (Google Maps can't run here; map.test.tsx covers it), so this checks the shell: status,
+// search → plan → result, errors, the debug footer, and switching language.
+
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
+import { App } from './App.tsx'
+import { plan, ROUTE_OK, renderApp, STATUS_OK, stubApi } from './test/render.tsx'
+
+vi.mock('./features/map/MapCanvas.tsx', () => ({
+  default: ({ route }: { route: unknown }) => (
+    <div data-testid="map" data-route={route ? 'shown' : 'none'} />
+  ),
+}))
+
+const CONFIG = { googleMapsKey: 'k', googleMapsMapId: undefined }
+const HEALTH = { status: 'ok', version: '0.1.0', commit: 'abc1234', env: 'production' }
+const PLACES = {
+  suggestions: [{ placeId: 'p1', primary: 'Universidad de Chile', secondary: null }],
+}
+
+async function chooseBothPlaces(user: ReturnType<typeof userEvent.setup>) {
+  for (const field of ['Desde', 'Hasta']) {
+    await user.type(screen.getByRole('combobox', { name: field }), 'Univ')
+    await user.click(await screen.findByRole('option', { name: 'Universidad de Chile' }))
+  }
+}
+
+describe('App', () => {
+  it('shows the live status, the debug footer, and an empty map', async () => {
+    stubApi({ '/api/v1/status': STATUS_OK, '/api/v1/health': HEALTH })
+    renderApp(<App config={CONFIG} />)
+    expect(await screen.findByText('Estado de ascensores actualizado hace 10 min.')).toBeTruthy()
+    expect(await screen.findByText(/api 0\.1\.0 \(abc1234, production\)/)).toBeTruthy()
+    expect((await screen.findByTestId('map')).dataset['route']).toBe('none')
+  })
+
+  it('plans a trip and draws the best route on the map', async () => {
+    const calls = stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan(),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+
+    expect(await screen.findByText('Ruta accesible encontrada.')).toBeTruthy()
+    expect(screen.getByTestId('map').dataset['route']).toBe('shown')
+    const request = calls.find((c) => c.url.pathname === '/api/v1/plan')
+    expect(JSON.parse(String(request?.init?.body))).toEqual({
+      origin: { kind: 'place', placeId: 'p1' },
+      destination: { kind: 'place', placeId: 'p1' },
+    })
+  })
+
+  it('says so when planning fails', async () => {
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': new Response('{}', { status: 502 }),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    expect(
+      await screen.findByText('No pudimos buscar la ruta. Inténtalo de nuevo en un momento.'),
+    ).toBeTruthy()
+  })
+
+  it('warns when the API itself is unreachable', async () => {
+    stubApi({})
+    renderApp(<App config={CONFIG} />)
+    expect((await screen.findByRole('alert')).textContent).toMatch('No podemos confirmar rutas.')
+    expect(await screen.findByText(/api no disponible/)).toBeTruthy()
+  })
+
+  it('switches language, remembers it, and updates the page language', async () => {
+    stubApi({ '/api/v1/status': STATUS_OK, '/api/v1/health': HEALTH })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await user.click(screen.getByRole('button', { name: 'English' }))
+    expect(screen.getByRole('button', { name: 'Find accessible route' })).toBeTruthy()
+    expect(document.documentElement.lang).toBe('en')
+    expect(localStorage.getItem('rutalibre-locale')).toBe('en')
+    await user.click(screen.getByRole('button', { name: 'Español' }))
+    await waitFor(() => expect(document.documentElement.lang).toBe('es-CL'))
+  })
+
+  it('keeps the plan result accessible to the whole trip, not just the map', async () => {
+    stubApi({
+      '/api/v1/status': STATUS_OK,
+      '/api/v1/health': HEALTH,
+      '/api/v1/places': PLACES,
+      '/api/v1/plan': plan({ routes: [ROUTE_OK] }),
+    })
+    const user = userEvent.setup()
+    renderApp(<App config={CONFIG} />)
+    await chooseBothPlaces(user)
+    await user.click(screen.getByRole('button', { name: 'Buscar ruta accesible' }))
+    expect(await screen.findByRole('article')).toBeTruthy()
+    expect(screen.getByText('Línea 1 dirección San Pablo')).toBeTruthy()
+  })
+})

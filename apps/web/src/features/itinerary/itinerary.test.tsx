@@ -1,10 +1,12 @@
-import type { Finding } from '@rutalibre/contract'
+import type { Finding, RouteView } from '@rutalibre/contract'
 import { screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { translator } from '../../shared/i18n/index.tsx'
 import { axeViolations, plan, ROUTE_BLOCKED, ROUTE_OK, renderApp } from '../../test/render.tsx'
 import { describeFinding, orderFindings } from './findings.ts'
 import { PlanResult } from './PlanResult.tsx'
+import { RouteCard } from './RouteCard.tsx'
+import { Steps } from './Steps.tsx'
 import { VerdictBadge } from './VerdictBadge.tsx'
 
 const t = translator('es')
@@ -148,5 +150,58 @@ describe('PlanResult', () => {
       <PlanResult plan={plan({ routes: [ROUTE_OK, ROUTE_BLOCKED] })} />,
     )
     expect(await axeViolations(container)).toEqual([])
+  })
+})
+
+describe('Steps', () => {
+  const base = ROUTE_BLOCKED.legs[0] as Exclude<RouteView['legs'][number], { mode: 'walk' }>
+  const leg = (overrides: Partial<typeof base> & { mode?: 'metro' | 'bus' | 'rail' }) =>
+    ({ ...base, ...overrides }) as RouteView['legs'][number]
+  const stepsOf = (...legs: RouteView['legs']) => {
+    renderApp(<Steps legs={legs} />)
+    return screen.getAllByRole('listitem').map((li) => li.textContent)
+  }
+
+  it('names the bus route and where it goes', () => {
+    const [text] = stepsOf(
+      leg({ mode: 'bus', line: '210', label: '210', headsign: 'Gran Avenida' }),
+    )
+    expect(text).toContain('Micro 210 hacia Gran Avenida')
+  })
+
+  it('still describes a bus or a train with no direction', () => {
+    const texts = stepsOf(
+      leg({ mode: 'bus', line: '210', label: '210', headsign: null }),
+      leg({ mode: 'metro', headsign: null }),
+      leg({ mode: 'rail', line: 'Tren Nos', label: 'Tren Nos', headsign: 'Nos' }),
+    )
+    expect(texts[0]).toContain('Micro 210')
+    expect(texts[1]).toContain('Línea 1')
+    expect(texts[2]).toContain('Tren Nos')
+  })
+
+  it('shows the express route as a labelled chip', () => {
+    const [text] = stepsOf(leg({ expressRoute: 'roja' }))
+    expect(text).toContain('Ruta Roja')
+    expect(screen.getByText('Ruta Roja').className).toContain('express--roja')
+  })
+
+  it('omits the stop count when the provider gave none', () => {
+    const [text] = stepsOf(leg({ stopCount: null }))
+    expect(text).not.toContain('paradas')
+  })
+
+  it('shows the line badge in the line colours', () => {
+    stepsOf(leg({}))
+    const badge = screen.getByText('L1')
+    expect(badge.style.background).toBe('rgb(225, 38, 28)')
+    expect(badge.style.color).toBe('rgb(255, 255, 255)')
+  })
+})
+
+describe('RouteCard', () => {
+  it('marks a bus-only route', () => {
+    renderApp(<RouteCard route={{ ...ROUTE_OK, source: 'bus-only' }} headingId="h" />)
+    expect(screen.getByText('Solo micro')).toBeTruthy()
   })
 })
