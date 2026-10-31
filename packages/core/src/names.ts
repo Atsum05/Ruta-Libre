@@ -13,8 +13,6 @@ export function normalizeName(name: string): string {
     .replace(/^(estacion|metro) /, '')
 }
 
-const SERVICE_SUFFIX = /\s*\(([^)]*)\)\s*$/
-
 export interface Headsign {
   /** Where the train is heading, with any service note removed. */
   readonly destination: string
@@ -27,10 +25,16 @@ export interface Headsign {
  * removed before comparing directions, or the comparison always fails (prototype lesson).
  */
 export function parseHeadsign(headsign: string): Headsign {
-  const suffix = SERVICE_SUFFIX.exec(headsign)
-  const note = suffix ? normalizeName(suffix[1] ?? '') : ''
+  // Parsed with string operations, not a regex: headsigns come from the routing provider, and a
+  // pattern like /\s*\(([^)]*)\)\s*$/ backtracks quadratically on crafted input (CodeQL).
+  const text = headsign.trim()
+  const open = text.lastIndexOf('(')
+  const hasNote = open !== -1 && text.endsWith(')') && text.indexOf(')', open) === text.length - 1
+  if (!hasNote) return { destination: text, expressRoute: null }
+
+  const note = normalizeName(text.slice(open + 1, -1))
   return {
-    destination: suffix ? headsign.slice(0, suffix.index) : headsign.trim(),
+    destination: text.slice(0, open).trimEnd(),
     expressRoute: note === 'ruta roja' ? 'roja' : note === 'ruta verde' ? 'verde' : null,
   }
 }

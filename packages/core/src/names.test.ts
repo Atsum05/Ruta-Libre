@@ -36,3 +36,26 @@ describe('parseHeadsign', () => {
     })
   })
 })
+
+describe('parseHeadsign edge cases', () => {
+  it.each([
+    ['  La Cisterna (Ruta Roja)  ', 'La Cisterna', 'roja'],
+    ['A (b) (Ruta Verde)', 'A (b)', 'verde'],
+    ['Tobalaba (a) b)', 'Tobalaba (a) b)', null],
+    ['Los Héroes ()', 'Los Héroes', null],
+    ['(Ruta Roja)', '', 'roja'],
+    ['Sin paréntesis', 'Sin paréntesis', null],
+  ] as const)('%j → %j, %j', (headsign, destination, expressRoute) => {
+    expect(parseHeadsign(headsign)).toEqual({ destination, expressRoute })
+  })
+
+  // Regression for a CodeQL alert: the old regex took ~2 s on 80 KB of "((" (quadratic).
+  it('stays fast on crafted input from the routing provider', () => {
+    const n = 200_000
+    const started = Date.now()
+    parseHeadsign(`a${' '.repeat(n)}x`)
+    parseHeadsign(`(${'(('.repeat(n)}`)
+    parseHeadsign(`${'('.repeat(n)})`)
+    expect(Date.now() - started).toBeLessThan(200)
+  })
+})

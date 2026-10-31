@@ -45,9 +45,13 @@ export function deviceKind(tipo: string): DeviceKind | null {
   return null
 }
 
-const LINE_SUFFIX = /\s+L\d+[A-Za-z]?$/
+// Anchored at both ends and tested against one word only, so it can't backtrack (CodeQL).
+const LINE_TAG = /^L\d+[A-Za-z]?$/
 
 /** The catalogue disambiguates some names per line ("Plaza Egaña L3"); riders say "Plaza Egaña". */
 export function displayName(catalogueName: string): string {
-  return catalogueName.replace(LINE_SUFFIX, '')
+  const name = catalogueName.trimEnd()
+  const lastSpace = Math.max(name.lastIndexOf(' '), name.lastIndexOf('\t'))
+  if (lastSpace === -1 || !LINE_TAG.test(name.slice(lastSpace + 1))) return catalogueName
+  return name.slice(0, lastSpace).trimEnd()
 }

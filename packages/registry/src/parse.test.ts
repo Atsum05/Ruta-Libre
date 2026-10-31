@@ -84,3 +84,23 @@ describe('displayName', () => {
     expect(displayName(input)).toBe(expected)
   })
 })
+
+describe('displayName edge cases', () => {
+  it.each([
+    ['Plaza de Armas L3', 'Plaza de Armas'],
+    ['Vicuña Mackenna L4a', 'Vicuña Mackenna'],
+    ['Universidad de Chile  L3  ', 'Universidad de Chile'],
+    ['L3', 'L3'],
+    ['Línea Larga', 'Línea Larga'],
+    ['Estación L3x5', 'Estación L3x5'],
+  ])('%j → %j', (input, expected) => {
+    expect(displayName(input)).toBe(expected)
+  })
+
+  // Regression for a CodeQL alert: the old /\s+L\d+[A-Za-z]?$/ backtracked on long runs of spaces.
+  it('stays fast on a long run of spaces', () => {
+    const started = performance.now()
+    displayName(`a${' '.repeat(200_000)}x`)
+    expect(performance.now() - started).toBeLessThan(200)
+  })
+})

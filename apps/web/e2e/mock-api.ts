@@ -109,7 +109,12 @@ export const PLANS: Record<'clean' | 'rerouted' | 'noAlternative', PlanResponse>
 
 /** Answers /api/* like the real API would, and keeps Google Maps out of the test. */
 export async function mockApi(page: Page, { plan = PLANS.clean, status: s = STATUS.ok } = {}) {
-  await page.route(/maps\.googleapis\.com|maps\.gstatic\.com/, (route) => route.abort())
+  // Exact hostnames, not a substring regex: a URL that merely contains the name mustn't match.
+  const google = new Set(['maps.googleapis.com', 'maps.gstatic.com'])
+  await page.route(
+    (url) => google.has(url.hostname),
+    (route) => route.abort(),
+  )
   await page.route('**/api/v1/**', async (route) => {
     const path = new URL(route.request().url()).pathname
     const json = (body: unknown) => route.fulfill({ json: body })
