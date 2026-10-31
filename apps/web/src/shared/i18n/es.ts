@@ -3,8 +3,9 @@
 
 export const es = {
   'app.title': 'RutaLibre',
-  'app.tagline': 'Rutas accesibles en Metro y micro, según el estado real de ascensores',
+  'app.tagline': 'Rutas en Metro y micro según el estado real de ascensores y escaleras.',
 
+  'search.title': '¿A dónde vas?',
   'search.origin': 'Desde',
   'search.destination': 'Hasta',
   'search.placeholder.origin': 'Calle, lugar o estación',
@@ -27,6 +28,14 @@ export const es = {
   'search.freeText.failed': 'No pudimos entender el viaje. Usa los campos de arriba.',
   'search.voice.start': 'Dictar por voz',
   'search.voice.listening': 'Escuchando…',
+  'search.voice.stop': 'Terminar el dictado',
+  'search.voice.notAllowed':
+    'Para dictar, permite el uso del micrófono en tu navegador (ícono junto a la dirección del sitio).',
+  'search.voice.noSpeech': 'No te escuchamos. Toca el micrófono y habla cerca del teléfono.',
+  'search.voice.noMicrophone': 'No encontramos un micrófono en este dispositivo.',
+  'search.voice.unavailable':
+    'El dictado no funciona en este navegador. Prueba con Chrome o Safari, o escribe tu viaje.',
+  'search.freeText.interpreting': 'Entendiendo tu viaje…',
 
   'verdict.ok': 'Accesible ahora',
   'verdict.warning': 'Accesible, con avisos',
@@ -42,7 +51,8 @@ export const es = {
   'outcome.noRoute': 'No encontramos rutas en transporte público entre esos lugares.',
   'outcome.error': 'No pudimos buscar la ruta. Inténtalo de nuevo en un momento.',
 
-  'route.duration': '{minutes} min a tu ritmo',
+  'route.minutes': '{minutes} min',
+  'route.pace': 'a tu ritmo',
   'route.option': 'Opción {n}',
   'route.otherOptions': 'Otras opciones',
   'route.source.bus-only': 'Solo micro',
@@ -54,7 +64,6 @@ export const es = {
   'leg.bus': 'Micro {line} hacia {headsign}',
   'leg.busNoDirection': 'Micro {line}',
   'leg.rail': '{line}',
-  'leg.fromTo': 'De {from} a {to}',
   'leg.stops': '{count} paradas',
   'leg.express': 'Ruta {color}',
   'leg.express.roja': 'Roja',

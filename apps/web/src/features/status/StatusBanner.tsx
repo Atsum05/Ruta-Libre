@@ -1,6 +1,7 @@
 import type { StatusResponse } from '@rutalibre/contract'
 import { formatAge } from '../../shared/format.ts'
 import { useI18n } from '../../shared/i18n/index.tsx'
+import { AlertIcon } from '../../shared/icons.tsx'
 
 interface StatusBannerProps {
   status: StatusResponse | undefined
@@ -18,7 +19,7 @@ export function StatusBanner({ status, failed }: StatusBannerProps) {
   if (failed || status?.health === 'unavailable') {
     return (
       <p className="status-banner status-banner--alert" role="alert">
-        <span aria-hidden="true">⚠ </span>
+        <AlertIcon size={18} className="status-banner__icon" />
         {t('status.unavailable')}
       </p>
     )
@@ -30,14 +31,15 @@ export function StatusBanner({ status, failed }: StatusBannerProps) {
   const age = formatAge(status.ageSeconds ?? 0, t)
   if (status.health === 'ok') {
     return (
-      <p className="status-banner" aria-live="polite">
+      <p className="status-banner status-banner--ok" aria-live="polite">
+        <span className="status-banner__live" aria-hidden="true" />
         {t('status.ok', { age: t('status.ago', { age }) })}
       </p>
     )
   }
   return (
     <p className="status-banner status-banner--alert" role="alert">
-      <span aria-hidden="true">⚠ </span>
+      <AlertIcon size={18} className="status-banner__icon" />
       {status.health === 'stale'
         ? t('status.stale', { age })
         : t('status.degraded', { age: t('status.ago', { age }) })}

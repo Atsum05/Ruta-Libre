@@ -1,6 +1,7 @@
 import type { PlanResponse } from '@rutalibre/contract'
 import { useId } from 'react'
 import { useI18n } from '../../shared/i18n/index.tsx'
+import { AlertIcon, CheckIcon, ChevronIcon } from '../../shared/icons.tsx'
 import { RouteCard } from './RouteCard.tsx'
 
 type Tone = 'good' | 'alert'
@@ -32,15 +33,21 @@ export function PlanResult({ plan }: { plan: PlanResponse }) {
     <section className="plan-result" aria-labelledby={`${baseId}-outcome`}>
       <p
         id={`${baseId}-outcome`}
-        className={`outcome outcome--${tone}`}
+        className={`notice notice--${tone}`}
         role={tone === 'alert' ? 'alert' : 'status'}
       >
+        {tone === 'alert' ? (
+          <AlertIcon className="notice__icon" />
+        ) : (
+          <CheckIcon className="notice__icon" />
+        )}
         {t(key)}
       </p>
       {best && <RouteCard route={best} headingId={`${baseId}-best`} />}
       {others.length > 0 && (
         <details className="other-routes">
           <summary>
+            <ChevronIcon size={18} className="other-routes__chevron" />
             {t('route.otherOptions')} ({others.length})
           </summary>
           {others.map((route, i) => (

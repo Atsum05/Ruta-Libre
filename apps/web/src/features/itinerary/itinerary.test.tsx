@@ -19,15 +19,25 @@ const finding = (reason: Finding['reason'], effect: Finding['effect'] = 'warning
 
 describe('VerdictBadge', () => {
   it.each([
-    ['ok', '✓', 'Accesible ahora'],
-    ['warning', '!', 'Accesible, con avisos'],
-    ['blocked', '✕', 'No accesible'],
-    ['unknown', '?', 'No podemos confirmarlo'],
-  ] as const)('shows %s with an icon and words, not colour alone', (kind, icon, text) => {
+    ['ok', 'Accesible ahora'],
+    ['warning', 'Accesible, con avisos'],
+    ['blocked', 'No accesible'],
+    ['unknown', 'No podemos confirmarlo'],
+  ] as const)('shows %s with an icon and words, not colour alone', (kind, text) => {
     const { container } = renderApp(<VerdictBadge kind={kind} />)
-    expect(container.textContent).toBe(`${icon}${text}`)
-    // The icon is decorative; the words carry the meaning for screen readers.
-    expect(container.querySelector('[aria-hidden="true"]')?.textContent).toBe(icon)
+    // The words carry the meaning for screen readers; the icon is decorative.
+    expect(container.textContent).toBe(text)
+    expect(container.querySelector('svg[aria-hidden="true"]')).not.toBeNull()
+  })
+
+  it('gives every verdict a different icon shape', () => {
+    const shapes = (['ok', 'warning', 'blocked', 'unknown'] as const).map((kind) => {
+      const { container, unmount } = renderApp(<VerdictBadge kind={kind} />)
+      const svg = container.querySelector('svg')?.innerHTML
+      unmount()
+      return svg
+    })
+    expect(new Set(shapes).size).toBe(4)
   })
 })
 
@@ -104,7 +114,8 @@ describe('PlanResult', () => {
     renderApp(<PlanResult plan={plan()} />)
     expect(screen.getByRole('status')).toHaveProperty('textContent', 'Ruta accesible encontrada.')
     const card = screen.getByRole('article')
-    expect(within(card).getByText('25 min a tu ritmo')).toBeTruthy()
+    // Shown as a big "25 min" with a smaller "a tu ritmo", read as one heading.
+    expect(within(card).getByRole('heading', { level: 3, name: '25 min a tu ritmo' })).toBeTruthy()
     expect(within(card).getByText('Accesible ahora')).toBeTruthy()
     expect(within(card).getByText('Línea 1 dirección San Pablo')).toBeTruthy()
     expect(within(card).getByText('Caminar ~5 min a tu ritmo')).toBeTruthy()
@@ -141,7 +152,7 @@ describe('PlanResult', () => {
 
   it('works in English', () => {
     renderApp(<PlanResult plan={plan()} />, 'en')
-    expect(screen.getByText('25 min at your pace')).toBeTruthy()
+    expect(screen.getByRole('heading', { level: 3, name: '25 min at your pace' })).toBeTruthy()
     expect(screen.getByText('Accessible now')).toBeTruthy()
   })
 

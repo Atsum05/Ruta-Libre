@@ -122,6 +122,9 @@ export async function mockApi(page: Page, { plan = PLANS.clean, status: s = STAT
     if (path === '/api/v1/health')
       return json({ status: 'ok', version: '0.1.0', commit: 'e2e', env: 'local' })
     if (path === '/api/v1/plan') return json(plan)
+    if (path === '/api/v1/interpret') {
+      return json({ origin: 'Universidad de Chile', destination: 'Toesca' })
+    }
     if (path === '/api/v1/places') {
       const q = new URL(route.request().url()).searchParams.get('q') ?? ''
       return json({

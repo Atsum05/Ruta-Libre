@@ -118,3 +118,60 @@ test('meets WCAG 2.2 AA on the start page and the results, including contrast', 
   await page.getByText('Otras opciones (1)').click()
   expect(await axeViolations(page)).toEqual([])
 })
+
+/** Gives the page a speech recogniser that "hears" a phrase, or fails with a browser error. */
+async function fakeSpeech(
+  page: import('@playwright/test').Page,
+  outcome: { heard: string } | { error: string },
+) {
+  await page.addInitScript((o) => {
+    class FakeRecognition {
+      lang = ''
+      interimResults = false
+      onresult: ((e: unknown) => void) | null = null
+      onerror: ((e: unknown) => void) | null = null
+      onend: (() => void) | null = null
+      start() {
+        setTimeout(() => {
+          if ('heard' in o) {
+            const words = o.heard.split(' ')
+            words.forEach((_, i) => {
+              this.onresult?.({ results: [[{ transcript: words.slice(0, i + 1).join(' ') }]] })
+            })
+          } else {
+            this.onerror?.({ error: o.error })
+          }
+          this.onend?.()
+        }, 50)
+      }
+      stop() {
+        this.onend?.()
+      }
+    }
+    ;(window as unknown as Record<string, unknown>)['SpeechRecognition'] = FakeRecognition
+  }, outcome)
+}
+
+test('plans a trip from dictation', async ({ page }) => {
+  await fakeSpeech(page, { heard: 'de la Universidad de Chile a Toesca' })
+  await mockApi(page, { plan: PLANS.clean })
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Dictar por voz' }).click()
+  await expect(page.getByLabel('O describe tu viaje')).toHaveValue(
+    'de la Universidad de Chile a Toesca',
+  )
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Ruta accesible encontrada.' }),
+  ).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Hasta' })).toHaveValue('Toesca')
+})
+
+test('explains why dictation failed instead of doing nothing', async ({ page }) => {
+  await fakeSpeech(page, { error: 'not-allowed' })
+  await mockApi(page)
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Dictar por voz' }).click()
+  await expect(
+    page.getByRole('alert').filter({ hasText: 'permite el uso del micrófono' }),
+  ).toBeVisible()
+})

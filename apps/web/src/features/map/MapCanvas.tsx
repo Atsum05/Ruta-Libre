@@ -9,6 +9,18 @@ import { stationMarkers } from './stationStatus.ts'
 // Plaza de Armas, roughly the centre of the Metro network.
 const SANTIAGO = { lat: -33.4378, lng: -70.6505 }
 
+// A quiet base map so the route and the station colours carry the picture: no shops or Google's
+// own transit layer (we draw the Metro ourselves), softer colours. Ignored when a Map ID is set,
+// whose style is managed in Google Cloud.
+const QUIET_STYLE: google.maps.MapTypeStyle[] = [
+  { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+  { featureType: 'poi.park', stylers: [{ visibility: 'simplified' }] },
+  { featureType: 'transit', stylers: [{ visibility: 'off' }] },
+  { featureType: 'road', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+  { elementType: 'geometry', stylers: [{ saturation: -35 }] },
+  { featureType: 'water', stylers: [{ color: '#b9d3e6' }] },
+]
+
 export interface MapCanvasProps {
   apiKey: string
   mapId: string | undefined
@@ -51,7 +63,7 @@ export default function MapCanvas({ apiKey, mapId, status, route }: MapCanvasPro
         streetViewControl={false}
         fullscreenControl={false}
         clickableIcons={false}
-        {...(mapId ? { mapId } : {})}
+        {...(mapId ? { mapId } : { styles: QUIET_STYLE })}
       >
         <MetroLines />
         <StationDots markers={markers} />

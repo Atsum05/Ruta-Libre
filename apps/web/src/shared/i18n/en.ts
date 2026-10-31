@@ -2,8 +2,9 @@ import type { MessageKey } from './es.ts'
 
 export const en: Record<MessageKey, string> = {
   'app.title': 'RutaLibre',
-  'app.tagline': 'Accessible Metro and bus routes, based on live elevator status',
+  'app.tagline': 'Metro and bus routes based on the live status of elevators and escalators.',
 
+  'search.title': 'Where to?',
   'search.origin': 'From',
   'search.destination': 'To',
   'search.placeholder.origin': 'Street, place or station',
@@ -27,6 +28,15 @@ export const en: Record<MessageKey, string> = {
   'search.freeText.failed': "We couldn't understand the trip. Use the fields above.",
   'search.voice.start': 'Dictate',
   'search.voice.listening': 'Listening…',
+  'search.voice.stop': 'Stop dictating',
+  'search.voice.notAllowed':
+    'To dictate, allow the microphone in your browser (icon next to the site address).',
+  'search.voice.noSpeech':
+    "We didn't hear anything. Tap the microphone and speak close to the phone.",
+  'search.voice.noMicrophone': "We couldn't find a microphone on this device.",
+  'search.voice.unavailable':
+    "Dictation doesn't work in this browser. Try Chrome or Safari, or type your trip.",
+  'search.freeText.interpreting': 'Understanding your trip…',
 
   'verdict.ok': 'Accessible now',
   'verdict.warning': 'Accessible, with notices',
@@ -41,7 +51,8 @@ export const en: Record<MessageKey, string> = {
   'outcome.noRoute': "We couldn't find public transport routes between those places.",
   'outcome.error': "We couldn't search for a route. Try again in a moment.",
 
-  'route.duration': '{minutes} min at your pace',
+  'route.minutes': '{minutes} min',
+  'route.pace': 'at your pace',
   'route.option': 'Option {n}',
   'route.otherOptions': 'Other options',
   'route.source.bus-only': 'Bus only',
@@ -53,7 +64,6 @@ export const en: Record<MessageKey, string> = {
   'leg.bus': 'Bus {line} towards {headsign}',
   'leg.busNoDirection': 'Bus {line}',
   'leg.rail': '{line}',
-  'leg.fromTo': 'From {from} to {to}',
   'leg.stops': '{count} stops',
   'leg.express': '{color} route',
   'leg.express.roja': 'Red',
