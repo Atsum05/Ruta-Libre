@@ -7,6 +7,6 @@ export default defineConfig({
     name: 'web',
     environment: 'jsdom',
     // Playwright owns e2e/*.spec.ts.
-    include: ['src/**/*.test.{ts,tsx}'],
+    include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.ts'],
   },
 })

@@ -1,0 +1,36 @@
+# Render Blueprint for the API (ADR 0008). Render reads this when you create a Blueprint from the
+# repository; see docs/DEPLOY.md. Secrets are entered in the Render dashboard, never here.
+services:
+  - type: web
+    name: rutalibre-api
+    runtime: node
+    # Always on: the free plan sleeps when idle, which stops the status poller (ADR 0008).
+    plan: starter
+    # No South American region yet; Virginia has the lowest latency to Santiago of those offered.
+    region: virginia
+    # Node comes from .nvmrc; pnpm from package.json's packageManager field.
+    buildCommand: corepack enable && pnpm install --frozen-lockfile
+    startCommand: pnpm --filter @rutalibre/api start
+    healthCheckPath: /v1/health
+    # Deploys every push to main that touches the API or the packages it uses.
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - apps/api/**
+        - packages/**
+        - package.json
+        - pnpm-lock.yaml
+        - pnpm-workspace.yaml
+        - .nvmrc
+    envVars:
+      - key: APP_ENV
+        value: production
+      # Render's proxy puts the client address in X-Forwarded-For (per-client rate limits).
+      - key: TRUST_PROXY
+        value: "true"
+      # Server key, restricted to the Routes API and Places API (New). Entered in the dashboard.
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false
+      # Optional: enables the free-text and voice search. Use a paid-tier key in production.
+      - key: GEMINI_API_KEY
+        sync: false

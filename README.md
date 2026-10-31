@@ -5,7 +5,8 @@ elevators and escalators that are out of service **right now**, and tells you pl
 can't be sure.
 
 > **Status:** the code for every roadmap phase up to deployment is built and tested; it is **not
-> live yet**. Deployment (Netlify + Render) is the next step. This is a production rebuild of the
+> live yet**. Deployment (Netlify + Render) is the next step: see [`docs/DEPLOY.md`](docs/DEPLOY.md).
+> This is a production rebuild of the
 > HaCAithon 2026 prototype (`../equipo-3-haCAIthon-2026`), which is reference material only.
 
 ## How it works
@@ -72,8 +73,10 @@ example a key with an invisible BOM, which broke the prototype).
 
 ## Testing
 
-- **313 unit and integration tests.** Core carries a 95% coverage gate (currently 100% lines,
-  99% branches). Every prototype bug is a regression test.
+- **375 unit and integration tests** across every package and app, with a coverage gate on the
+  whole codebase (currently 99% of lines, 91% of branches) and a stricter 95% gate on core.
+  Only the three entry points are excluded, with the reason in `vitest.config.ts`. Every prototype
+  bug is a regression test.
 - **Real data in tests:** core's rules run against the real station registry; the API's planning
   tests feed the Google adapter a saved response and evaluate it against the registry; status
   contract tests use a real seguimos.cl sample.
@@ -81,9 +84,23 @@ example a key with an invisible BOM, which broke the prototype).
   trips, stale status, map fallback, English, keyboard only, no sideways scrolling, and WCAG 2.2 AA
   checks including colour contrast.
 
+## Continuous integration
+
+Every pull request and every push to `main` runs, in GitHub Actions:
+
+- **CI / check:** lint, typecheck, all tests with the coverage gate (a coverage table appears on
+  the run's summary page, and the full report is downloadable), a production build of the web app,
+  and a dependency vulnerability audit.
+- **CI / e2e:** the Playwright suite in Chromium.
+- **CodeQL:** GitHub's security analysis of the code (also weekly). Results under Security.
+
+`main` only accepts squash-merged pull requests whose `check` job passed. Dependency updates arrive
+as grouped pull requests from Renovate every Monday.
+
 ## Documentation
 
 - [`docs/ROADMAP.md`](docs/ROADMAP.md): the build plan, phase by phase, with what's done and what's open.
+- [`docs/DEPLOY.md`](docs/DEPLOY.md): deploying to Render and Netlify, step by step, and rolling back.
 - [`docs/BRIEF.md`](docs/BRIEF.md): who it's for, the one promise, non-goals, success metrics.
 - [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md): licences, permissions and terms for every data source.
 - [`docs/adr/`](docs/adr/): why things are built the way they are.

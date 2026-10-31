@@ -108,10 +108,14 @@ safer than building everything first and deploying at the end.
 - [x] **Config:** every env var is declared in a zod schema per app; the app refuses to start
   with missing or malformed config (this would have caught the prototype's BOM-in-the-key bug
   at boot instead of as a fake CORS error).
+- [x] **Deployment as code:** `render.yaml` (API) and `netlify.toml` (web, headers, `/api` proxy
+  built from `API_ORIGIN`), with step-by-step setup in [`DEPLOY.md`](DEPLOY.md). Both commands
+  verified locally.
 - [ ] **Environments:** `local`, `preview` (every PR), `production` (main). Secrets live only in
   the hosting platform's secret store, with a template in `.env.example`.
 - [ ] **CD:** PR → preview URL posted on the PR; merge → production. No manual deploy steps.
-- [ ] **Rollback** documented and tried once (redeploy the previous version).
+- [x] **Rollback** documented ([`DEPLOY.md`](DEPLOY.md), step 7).
+- [ ] Rollback tried once, on purpose.
 
 **Done when:** merging a PR changes the live site within minutes with no human action, and you've
 rolled back once on purpose.

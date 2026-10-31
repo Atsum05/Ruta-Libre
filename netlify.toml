@@ -1,0 +1,28 @@
+# Netlify builds and hosts the web app (ADR 0008); see docs/DEPLOY.md.
+# Node comes from .nvmrc and pnpm from package.json's packageManager field.
+# Environment variables (set in the Netlify dashboard, never here):
+#   VITE_GOOGLE_MAPS_KEY  browser key, restricted to this site's domains and the Maps JS API
+#   API_ORIGIN            the Render API, e.g. https://rutalibre-api.onrender.com
+
+[build]
+  command = "pnpm --filter @rutalibre/web build && node apps/web/scripts/netlify-redirects.mjs"
+  publish = "apps/web/dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Location and the microphone are asked for by this site only, when the person taps a button.
+    Permissions-Policy = "camera=(), geolocation=(self), microphone=(self), payment=()"
+    # Report-only first: Google Maps loads scripts, styles, images and workers from several
+    # Google domains. Check the browser console for reports, then rename this header to
+    # Content-Security-Policy to enforce it (docs/DEPLOY.md, step 6).
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' https://maps.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.ggpht.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.googleapis.com https://*.google.com https://*.gstatic.com; worker-src blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# Vite fingerprints asset file names, so they can be cached forever.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
