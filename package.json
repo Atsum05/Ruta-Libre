@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.18.0",
   "engines": {
     "node": ">=24"
   },
@@ -18,7 +18,7 @@
     "test:e2e": "pnpm --filter @rutalibre/web test:e2e"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.6.3",
+    "@biomejs/biome": "2.6.6",
     "@vitest/coverage-v8": "catalog:",
     "vitest": "catalog:"
   }
